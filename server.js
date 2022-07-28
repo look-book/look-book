@@ -6,3 +6,5 @@ const port = process.env.PORT || 5000; //Line 3
 app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
 
 app.use(express.static(__dirname + '/Client/public'));
+
+//,"build": "cd Client && npm run build"
