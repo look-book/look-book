@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/look-book/look-book/issues"
   },
-  "homepage": "https://github.com/look-book/look-book#readme"
+  "homepage": "https://github.com/look-book/look-book#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
 }
