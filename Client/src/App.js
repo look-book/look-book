@@ -11,14 +11,13 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
 import People from './components/People';
-// import Gallery from './Gallery';
-// import Upload from './components/Upload';
+import Gallery from './Gallery';
+import Upload from './components/Upload';
 import Coaching from './components/Coaching';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
 import NotFound from './components/NotFound';
-import Upload from "./pages/Upload";
-import Gallery from "./pages/Gallery";
+
 
 
 
