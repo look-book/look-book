@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/look-book/look-book#readme",
   "dependencies": {
+    "cloudinary": "^1.30.1",
     "express": "^4.18.1"
   },
   "devDependencies": {
