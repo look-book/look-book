@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { cloudinary } = require("../../utils/cloudinary");
 const albumController = require("../../controllers/albumController");
 router.get("/images", async (req, res) => {
-  console.log("Hi");
+  // console.log("Hi");
   const { resources } = await cloudinary.search
     .expression("folder:dev_setups")
     .sort_by("public_id", "desc")

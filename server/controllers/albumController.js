@@ -1,7 +1,7 @@
 const db = require("../models");
-// Defining methods for the booksController
+// Defining methods for the albumController
 module.exports = {
-  indAll: function (req, res) {
+  findAll: function (req, res) {
     db.Album.find(req.query)
       .sort({ date: -1 })
       .then((dbModel) => res.json(dbModel))
