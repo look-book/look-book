@@ -22,8 +22,8 @@ app.use(routes);
 // Connect to the Mongo DB
 mongoose
   .connect(
-    process.env.MONGODB_URI || "mongodb://localhost/look-book",
-
+    // process.env.MONGODB_URI || "mongodb://localhost/look-book",
+    "mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

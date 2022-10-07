@@ -30,11 +30,18 @@ const Upload = () => {
     uploadImage(previewSource);
   };
   const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage);
+    // console.log(base64EncodedImage);
+
     try {
       await fetch("api/cloudinary/upload", {
         method: "POST",
-        body: JSON.stringify({ data: base64EncodedImage }),
+        body: JSON.stringify({
+          title: title,
+          location: location,
+          userId: 3,
+          data: base64EncodedImage,
+        }),
+        // body: JSON.stringify({ data: base64EncodedImage }),
         headers: { "Content-type": "application/json" },
       });
       setFileInputState("");

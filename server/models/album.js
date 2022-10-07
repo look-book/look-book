@@ -5,9 +5,13 @@ const albumSchema = new Schema({
   title: {
     type: String,
     trim: true,
-    required: "Album name is required",
+    required: "Title name is required",
   },
-  location: {
+  tag: {
+    type: String,
+    trim: true,
+  },
+  path: {
     type: String,
     trim: true,
   },
@@ -15,7 +19,14 @@ const albumSchema = new Schema({
     type: String,
     trim: true,
   },
-  date: { type: Date, default: Date.now },
+  rating: {
+    type: Number,
+  },
+  isFavorite: {
+    type: Boolean,
+  },
+
+  created_at: { type: Date, default: Date.now },
 });
 const Album = mongoose.model("Album", albumSchema);
 module.exports = Album;

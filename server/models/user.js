@@ -1,22 +1,20 @@
 const mongoose = require("mongoose");
+const uploadSchema = require("./album").schema;
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
   firstName: {
     type: String,
     trim: true,
-    required: "First Name is Required",
   },
 
   lastName: {
     type: String,
     trim: true,
-    required: "Last Name is Required",
   },
   password: {
     type: String,
     trim: true,
     required: "Password is Required",
-    validate: [({ length }) => length >= 6, "Password should be longer."],
   },
 
   email: {
@@ -33,6 +31,7 @@ const userSchema = new Schema({
   lastUpdated: Date,
 
   fullName: String,
+  uploaded: [uploadSchema],
 });
 userSchema.methods.setFullName = function () {
   this.fullName = `${this.firstName} ${this.lastName}`;
