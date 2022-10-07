@@ -1,0 +1,108 @@
+[
+  {
+    "title": "Home",
+    "path": "/"
+  },
+  {
+    "title": "Profile",
+    "path": "/profile"
+  },
+  {
+    "title": "Gallery",
+    "children": [
+      {
+        "title": "Add Album",
+        "path": "/AddAlbum"
+      },
+      {
+        "title": "Filters",
+        "path": "/Filters"
+      },
+      {
+        "title": "Upload Images",
+        "path": "/Upload"
+      },
+      {
+        "title": "Album",
+        "path": "/Album"
+      }
+    ]
+  },
+  {
+    "title": "Settings",
+    "children": [
+      {
+        "title": "Account",
+        "path": "/Account"
+      },
+      {
+        "title": "Billing",
+        "path": "/Billing"
+      },
+      {
+        "title": "Notifications",
+        "path": "/Notifications"
+      }
+    ]
+  },
+
+  {
+    "title": "Account",
+    "children": [
+      {
+        "title": "Login",
+        "path": "/Login"
+      },
+      {
+        "title": "Register",
+        "path": "/Register"
+      },
+      {
+        "title": "Reset Password",
+        "path": "/ResetPassword"
+      }
+    ]
+  },
+  {
+    "title": "About LookBook",
+    "children": [
+      {
+        "title": "FAQ",
+        "path": "/FAQ"
+      },
+      {
+        "title": "How To Guide",
+        "path": "/Coaching"
+      },
+      {
+        "title": "Purpose",
+        "path": "/AboutUs"
+      }
+    ]
+  },
+  {
+    "title": "Connect With Us",
+    "children": [
+      {
+        "title": "Facebook",
+        "path": "/"
+      },
+      {
+        "title": "Twitter",
+        "path": "/"
+      },
+      {
+        "title": "Instagram",
+        "path": "/"
+      },
+      {
+        "title": "Contact Form",
+        "path": "/ContactUs"
+      }
+    ]
+  },
+  {
+    "title": "Logout",
+    "path": "/logout"
+  }
+]
