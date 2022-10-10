@@ -1,14 +1,13 @@
-//import React, { useState } from "react";
+import React, { useState } from "react";
 
 const Upload = () => {
-  {/*
   const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
-  //const [successMsg, setSuccessMsg] = useState("");
-  //const [errMsg, setErrMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -31,31 +30,33 @@ const Upload = () => {
     uploadImage(previewSource);
   };
   const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage);
+    // console.log(base64EncodedImage);
+
     try {
-      await fetch("api/cloudinary/upload", {
+      await fetch("album/upload/", {
         method: "POST",
-        body: JSON.stringify({ data: base64EncodedImage }),
+        body: JSON.stringify({
+          title: title,
+          location: location,
+          userId: 3,
+          data: base64EncodedImage,
+        }),
+        // body: JSON.stringify({ data: base64EncodedImage }),
         headers: { "Content-type": "application/json" },
       });
       setFileInputState("");
       setPreviewSource("");
-      //setSuccessMsg("Image uploaded successfully");
+      setSuccessMsg("Image uploaded successfully");
     } catch (error) {
       console.error(error);
-      //setErrMsg("something went wrong!");
+      setErrMsg("something went wrong!");
     }
   };
-*/}
+
   return (
     <div>
-      <section className="contentBox">
-            <h1>Splash</h1>
-            <p>This page will contain the logo and be the first page someone sees when they open the app.  It will also contain a brief tutorial.</p>
-        </section>
-      {/*
       <br />
-      <section className="contentBox">
+      <section>
         <h1 className="title">Upload </h1>
         <form onSubmit={handleSubmitFile} className="form">
           <input
@@ -89,7 +90,6 @@ const Upload = () => {
           <img src={previewSource} alt="chosen" style={{ height: "300px" }} />
         )}
       </section>
-        */}
     </div>
   );
 };

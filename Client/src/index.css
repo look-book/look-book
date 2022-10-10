@@ -48,7 +48,16 @@ form {
   flex-grow: 1;
   padding-bottom: 1rem;
 }
-
+.imgAlbum {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.imgGrid {
+  display: grid;
+  gap: 0.5rem;
+  /* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+}
 a,
 a:visited {
   color: black;
