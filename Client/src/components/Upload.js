@@ -5,7 +5,8 @@ const Upload = () => {
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
   const [title, setTitle] = useState("");
-  const [location, setLocation] = useState("");
+  const [tag, setTag] = useState("");
+  const [isFavorite, setIsFavorite] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
@@ -30,16 +31,17 @@ const Upload = () => {
     uploadImage(previewSource);
   };
   const uploadImage = async (base64EncodedImage) => {
-    // console.log(base64EncodedImage);
+    console.log(isFavorite);
 
     try {
       await fetch("album/upload/", {
         method: "POST",
         body: JSON.stringify({
           title: title,
-          location: location,
+          tag: tag,
           userId: 3,
           data: base64EncodedImage,
+          isFavorite: isFavorite,
         }),
         // body: JSON.stringify({ data: base64EncodedImage }),
         headers: { "Content-type": "application/json" },
@@ -67,6 +69,9 @@ const Upload = () => {
             value={fileInputState}
             className="form-input"
           />
+          {previewSource && (
+            <img src={previewSource} alt="chosen" style={{ height: "300px" }} />
+          )}
           <label htmlFor="Title">Title:</label>
           <input
             type="text"
@@ -75,20 +80,28 @@ const Upload = () => {
             value={title}
             aria-describedby="uidnote"
           />
-          <label htmlFor="Title">Location:</label>
+          <label htmlFor="Title">tag:</label>
           <input
             type="text"
-            id="location"
-            onChange={(e) => setLocation(e.target.value)}
-            value={location}
+            id="tag"
+            onChange={(e) => setTag(e.target.value)}
+            value={tag}
             aria-describedby="uidnote"
           />
+          <label htmlFor="Title">
+            isFavorite:
+            <input
+              type="checkbox"
+              // checked={this.state.checked}
+              id="isFavorite"
+              onChange={(e) => setIsFavorite(e.target.checked)}
+              checked={isFavorite}
+              // aria-describedby="uidnote"
+            />
+          </label>
           <br />
           <button type="submit">Submit</button>
         </form>
-        {previewSource && (
-          <img src={previewSource} alt="chosen" style={{ height: "300px" }} />
-        )}
       </section>
     </div>
   );

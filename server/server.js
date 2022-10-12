@@ -29,12 +29,6 @@ app.use(
   })
 );
 */
-
-//ROUTES
-app.use("/app", routes);
-app.use("/auth", authRoute);
-app.use("/album", albumRoute);
-
 app.use(
   expressSession({
     secret: "live",
@@ -42,6 +36,11 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+//ROUTES
+app.use("/app", routes);
+app.use("/auth", authRoute);
+app.use("/album", albumRoute);
 
 //PASSPORT
 require("./models/passport");

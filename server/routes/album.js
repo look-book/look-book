@@ -6,30 +6,33 @@ const Album = require("../models/album");
 router.get("/images", async (req, res) => {
   // console.log("Hi");
   const { resources } = await cloudinary.search
-    .expression("folder:dev_setups")
+    .expression("folder:look-book")
     .sort_by("public_id", "desc")
     .max_results(30)
     .execute();
   const publicIds = resources.map((file) => file.public_id);
   res.send(publicIds);
 });
-router.post("/upload", async (req, res) => {
-  console.log(req.body);
-  album = new Album({
-    title: req.body.title,
-    userId: 3,
-    tag: req.body.location,
-    rating: 3,
-    isFavorite: true,
-  });
-  album.save().then((result) => {
-    console.log(result);
-  });
-});
 router.post("/", async (req, res) => {
   console.log(req.body);
+  try {
+    album = new Album({
+      title: req.body.title,
+      userId: "6344e357af48b1141af6b441",
+    });
+    album.save.then((result) => {
+      console.log(result);
+      res.status(201).json(result);
+    });
+  } catch (err) {
+    console.error(err);
+  }
+});
+// upload image to cloudinary and save to mongoDb
+router.post("/upload", async (req, res) => {
+  console.log(req.body);
   var flName = "look_book/";
-  console.log(flName);
+  // console.log(flName);
   try {
     const fileStr = req.body.data;
     console.log(fileStr);
@@ -42,21 +45,20 @@ router.post("/", async (req, res) => {
 
     album = new Album({
       title: req.body.title,
-      userId: 3,
-      tag: req.body.location,
+      userId: "6344e357af48b1141af6b441",
+      tag: req.body.tag,
       rating: 3,
-      isFavorite: true,
+      isFavorite: req.body.isFavorite,
       images: [
         {
-          cloudinaryId: uploadedResponse.public_id, // image id on cloudinary server
-          path: uploadedResponse.url, // image url on cloudinary server
+          cloudinaryId: uploadedResponse.public_id,
+          url: uploadedResponse.url,
         },
       ],
     });
     album.save().then((result) => {
-      const image = Image.findByIdAndUpdate(result.params.Album.images, {
-        album: result.params.Album,
-      });
+      console.log(result);
+      res.status(201).json(result);
     });
   } catch (error) {
     console.error(error);

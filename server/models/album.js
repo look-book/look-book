@@ -10,7 +10,10 @@ const imageSchema = new Schema({
     type: String,
     trim: true,
   },
+
+  created_at: { type: Date, default: Date.now },
 });
+
 const albumSchema = new Schema({
   // title, location, date, cloudinaryId
   title: {
@@ -20,13 +23,6 @@ const albumSchema = new Schema({
   },
 
   images: [imageSchema],
-
-  User: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "login",
-    },
-  ],
   tag: [{ type: String }],
   rating: {
     type: Number,
@@ -34,7 +30,10 @@ const albumSchema = new Schema({
   isFavorite: {
     type: Boolean,
   },
-  created_at: { type: Date, default: Date.now },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "login",
+  },
 });
 const Album = mongoose.model("Album", albumSchema);
 module.exports = Album;
