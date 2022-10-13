@@ -22,14 +22,15 @@
     "url": "https://github.com/look-book/look-book/issues"
   },
   "dependencies": {
+    "cloudinary": "^1.30.1",
+    "cloudinary-react": "^1.8.1",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
+    "passport": "^0.6.0",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
-    "passport-local": "^1.0.0",
-    "cookie-parser": "^1.4.6",
-    "cloudinary": "^1.30.1",
-    "cloudinary-react": "^1.8.1"
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^7.3.0"
