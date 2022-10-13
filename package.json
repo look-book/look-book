@@ -2,6 +2,9 @@
   "name": "look-book",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "^18.0"
+  },
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",

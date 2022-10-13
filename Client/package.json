@@ -1,6 +1,9 @@
 {
   "name": "look-book",
   "version": "0.1.0",
+  "engines": {
+    "node": "^18.0"
+  },
   "private": true,
   "proxy": "http://localhost:5000/",
   "dependencies": {
