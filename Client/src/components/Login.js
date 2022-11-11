@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import AuthContext from "../context/AuthProvider";
-//import Facebook from "../react-facebook-login/Facebook";
 import Nav from 'react-bootstrap/Nav';
 import {
     Link
@@ -9,14 +8,13 @@ import {
 //This is the login page.
 
 import axios from 'axios';
-const LOGIN_URL = '/api/user/login';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    const [user, setUser] = useState('');
+    const [email, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
@@ -27,7 +25,7 @@ const Login = () => {
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [email, pwd])
 
     const google = () => {
         window.open("http://localhost:5000/auth/google", "_self");
@@ -41,8 +39,8 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ user, pwd }),
+            const response = await axios.post("http://localhost:5000/app/Login",
+                JSON.stringify({ email, pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -50,13 +48,13 @@ const Login = () => {
             );
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            setAuth({ email, pwd, roles, accessToken });
             setUser('');
             setPwd('');
             setSuccess(true);
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                setErrMsg('Login Successful!');
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Email or Password');
             } else if (err.response?.status === 401) {
@@ -87,7 +85,7 @@ const Login = () => {
                             ref={userRef}
                             autoComplete="off"
                             onChange={(e) => setUser(e.target.value)}
-                            value={user}
+                            value={email}
                             required
                         />
 

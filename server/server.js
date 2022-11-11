@@ -8,27 +8,24 @@ const albumRoute = require("./routes/album");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const passport = require("passport");
-//const cookieSession = require("cookie-session");
 const expressSession = require("express-session");
-//const bodyParser = require("body-parser");
-//const routes = require("./routes");
-
+const methodOverride = require('method-override');
+const flash = require('express-flash');
 //.env File Config
 dotenv.config();
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "50mb" }));
 
-//CORS to allow access between frontend and backend
-app.use(cors());
-/*
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
-);
-*/
+const corsOptions ={
+  origin:'http://localhost:3000', 
+  credentials:true,            
+  optionSuccessStatus:200,
+  header: {
+    "Access-Control-Allow-Origin": true,
+  }
+}
+app.use(cors(corsOptions));
+
 app.use(
   expressSession({
     secret: "live",
@@ -36,6 +33,11 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+//Login
+app.use(methodOverride('_method'));
+//app.use(express.urlencoded({ extended: false }));
+app.use(flash());
 
 //ROUTES
 app.use("/app", routes);
