@@ -15,7 +15,7 @@ const flash = require('express-flash');
 dotenv.config();
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json({ limit: "50mb" }));
-
+//DATABASE = 'mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority'
 const corsOptions ={
   origin:'http://localhost:3000', 
   credentials:true,            

@@ -40,18 +40,20 @@ const Login = () => {
 
         try {
             const response = await axios.post("http://localhost:5000/app/Login",
-                JSON.stringify({ email, pwd }),
+                JSON.stringify({ username:email, password: pwd }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
                 }
             );
+            console.log("response", response);
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ email, pwd, roles, accessToken });
             setUser('');
             setPwd('');
             setSuccess(true);
+            console.log("Complete!");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('Login Successful!');
@@ -60,7 +62,7 @@ const Login = () => {
             } else if (err.response?.status === 401) {
                 setErrMsg('Unauthorized');
             } else {
-                setErrMsg('Login Failed');
+                setErrMsg('Login Failed', err);
             }
             errRef.current.focus();
         }
@@ -82,6 +84,7 @@ const Login = () => {
                         <input
                             type="text"
                             id="email"
+                            name="username"
                             ref={userRef}
                             autoComplete="off"
                             onChange={(e) => setUser(e.target.value)}
@@ -93,6 +96,7 @@ const Login = () => {
                         <input
                             type="password"
                             id="password"
+                            name="password"
                             onChange={(e) => setPwd(e.target.value)}
                             value={pwd}
                             required
