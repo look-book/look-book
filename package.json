@@ -5,7 +5,7 @@
   "engines": {
     "node": "^16.13.1"
   },
-  "main": "server.js",
+  "main": "/server/server.js",
   "scripts": {
     "start": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
