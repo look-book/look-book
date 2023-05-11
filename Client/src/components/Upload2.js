@@ -4,7 +4,7 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/uploads`)
+    fetch(`/uploads`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
