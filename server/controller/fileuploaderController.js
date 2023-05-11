@@ -1,40 +1,57 @@
 const SingleFile = require("../models/singlefile");
 const MultipleFile = require("../models/multiplefile");
+const cloudinary = require('../utils/cloudinary');
+
 
 const singleFileUpload = async (req, res, next) => {
-  try {
-    const file = new SingleFile({
-      username: req.body.username,
-      name: req.body.name,
-      emotion: req.body.emotion,
-      fileName: req.file.originalname,
-      filePath: req.file.path,
-      fileType: req.file.mimetype,
-      fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
-    });
+  const { name, emotion, image, username} = req.body;
+  
+    try {
+      const result = await cloudinary.uploader.upload(image, {
+          folder: "look-book",
+          // width: 300,
+          // crop: "scale"
+      })
+      const file = await Product.create({
+         username,
+          name,
+          emotion,
+          image: {
+              public_id: result.public_id,
+              url: result.secure_url
+          },
+          category
+      });
+      res.status(201).json({
+          success: true,
+          file
+      })
 
-    await file.save();
-    res.status(201).send("File Uploaded Successfully");
   } catch (error) {
-    res.status(400).send(error.message);
+      console.log(error);
+      next(error);
   }
-};
+}
+
 const multipleFileUpload = async (req, res, next) => {
   try {
+    const result = await cloudinary.uploader.upload(file, {
+      folder: "look-book",
+      // width: 300,
+      // crop: "scale"
+  })
     let filesArray = [];
     req.files.forEach((element) => {
       const file = {
-        fileName: element.originalname,
-        filePath: element.path,
-        fileType: element.mimetype,
-        fileSize: fileSizeFormatter(element.size, 2),
+               public_id: result.public_id,
+                url: result.secure_url
       };
       filesArray.push(file);
     });
     const multipleFiles = new MultipleFile({
       username: req.body.username,
       title: req.body.title,
-      files: filesArray,
+      files: filesArray
     });
     await multipleFiles.save();
     res.status(201).send("Files Uploaded Successfully");
