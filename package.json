@@ -8,10 +8,8 @@
    },
   "main": "/server/server.js",
   "scripts": {
-    "start": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install-client": "cd client && npm install",
+    "start": "node server/server.js",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run install-client && npm run build",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i"
    
