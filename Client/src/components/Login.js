@@ -59,10 +59,11 @@ function Login() {
       <div className="contentBox">
         <div className="text-white flex flex-col h-screen w-screen items-center justify-center">
           <div className="p-5 text-3xl font-extrabold">Login</div>
+          {errorMessage == "Success" ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
           <form
             className="mx-5 flex flex-col w-72"
             onSubmit={(e) => handleLogin(e)}>
-          {errorMessage == "Success" ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
+        
             <label htmlFor="username">Email</label>
             <input
               className="input-field"

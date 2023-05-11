@@ -13,7 +13,7 @@ const userRoutes = require("./routes/userRoutes")
 const authGoogle = require("./routes/auth");
 const Router = require("./routes/routes")
 const fileRoutes = require('./routes/file-upload-routes');
-
+const postRoutes = require("./routes/postRoutes");
 //.env File Config
 require("dotenv").config()
 const app = express();
@@ -22,7 +22,7 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: "http://locahost:3000",
+  origin: "http://localhost:3000",
   credentials: true,
   optionSuccessStatus: 200,
   header: {
@@ -42,10 +42,10 @@ mongoose
 })
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
- // mongoose.set('strictQuery', false);
+ mongoose.set('strictQuery', false);
  app.use(morgan('dev'));
 // use bodyparser middleware to receive form data
-app.use(bodyParser.json({limit: ' 50mb', extended: true}))
+app.use(bodyParser.json({limit: ' 50mb', extended: false}))
 app.use(bodyParser.urlencoded({limit: "50mb", extended:true}))
 
 app.use(express.urlencoded({limit: '50mb', extended:true}));
@@ -77,7 +77,7 @@ app.use("/", authRoutes)
 app.use("/", userRoutes)
 app.use("/api", routes);
 app.use("/auth", authGoogle);
-
+app.use("/posts", postRoutes);
 app.use('/api', fileRoutes.routes);
 
 // Serve up static assets (usually on heroku)

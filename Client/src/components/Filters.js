@@ -1,9 +1,19 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import People from "./People";
 import Locations from "./Locations";
 import AlbumSearch from "./AlbumSearch";
+import Posts from "./Posts/Posts";
+import { useDispatch} from "react-redux";
+import { getPosts } from "../actions/posts";
 
 function Filters() {
+  const [currentId, setCurrentId] = useState(0);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
+
   
   return (
     <section className="filterBox">
@@ -43,10 +53,11 @@ function Filters() {
       <br></br>
       <div className="contentBox">
         <h2>Random Posts</h2><br></br>
-   
+      <Posts setCurrentId={setCurrentId}/>
+     
       </div>
       <br></br>
-     
+
       <h3>Locations</h3>
       <Locations />
     </section>
