@@ -2,16 +2,13 @@
   "name": "server",
   "version": "1.0.0",
   "main": "server.js",
-  "engines": {
-    "node": "^16.13.1"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js ",
     "watch": "nodemon"
   },
   "keywords": [],
-  "author": "ALMA_DEV914",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@2toad/profanity": "^2.2.0",

@@ -2,18 +2,12 @@
   "name": "look-book",
   "version": "1.0.0",
   "description": "",
-  "engines": {
-    "node": "^16.13.1"
-    
-   },
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "build": "cd client && npm run build",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i"
-   
-    
   },
   "repository": {
     "type": "git",
@@ -33,20 +27,16 @@
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
     "express-flash": "^0.0.2",
-    "install": "^0.13.0",
     "method-override": "^3.0.0",
     "mongod": "^2.0.0",
     "mongodb": "^5.4.0",
-    "node": "^19.8.1",
-    "npm": "^9.6.5",
     "passport": "^0.6.0",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "react-google-login": "^5.2.2",
-    "react-router": "^6.10.0",
-    "redux-persist": "^6.0.0"
+    "react-router": "^6.10.0"
   },
   "devDependencies": {
     "concurrently": "^7.3.0"

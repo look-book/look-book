@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const routes = require("./routes/routes");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const multer = require("multer")
 const passport = require("passport");
 const expressSession = require("express-session");
 const authRoutes = require("./routes/authRoutes")
