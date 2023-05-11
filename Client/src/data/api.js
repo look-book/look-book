@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_PUBLIC_FOLDER;
+const apiUrl = "http://localhost:5000/api/";
 
 export const singleFileUpload = async (data, options) => {
     try {
