@@ -10,7 +10,7 @@
 
   "scripts": {
     "start": "node server/server.js",
-    "dev": "concurrently \"cd server && npm run watch\" \"cd Client && npm start\"",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
     "build": "cd Client && npm ci && npm run build",
     "install": "cd server && npm i && cd ../Client && npm i"
   },
