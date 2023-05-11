@@ -14,7 +14,7 @@ const authGoogle = require("./routes/auth");
 const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes")
 const fileRoutes = require('./routes/file-upload-routes');
-const categoryRoute = require("./routes/categories");
+const categoryRoute = require("./routes/categories")
 
 //.env File Config
 require("dotenv").config()
@@ -82,7 +82,7 @@ app.use("/", userRoutes)
 app.use("/api", routes);
 app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
-app.use("/api/categories", categoryRoute);
+app.use("/categories", categoryRoute);
 
 app.use('/api', fileRoutes.routes);
 
