@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:5000/api/' || 'https://look-book-act-group42.herokuapp.com/';
+const apiUrl = 'http://localhost:5000/' || 'https://look-book-act-group42.herokuapp.com/';
 
 export const singleFileUpload = async (data, options) => {
     try {
