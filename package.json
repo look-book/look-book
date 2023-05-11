@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
+  "engines": {
+    "node": "16.13.0", 
+    "npm": "8.1.0"
+    },
+
   "scripts": {
     "start": "node server/server.js",
-    "build": "cd client && npm run build",
+    "client": "cd client && npm start",
     "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i"
+    "build": "cd client && npm ci && npm run build"
   },
   "repository": {
     "type": "git",
