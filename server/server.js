@@ -72,7 +72,7 @@ require("./models/passport");
 //middleware
 app.use(express.json());
 
-app.use('/uploads', express.static(path.join(__dirname, '../server/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //Login
 
 //ROUTES
