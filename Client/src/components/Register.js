@@ -51,7 +51,7 @@ function Register () {
         <div className="">
             <div className="">Register</div>
             <form className="mx-5 flex flex-col w-72" onSubmit={(e) => handleRegister(e)}>
-            {errorMessage === "Success" ? <Navigate to="/login"/> : <ValidationError message={errorMessage} />}
+            {errorMessage == "Success" ? <Navigate to="/login"/> : <ValidationError message={errorMessage} />}
             <label htmlFor="firstName">Firstname</label>
                 <input className="input-field" type="text" name="firstName" id="firstName" 
                 />
