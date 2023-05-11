@@ -43,14 +43,14 @@ mongoose
 })
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
-  mongoose.set('strictQuery', false);
+ // mongoose.set('strictQuery', false);
 // use bodyparser middleware to receive form data
 // use bodyparser middleware to receive form data
 
-app.use(bodyParser.json({limit: '50mb', extended: false}))
-app.use(bodyParser.urlencoded({limit: "50mb", extended:true}))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
 
-app.use(express.urlencoded({limit: '50mb', extended:true}));
+app.use(express.urlencoded());
 app.use(express.json());
 
 
@@ -85,10 +85,6 @@ app.use("/posts", postRoutes);
 app.use('/api', fileRoutes.routes);
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../Client/build')));
-}
-
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../Client/build')));
 }
