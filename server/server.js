@@ -22,7 +22,7 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: "http://locahost:3000" || "https://look-book-act-group42.herokuapp.com",
+  origin: "http://locahost:3000",
   credentials: true,
   optionSuccessStatus: 200,
   header: {
@@ -45,7 +45,7 @@ mongoose
  // mongoose.set('strictQuery', false);
  app.use(morgan('dev'));
 // use bodyparser middleware to receive form data
-app.use(bodyParser.json({limit: ' 50mb', extended: false}))
+app.use(bodyParser.json({limit: ' 50mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: "50mb", extended:true}))
 
 app.use(express.urlencoded({limit: '50mb', extended:true}));
