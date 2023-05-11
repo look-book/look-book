@@ -44,15 +44,13 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
  // mongoose.set('strictQuery', false);
-// use bodyparser middleware to receive form data
-// use bodyparser middleware to receive form data
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
+// use bodyparser middleware to receive form data
+app.use(bodyParser.json({limit: '50mb', extended: false}))
+app.use(bodyParser.urlencoded({limit: "50mb", extended:true}))
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({limit: '50mb', extended:true}));
 app.use(express.json());
-
 
 app.use(
   expressSession({
