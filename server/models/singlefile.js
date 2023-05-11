@@ -7,10 +7,7 @@ const singleFileSchema = new Schema({
         type: String,
         required: true,
       },
-    categories: {
-        type: Array,
-        required: false,
-      },
+    
     name: {
         type: String,
         required: true

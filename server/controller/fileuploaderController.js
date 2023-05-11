@@ -6,7 +6,6 @@ const singleFileUpload = async (req, res, next) => {
     const file = new SingleFile({
       username: req.body.username,
       name: req.body.name,
-      categories: req.body.categories,
       emotion: req.body.emotion,
       fileName: req.file.originalname,
       filePath: req.file.path,
@@ -46,17 +45,10 @@ const multipleFileUpload = async (req, res, next) => {
 
 const getallSingleFiles = async (req, res, next) => {
     const userId = req.params.user;
-     const catName = req.query.cat;
   try {
     let files;
     if (userId) {
       files = await SingleFile.find({ _id: userId });
-    } else if (catName) {
-      files = await SingleFile.find({
-        categories: {
-          $in: [catName],
-        },
-      });
     } else {
         files = await SingleFile.find();
     }

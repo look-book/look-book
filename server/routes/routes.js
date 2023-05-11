@@ -44,8 +44,8 @@ router.get("/searchfilter", (req, res) => {
 
 router.post("/searchfilter", (req, res) => {
   const searchTerm = req.body.searchTerm;
-  Album.find({ albumName: { $regex: "" + searchTerm, $options: "i" } })
-    .then((albums) => res.json(albums))
+  Upload.find({ name: { $regex: "" + searchTerm, $options: "i" } })
+    .then((singleFiles) => res.json(singleFiles))
     .catch((err) => console.log(err));
 });
 
@@ -176,7 +176,7 @@ router.post("/updateUserInfo", verifyJWT, upload.single('file'), (req, res) => {
       {username: req.user.username},
       {$set: req.body}, 
       {$set: {bio: req.body.newBio}},  
-      { $set: { profilePic: req.body.newImage } },  
+      { $set:{ profilePic: req.body.newImage } },  
       (updateRes) => updateRes
   )
 })
