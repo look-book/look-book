@@ -1,125 +1,121 @@
-import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from "../context/AuthProvider";
-import Nav from 'react-bootstrap/Nav';
-import {
-    Link
-} from "react-router-dom";
+import React, {  useEffect, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import ValidationError from "./ValidationError";
+import Google from "../assets/google.png";
+import Facebook from "../assets/facebook.png";
 
-//This is the login page.
+function Login() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const history = useNavigate();
 
-import axios from 'axios';
+  async function handleLogin(e) {
+    e.preventDefault();
 
-const Login = () => {
-    const { setAuth } = useContext(AuthContext);
-    const userRef = useRef();
-    const errRef = useRef();
+    const form = e.target;
+    const user = {
+      username: form[0].value,
+      password: form[1].value,
+    };
 
-    const [email, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
-
-    useEffect(() => {
-        userRef.current.focus();
-    }, [])
-
-    useEffect(() => {
-        setErrMsg('');
-    }, [email, pwd])
-
-    const google = () => {
-        window.open("http://localhost:5000/auth/google", "_self");
-      };
-    
-      const facebook = () => {
-        window.open("http://localhost:5000/auth/facebook", "_self");
-      };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post("http://localhost:5000/app/Login",
-                JSON.stringify({ username:email, password: pwd }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            console.log("response", response);
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ email, pwd, roles, accessToken });
-            setUser('');
-            setPwd('');
-            setSuccess(true);
-            console.log("Complete!");
-        } catch (err) {
-            if (!err?.response) {
-                setErrMsg('Login Successful!');
-            } else if (err.response?.status === 400) {
-                setErrMsg('Missing Email or Password');
-            } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
-            } else {
-                setErrMsg('Login Failed', err);
-            }
-            errRef.current.focus();
-        }
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      const data = await res.json();
+      localStorage.setItem("token", data.token);
+      setErrorMessage(data.message);
+    } catch (err) {
+      setErrorMessage(err);
     }
+  }
 
-    return (
-        <div>
-            <br/>
-            {success ? (                
-                <section>
-                    <h1>You are logged in!</h1>
-                </section>
-            ) : (
-                <section className="contentBox">
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
-                    <h1>Sign In</h1>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="text"
-                            id="email"
-                            name="username"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={email}
-                            required
-                        />
+  useEffect(() => {
+    fetch("/api/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) =>
+       (data.isLoggedIn ? history.push("/dashboard") : null)
+      )
+      .catch((err) => setErrorMessage(err));
+  }, [history]);
 
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                        />
-                        <br/>
-                        <button>Sign In</button>
+  const onGoogle = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
+  };
 
-                        
-                    </form>
-                    <button onClick={google}>Login With Google</button>
-        <button onClick={facebook}>Login With Facebook</button>
-        <br/><br/>
-                    <p>
-                        Need an Account?<br />
-                        <span className="line">
-                        <Nav.Link as={Link} to={'/Register'}>Register</Nav.Link>
-                        </span>
-                    </p>
-                </section>
-            )}
+  const onFacebook = () => {
+    window.open("http://localhost:5000/auth/facebook", "_self");
+  };
 
+  return (
+   <>
+      <div className="contentBox">
+        <div className="text-white flex flex-col h-screen w-screen items-center justify-center">
+          <div className="p-5 text-3xl font-extrabold">Login</div>
+          <form
+            className="mx-5 flex flex-col w-72"
+            onSubmit={(e) => handleLogin(e)}>
+          {errorMessage  ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
+            <label htmlFor="username">Email</label>
+            <input
+              className="input-field"
+              type="text"
+              name="username"
+              id="username"
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              className="input-field"
+              type="password"
+              name="password"
+              id="password"
+            />
+            <br></br>
+            <input
+              className="submitBtn"
+              type="submit"
+              value="LOGIN"
+            /><br></br>
+            <Link to="/resetPassword" style={{ alignSelf: "flex-start" }}>
+							<p style={{ padding: "0 15px" }}>Forgot Password ?</p>
+						</Link>
+            <br></br>
+            <div className="flex flex-row items-center justify-center">
+              <h2>Don't have an account?</h2>
+              <Link
+                className="m-1 px-2 py-1 rounded font-bold text-xl border-2 border-green-400 text-green-400 text-center"
+                to="/register"
+              >
+                REGISTER
+              </Link>
+            </div>
+        </form>
+          <br></br>
+
+          <div className="center">
+            <hr></hr>
+            <div className="or">OR</div>
+          </div>
+
+          <div className="loginButton google" onClick={onGoogle}>
+            <img src={Google} alt="" className="icon" />
+            Google
+          </div>
+          <div className="loginButton facebook" onClick={onFacebook}>
+            <img src={Facebook} alt="" className="icon" />
+            Facebook
+          </div>
         </div>
-    )
+      </div>
+    </>
+  );
 }
 
-export default Login
+export default Login;

@@ -7,42 +7,33 @@
     "title": "Profile",
     "path": "/profile"
   },
+
+  {
+    "title": "Dashboard",
+    "path": "/dashboard"
+  },
+  {
+    "title": "Contact Form",
+    "path": "/contactUs"
+  },
+
+
   {
     "title": "Gallery",
     "children": [
       {
-        "title": "Add Album",
-        "path": "/AddAlbum"
-      },
-      {
         "title": "Filters",
-        "path": "/Filters"
-      },
-      {
-        "title": "Upload Images",
-        "path": "/Upload"
+        "path": "/filters"
       },
       {
         "title": "Album",
-        "path": "/Album"
-      }
-    ]
-  },
-  {
-    "title": "Settings",
-    "children": [
-      {
-        "title": "Account",
-        "path": "/Account"
+        "path": "/album"
       },
       {
-        "title": "Billing",
-        "path": "/Billing"
-      },
-      {
-        "title": "Notifications",
-        "path": "/Notifications"
+        "title": "Posts",
+        "path": "/posts"
       }
+
     ]
   },
 
@@ -51,15 +42,15 @@
     "children": [
       {
         "title": "Login",
-        "path": "/Login"
+        "path": "/login"
       },
       {
         "title": "Register",
-        "path": "/Register"
+        "path": "/register"
       },
       {
         "title": "Reset Password",
-        "path": "/ResetPassword"
+        "path": "/resetPassword"
       }
     ]
   },
@@ -68,41 +59,17 @@
     "children": [
       {
         "title": "FAQ",
-        "path": "/FAQ"
+        "path": "/fAQ"
       },
       {
         "title": "How To Guide",
-        "path": "/Coaching"
+        "path": "/coaching"
       },
       {
         "title": "Purpose",
-        "path": "/AboutUs"
+        "path": "/aboutUs"
       }
     ]
-  },
-  {
-    "title": "Connect With Us",
-    "children": [
-      {
-        "title": "Facebook",
-        "path": "/"
-      },
-      {
-        "title": "Twitter",
-        "path": "/"
-      },
-      {
-        "title": "Instagram",
-        "path": "/"
-      },
-      {
-        "title": "Contact Form",
-        "path": "/ContactUs"
-      }
-    ]
-  },
-  {
-    "title": "Logout",
-    "path": "/logout"
   }
+  
 ]

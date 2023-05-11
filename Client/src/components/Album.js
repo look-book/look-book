@@ -1,21 +1,38 @@
-import React, { useState } from "react";
-import AlbumIndividual from "./AlbumIndividual";
-import images from "./../gallery.mock.json";
-function Album() {
-  const [albumlist, setAlbumlist] = useState(images.resources);
+import React, { useState, useEffect } from "react";
+import { Container, Grow, Grid } from "@mui/material";
+import { useDispatch } from "react-redux";
+import Posts from "./Posts/Posts";
+import { getPosts } from "../actions/posts";
+import Form from "./Form";
+
+
+const Album = () => {
+  const [currentId, setCurrentId] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
 
   return (
-    <div className="contentBox, imgGrid">
-      <h1>Albums</h1>
-      {albumlist.map((image) => (
-        // <link href=""></link>
-        <h1>{image.public_id}</h1>
-        // <img className="imgAlbum" src={image.url} alt={image.public_id}></img>
-      ))}
-      {/* <p>This page will an Album page.</p> */}
-      <AlbumIndividual />
+    <>
+    <div className="albumBox">
+      <h2>Random Posts</h2><br></br>
+      <Grow in>
+        <Container>
+        <Grid container justify="space-between" alignItems="stretch" spacing={3}>
+            <Grid item xs={12} sm={8}>
+              <Posts setCurrentId={setCurrentId} />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Form currentId={currentId} setCurrentId={setCurrentId} />
+            </Grid>
+          </Grid>
+        </Container>
+      </Grow><br></br>
     </div>
+    </>
   );
-}
+};
 
 export default Album;
