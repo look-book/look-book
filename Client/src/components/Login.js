@@ -62,7 +62,7 @@ function Login() {
           <form
             className="mx-5 flex flex-col w-72"
             onSubmit={(e) => handleLogin(e)}>
-          {errorMessage ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
+          {errorMessage == "Success" ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
             <label htmlFor="username">Email</label>
             <input
               className="input-field"
