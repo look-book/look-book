@@ -34,7 +34,7 @@ export default function Settings({match}) {
       userId: user._id,
       username,
      firstName, 
-	 lastName,
+	    lastName,
       password,
     };
     if (file) {
