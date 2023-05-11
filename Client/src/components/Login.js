@@ -1,11 +1,11 @@
 import React, {  useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import ValidationError from "./ValidationError";
+import { Link, useNavigate } from "react-router-dom";
+
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 
 function Login() {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState("")
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -27,9 +27,9 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setErrorMessage(data.message);
+      setIsLoggedIn(data.message);
     } catch (err) {
-      setErrorMessage(err);
+      console.log(err);
     }
   }
 
@@ -43,7 +43,7 @@ function Login() {
       .then((data) =>
        (data.isLoggedIn ? history.push("/dashboard") : null)
       )
-      .catch((err) => setErrorMessage(err));
+      .catch((err) => console.log(err));
   }, [history]);
 
   const onGoogle = () => {
@@ -59,7 +59,6 @@ function Login() {
       <div className="contentBox">
         <div className="text-white flex flex-col h-screen w-screen items-center justify-center">
           <div className="p-5 text-3xl font-extrabold">Login</div>
-          {errorMessage == "Success" ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
           <form
             className="mx-5 flex flex-col w-72"
             onSubmit={(e) => handleLogin(e)}>

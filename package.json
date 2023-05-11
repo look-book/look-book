@@ -10,8 +10,8 @@
 
   "scripts": {
     "start": "node server/server.js",
-    "dev": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
-    "install": "cd server && npm i && cd ../Client && npm i",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd Client && npm start\"",
+    "install": "cd server && npm i && cd Client && npm i",
     "build": "cd Client && npm run build"
     
   },
@@ -44,7 +44,7 @@
     "react-google-login": "^5.2.2",
     "react-router": "^6.10.0"
   },
-  "homepage": "https://github.com/look-book/look-book#readme",
+  
   "devDependencies": {
     "concurrently": "^7.3.0"
   }
