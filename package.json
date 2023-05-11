@@ -6,7 +6,7 @@
     "node": "^16.13.1"
     
    },
-  "main": "/server/server.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
     "build": "cd client && npm run build",
