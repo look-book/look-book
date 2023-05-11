@@ -22,7 +22,7 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: "http://locahost:3000" || "https://look-book-act-group42.herokuapp.com/",
+  origin: "http://locahost:3000" || "https://look-book-act-group42.herokuapp.com",
   credentials: true,
   optionSuccessStatus: 200,
   header: {
