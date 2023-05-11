@@ -1,118 +1,253 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const registerRoute = require('../models/SignUp');
-const bcrypt = require('bcryptjs');  //was bcrypt
-const initializePassport = require('../models/passport');
-const passport = require("passport");
-//const BlogPost = require("../models/BlogPost");
-//const User = require("../models/Login");
+const bcrypt = require("bcryptjs"); //was bcrypt
+const User = require("../models/users");
+const Upload = require("../models/upload")
+const jwt = require("jsonwebtoken");
+const {upload} = require("../helpers/filehelper")
+const {
+  registrationValidation,
+  loginValidation,
+} = require("../validation/validation");
 
-//user, pwd
-initializePassport(
-  passport,
-  email => registerRoute.find(user => user.user === email),
-  id => registerRoute.find(user => user.id === id)
-);
-/*
-function checkNotAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect('/')
-  }
-  next()
-};
+function verifyJWT(req, res, next) {
+  // removes 'Bearer` from token
+  const token = req.headers["x-access-token"]?.split(" ")[1];
 
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next()
-  }
-
-  res.redirect('/Login')
-};
-*/
-
-
-router.post('/signup', async (req, res) => {
-
-  const saltPassword = await bcrypt.genSalt(10);
-  const passwordSalt = await bcrypt.hash(req.body.password, saltPassword)
-
-  const User = new registerRoute({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    password: passwordSalt,
-    email: req.body.email
-  });
-
-  User.save().then(data => { res.json(data) }).catch(err => { res.json(err) });
-
-});
-
-// router.post('/Login', (req, res) => {
-//   console.log("req", req.body);
-
-//   // passport.authenticate('local', {
-//   //   successRedirect: '/Upload',
-//   //   failureRedirect: '/login/failed',
-//   //   failureMessage: true,
-//   //   failureFlash: true
-//   // });
-
-//   res.json({});
-// } );
-
-
-// router.post("/Login", (req, res) => {
-//   passport.authenticate("local",
-//       (err, user, options) => {
-//         console.log('user', user);
-//         console.log('err', err);
-//         console.log('options', options);
-
-//         if (user) {
-//           // If the user exists log him in:
-//           req.login(user, (error)=>{
-//             if (error) {
-//               res.send(error);
-//             } else {
-//               console.log("Successfully authenticated");
-//               // HANDLE SUCCESSFUL LOGIN 
-//               // e.g. res.redirect("/home")
-//             };
-//           });
-//         } else {
-//           console.log(options.message); // Prints the reason of the failure
-//           // HANDLE FAILURE LOGGING IN 
-//           // e.g. res.redirect("/login"))
-//           // or
-//           // res.render("/login", { message: options.message || "custom message" })
-//         };
-//   })(req, res)
-// });
-
-router.post("/Login", (req, res) => {
-
-  const next = () => {
-    res.json({
-      msg: "Login was successful"
+  if (token) {
+    jwt.verify(token, process.env.PASSPORTSECRET, (err, decoded) => {
+      if (err)
+        return res.json({
+          isLoggedIn: false,
+          message: "Failed To Authenticate",
+        });
+      req.user = {};
+      req.user.id = decoded.id;
+      req.user.username = decoded.username;
+      req.user.firstName = decoded.firstName;
+      req.user.lastName = decoded.lastName;
+      next();
     });
-
+  } else {
+    res.json({ message: "Incorrect Token Given", isLoggedIn: false });
   }
+}
 
-  passport.authenticate("local", {
-    failureRedirect: '/login/failed',
-    failureMessage: true,
-    failureFlash: true
-  })(req, res, next)
-
-
+router.get("/isUserAuth", verifyJWT,  (req, res) => {
+  return res.json({ isLoggedIn: true, username: req.user.username });
 });
 
-// router.post('/Login', passport.authenticate('local', {
-//   successRedirect: '/Upload',
-//   failureRedirect: '/login/failed',
-//   failureMessage: true,
-//   failureFlash: true
-// }));
+
+router.get("/searchfilter", (req, res) => {
+  res.send("Search");
+});
+
+router.post("/searchfilter", (req, res) => {
+  const searchTerm = req.body.searchTerm;
+  Album.find({ albumName: { $regex: "" + searchTerm, $options: "i" } })
+    .then((albums) => res.json(albums))
+    .catch((err) => console.log(err));
+});
+
+router.get("/login", (req, res) => {
+  res.send("login");
+});
+
+router.post("/login", (req, res) => {
+  const userLoggingIn = req.body;
+
+  if (!userLoggingIn) return res.json({ message: "Server Error" });
+
+  const validationError = loginValidation(userLoggingIn).error;
+
+  if (validationError) {
+    return res.json({ message: validationError.details[0].message });
+  } else {
+    User.findOne({ username: userLoggingIn.username }).then((dbUser) => {
+      if (!dbUser) {
+        return res.json({ message: "Invalidemail or Password" });
+      }
+      bcrypt
+        .compare(userLoggingIn.password, dbUser.password)
+        .then((isCorrect) => {
+          if (isCorrect) {
+            const payload = {
+              id: dbUser._id,
+              username: dbUser.username,
+              firstName: dbUser.firstName,
+              lastName: dbUser.lastName,
+            };
+            jwt.sign(
+              payload,
+              process.env.PASSPORTSECRET,
+              { expiresIn: 86400 },
+              (err, token) => {
+                return res.json({
+                  message: "Success",
+                  token: "Bearer " + token,
+                });
+              }
+            );
+          } else {
+            return res.json({ message: "Invalidemail or Password" });
+          }
+        });
+    });
+  }
+});
+
+router.get("/register", (req, res) => {
+  res.send("register");
+});
+
+router.post("/register", async (req, res) => {
+  const user = req.body;
+  
+  const takenUsername = await User.findOne({username: user.username.toLowerCase()})
+  const takenEmail = await User.findOne({email: user.username.toLowerCase()})
+
+  const validationError = registrationValidation(user).error
+
+  if (validationError) {
+      return res.json({message: validationError.details[0].message})
+  } else if (takenUsername || takenEmail) {
+      return res.json({message: "Username has already been taken"})
+  } else {
+      user.password = await bcrypt.hash(req.body.password, 10)
+      user.confirmPassword = await bcrypt.hash(req.body.confirmPassword, 10)
+      const dbUser = new User({
+          username: user.username,
+          password: user.password,
+          confirmPassword: user.confirmPassword,
+          firstName: user.firstName,
+          lastName: user.lastName,   
+          profilePic: user.profilePic,     
+          bio: "Hey!" +  user.firstName + " have not set a bio yet",
+          singleFile: [],
+          multipleFiles: [],
+          posts:[],
+          uploads:[]
+      })
+
+      dbUser.save()
+      return res.json({message: "Success"})
+  }
+})
+
+
+router.get("/user/:userId", verifyJWT, (req, res) => {
+  const username = req.params.userId;
+
+  User.findOne({ username: username })
+    .then((dbUser) =>
+      res.json({
+        username: dbUser.username,
+        firstName: dbUser.firstName,
+        lastName: dbUser.lastName,
+        password: dbUser.password,
+        canEdit: dbUser.username == req.user.username,
+        canEdit: dbUser.firstName == req.user.firstName,
+        canEdit: dbUser.lastName == req.user.lastName,
+        canEdit: dbUser.password == req.user.password,
+        bio: dbUser.bio,
+        profilePic: dbUser.profilePic,
+        singleFile: dbUser.singleFile,
+        multipleFiles: dbUser.multipleFiles,
+        posts: dbUser.posts,
+        uploads: dbUser.uploads,
+      })
+    )
+    .catch((err) =>
+      res.json({
+        username: "User Not Found",
+        canEdit: false,
+        bio: "",
+      })
+    );
+});
+
+router.get("/updateUserInfo", (req, res) => {
+  res.json("updating user information...");
+});
+
+
+router.post("/updateUserInfo", verifyJWT, upload.single('file'), (req, res) => {
+  User.updateOne(
+      {username: req.user.username},
+      {$set: req.body}, 
+      {$set: {bio: req.body.newBio}},  
+      { $set: { profilePic: req.body.newImage } },  
+      (updateRes) => updateRes
+  )
+})
+
+
+//UPDATE
+router.put("/user/:userId", verifyJWT, upload.single('file'), async (req, res) => {
+  const username = req.params.userId;
+  if (req.body.userId === username) {
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      req.body.password = await bcrypt.hash(req.body.password, salt);
+    }
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+         req.body.userId,
+        {
+          $set: req.body,
+        },
+        { new: true }
+      );
+      res.status(200).json(updatedUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.status(401).json("You can update only your account!");
+  }
+});
+
+
+
+/** GET: http://localhost:5000 */
+router.get("/users", (req, res) => {
+  try {
+    User.find({})
+      .then((data) => {
+        res.json(data);
+      })
+      .catch((error) => {
+        res.status(408).json({ error });
+      });
+  } catch (error) {
+    res.json({ error });
+  }
+});
+
+/** GET: http://localhost:5000 */
+router.get('/uploads', (req, res) => {
+  try{
+      Upload.find({}).then(data => {
+          res.json(data)
+      }).catch(error => {
+          res.status(408).json({ error })
+      })
+  }catch(error){
+      res.json({error})
+  }
+})
+
+/** POST: http://localhost:5000/uploads  */
+router.post("/uploads", async (req, res) => {
+  const body = req.body;
+  try{
+      const newImage = await Upload.create(body)
+      newImage.save();
+      res.status(201).json({ msg : "New image uploaded...!"})
+  }catch(error){
+      res.status(409).json({ message : error.message })
+  }
+})
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
@@ -120,11 +255,9 @@ router.get("/login/success", (req, res) => {
       success: true,
       message: "successful",
       user: req.user,
-      //   cookies: req.cookies
     });
   }
 });
-
 
 router.post("/login/success", (req, res) => {
   if (req.user) {
@@ -132,63 +265,15 @@ router.post("/login/success", (req, res) => {
       success: true,
       message: "successful",
       user: req.user,
-      //   cookies: req.cookies
     });
   }
 });
 
-router.post("/fetchUser", (req, res) => {
-  const { username } = req.body;
-  registerRoute.find({ email: username }).then((data) => {
-    console.log('Data:', data);
-    res.json(data);
-  }).catch((err) => {
-    console.log("ERROR: ", err);
+router.post("/logout", (req, res) => {
+  req.logout(req.user, (err) => {
+    if (err) return next(err);
+    res.redirect(ClientURL);
   });
 });
-
-router.get("/getPosts", (req, res) => {
-  BlogPost.find({}).then((data) => {
-    console.log('Data:', data);
-    res.json(data);
-  }).catch((err) => {
-    console.log("ERROR: ", err);
-  });
-});
-
-
-router.post("/submitPost", (req, res) => {
-  const { title, body } = req.body;
-  if (title && body && title.length > 0 && body.length > 0) {
-
-    const data = {
-      title: title,
-      body: body
-    }
-
-    const newBlogPost = new BlogPost(data);
-
-    newBlogPost.save((err) => {
-      if (err) {
-        res.json({
-          msg: "Your data failed to save due to error", err
-        });
-      } else {
-        res.json({
-          msg: "Your data has been saved!"
-        });
-      }
-
-    });
-
-  } else {
-    res.json({
-      msg: "title AND body much be populated to submit a post."
-    });
-  }
-
-});
-
-
 
 module.exports = router;

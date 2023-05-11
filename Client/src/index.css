@@ -11,14 +11,23 @@ html {
   font-size: 22px;
   color: #000;
 }
+p{
+  font-size: 18px;
+}
+
+select{
+  padding: 8px;
+  width: 100%;
+  border-radius: 20px;
+}
 
 body {
   min-height: 100vh;
   background-color: white;
-  background-image: url("./assets/backgroundcouple.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
+
 }
 
 .App {
@@ -29,16 +38,444 @@ body {
   min-height: 100vh;
   padding: 1rem 0.5rem;
 }
-
-.contentBox {
-  width: 500px;
+.container{
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
+  margin-left: 20%;
+  justify-content: space-between;
+}
+.subHeader{
   background-color: #e6e6e6;
+  padding: 15px;
+}
+.btn-large {
+  margin: 5px;
+}
+.center {
+  text-align: center;
+}
+hr{
+  position: relative;
+  top: 20px;
+  border: none;
+  height: 12px;
+  background: rgb(172, 170, 170);
+  margin-bottom: 50px;
+}
+.addContact,
+.logout {
+  float: right;
+  border: none;
+  padding: 8px 12px;
+  width: auto;
+}
+.loggedBox{
+  margin: auto;
+}
+.link {
+  text-decoration: none;
+  color: #507cc0;
+}
+.homepage{
+  background-image: url("./assets/backgroundcouple.jpg");
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  
+}
+
+.contactBox,
+.homeBox {
+  width: 50%;
+  margin: 8% auto;
+  background-color: #e3dbdb;
+  opacity: .8;
+  padding: 15px;
+  border-radius: 20px;
+}
+.galleryBox{
+  margin: 8% auto;
+  background-color: #e3dbdb;
+  padding: 15px;
+  border-radius: 20px;
+}
+.uploadForm{
+  width: 50%;
+  margin: auto;
+  box-shadow: 4px 4px 4px 4px gray;
+}
+
+.searchBoxAlbums{
+  align-items: center;
+  background-color: #babdc1;
+  display: inline-flex;
+  width: 100%;
+  border-radius: 5px;
+  padding: 15px;
+}
+.searchalbum{
+  width: 90%;
+}
+
+.searchIcon{
+   width: 75px;
+}
+.contentBox {
+  width: 120;
+  padding: 1rem;
   border-radius: 10px;
   color: #63666a;
+  background-color: #e6e6e6;
+  
+}
+
+.formBox{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5%;
+  background-color: #e6e6e6;
+  padding: 15px;
+}
+
+.bio{
+  background-color: #e6e6e6;
+  border-radius: 20px;
+  box-shadow: 4px 4px 4px 4px grey;
+}
+.formDiv{
+  background:#d6d2d2;
+  padding: 15px;
+  color: #535050;
+  margin: 8px;
+}
+.albumSection{
+  width: 148%;
+  margin-left: -32%;
+}
+
+.userBox,
+.aboutUsBox,
+.accountBox,
+.albumBox {
+  width: 70%;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #63666a;
+  margin-left: 20%;
+}
+.singleFile{
+  background-color: #d6d2d2;
+  padding: 15px;
+  
+}
+.singleAlbumBox{
+  display: inline-flex;
+  text-align: center;
+  overflow: scroll;
+  width: 100%;
+}
+.singleAlbum{
+  margin: 5px;
+  background-color: #fff;
+  padding: 12px;
+  width: 280px;
+  margin: 5px;
+}
+.singleAlbum img{
+  width: 250px;
+  height: 250px;
+  margin: 5px;
+  
+}
+.multipleFile{
+  padding: 15px;
+}
+.uploadSection{
+  width: 100%;
+}
+.upload{
+  width: 250px;
+  height: 250px;
+  margin: 5px;
+}
+.iconItem{
+  float: right;
+}
+.albumBtn h6{
+  background-color:#d6d4d4;
+  margin: 5px;
+  width: 50%;
+  height: 50px;
+  align-items: center;
+  padding: 12px;
+}
+.albumsSection{
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.cardAlbum{
+  margin: 5px;
+  width: 250px;
+  height: 250px;
+  display: inline-flex;
+}
+.author{
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+}
+.userMember{
+  width: 15%;
+  font-size: 15px;
+  box-shadow: 4px 4px 4px 4px grey;
+  margin: 5px;
+  padding: 12px;
+  text-align: center;
+}
+.userProfile{
+  width: 80px;
+}
+.linkMail{
+  font-size: 14px;
+  color: #507cc0;
+}
+
+.gallerySection{
+    display: flex;
+    flex-wrap: wrap;
+     
+}
+.checkbox{
+  align-items: center;
+  display: inline-flex;
+  text-align: start;
+  
+}
+
+.profileInfo{
+  margin: 5px;
+  background-color: #edeff3;
+  padding: 12px;
+  width: 100%;
+}
+
+.userBox{
+ display: flex;
+ justify-content: space-around;
+ margin-left: 20%;
+}
+.userBox div{
+  margin: 5px;
+  align-items: center;
+  padding: 15px;
+}
+.loggedBox{
+  height: 50vh;
+  background-image: url("../src/assets/backgroundcouple.jpg");
+  background-size: cover;
+}
+b{
+  color:#507cc0;
+  
+}
+.profileBox{
+   background-color:#e6e6e6;
+   width: 70%;
+   margin-left: 20%;
+   padding: 15px;
+   justify-content: space-between;
+}
+
+.profileNav{
+  display: flex;
+  align-items: center; 
+  margin-bottom: 12px;
+  justify-content: space-between;
+  background-color: #e6e6e6;
+  padding: 15px;
+}
+.profile{
+  border-radius: 100%;
+}
+.profileLink{
+  background:none;
+  color: #555;
+  width: auto;
+  margin: 5px;
+  
+}
+
+input{
+  width: 100%;
+}
+
+.filterBox {
+  width: 70%;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #63666a;
+  background-color: #e6e6e6;
+  margin-left: 15%;
+}
+.searchBox {
+  margin: auto;
+  width: 80%;
+}
+.searchbar {
+  width: 80%;
+  padding: 8px;
+}
+.cardPost{
+  height: 400px;
+  padding: 15px;
+  
+}
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #b3b0b0; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.cardContent{
+  overflow-y: scroll;
+  height: 350px;
+  padding: 15px;
+}
+.postImage {
+  width: 100%;
+  height: 200px;
+}
+.timePost{
+  font-size: 12px;
+  color: #b3b0b0;
+}
+
+.col {
+  padding: 15px;
+}
+.btn {
+  color: #fff !important;
+  margin: 10px !important;
+  background-color: #9e9797 !important;
+}
+
+.card {
+  width: 33%;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 5px 33px -21px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px 5px 33px -21px rgba(66, 68, 90, 1);
+  box-shadow: 0px 5px 33px -21px rgba(66, 68, 90, 1);
+}
+.loginButton {
+  width: 100%;
+  padding: 15px 25px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+}
+
+.google {
+  background-color: #df4930;
+}
+.facebook {
+  background-color: #507cc0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.home {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #63666a;
+  background-color: #e6e6e6;
+}
+
+.img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin: 20px 0px;
+}
+
+.desc {
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 25px;
+}
+
+.cardButton {
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(53, 16, 102, 0.678);
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postImg {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.postDesc {
+  padding: 0 100px;
+  font-size: 24px;
+  font-weight: 300;
+  color: gray;
+  margin-top: 50px;
+}
+
+.postLongDesc {
+  padding: 100px;
+  padding-top: 50px;
+  font-size: 18px;
+  line-height: 24px;
+}
+.col{
+  text-align: center;
+}
+.avatar{
+  width: 200px;
+  border-radius: 20px;
+}
+.arrowback{
+  align-items: center;
+  float: right;
+  padding: 8px;
+  display: inline-flex;
+  border-bottom: 1px solid rgb(219, 219, 222);
 }
 
 form {
@@ -46,8 +483,9 @@ form {
   flex-direction: column;
   justify-content: space-evenly;
   flex-grow: 1;
-  padding-bottom: 1rem;
+  padding: 15px;
 }
+
 .imgAlbum {
   width: 100px;
   height: 100px;
@@ -68,13 +506,22 @@ button,
 textarea {
   font-family: "Facinate", sans-serif;
   font-size: 22px;
-  padding: 0.25rem;
+  padding: 0.65rem;
   border-radius: 25px;
 }
 
 label,
 button {
   margin-top: 1rem;
+}
+.submitBtn{
+  background-color: #009688;
+  cursor: pointer;
+  color: #f1f1f1;
+}
+.submitBtn:hover{
+  background: #b8d4d3;
+  color: #636161;
 }
 
 .instructions {
@@ -133,6 +580,7 @@ h1 {
   border-radius: 25px;
 }
 
+
 @media only screen and (max-width: 600px) {
   section {
     width: 100%;
@@ -149,7 +597,7 @@ h1 {
 }
 
 .boxSidebar {
-  position: relative;
+  position: absolute;
 }
 
 .btn {
@@ -168,23 +616,30 @@ h1 {
 }
 
 .sidebar {
-  flex-shrink: 0;
   overflow: auto;
-  position: absolute;
   background-color: #e6e6e6;
   color: #63666a;
   width: 20%;
   left: 0px;
   height: 100%;
   padding: 20px;
+  top: 0;
+  padding: 0;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
 }
 
 .sidebar-item {
+  display: block;
+  color: black;
+  text-decoration: none;
   padding: 0.75em 1em;
   display: block;
   transition: background-color 0.15s;
   border-radius: 5px;
 }
+
 .sidebar-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
@@ -217,6 +672,58 @@ h1 {
 .sidebar-item.plain i {
   display: inline-block;
   width: 1.7em;
+}
+.columnMember {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.cardMember {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 30%;
+  margin: 12px;
+  padding: 1rem;
+  text-align: center;
+  font-family: arial;
+  background-color: #e6e6e6;
+}
+.profileMember {
+  width: 250px;
+  height: 250px;
+  padding: 8px;
+  border-radius: 100%;
+}
+i{
+  margin: 5px;
+}
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #9e9797;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover,
+a:hover {
+  opacity: 0.7;
 }
 
 .fillerBox {
@@ -258,6 +765,265 @@ h1 {
   width: 100px;
   background-color: red;
   color: white;
+}
+
+@media screen and (max-width: 760px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar-item {
+    float: left;
+  }
+}
+@media screen and (max-width: 575px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar-item {
+    text-align: center;
+    float: none;
+  }
+  .uploadForm,
+  .col,
+  .homeBox,
+  .accountBox,
+  .homepage,
+  .contactBox,
+  .searchBox,
+  .albumBox,
+  .profileBox,
+  .contentBox,
+  .filterBox {
+    margin-top: 5%;
+    width: 100%;
+    margin: auto;
+  }
+   .container{
+    display: block;
+    width: 100%;
+    margin: auto;
+    
+   }
+   .singleFile,
+   .multipleFile{
+    width: 100%;
+   }
+  h1{
+    font-size: 25px;
+  }
+  .userBox{
+    display: block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+  .accountBox{
+    width: 100%;
+    margin: 5% auto;
+    
+  }
+  .albumBtn h6{
+    width: 100%;
+    height: auto;
+  }
+  .cardAlbum{
+    width: 100%;
+  }
+  .formBox{
+    display: block;
+    width: 100%;
+  }
+  .profileBox{
+    display: block;
+  }
+  
+  .searchbar {
+    width: 100%;
+  }
+  .home {
+    width: 100%;
+    display: block;
+  }
+  .card {
+    width: 100%;
+  }
+
+  .sidebar-item {
+    float: left;
+  }
+  .columnMember {
+    display: block;
+  }
+  .cardMember {
+    width: 100%;
+  }
+  .albumSection {
+    margin: auto;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 414px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar-item {
+    text-align: center;
+    float: none;
+  }
+  .col,
+  .homepage,
+  .contactBox,
+  .searchBox,
+  .albumBox,
+  .profileBox,
+  .contentBox,
+  .filterBox {
+    margin-top: 5%;
+    width: 100%;
+    margin-left: 0;
+  }
+  .container{
+    display: block;
+    width: 100%;
+    margin: auto;
+    
+   }
+   .userBox{
+    display: block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+   .multipleFile{
+    width: 100%;
+   }
+  h1{
+    font-size: 25px;
+  }
+  .accountBox{
+    width: 100%;
+    margin: 5% auto;
+    
+  }
+  .profileBox{
+    display: block;
+  }
+  .formBox{
+    display: block;
+    width: 100%;
+  }
+  .searchbar {
+    width: 100%;
+  }
+  .home {
+    width: 100%;
+    display: block;
+  }
+  .card {
+    width: 100%;
+  }
+
+  .sidebar-item {
+    float: left;
+  }
+  .columnMember {
+    display: block;
+  }
+  .cardMember {
+    width: 100%;
+  }
+  .albumSection {
+    margin: auto;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 390px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar-item {
+    text-align: center;
+    float: none;
+  }
+  .col,
+  .homepage,
+  .contactBox,
+  .searchBox,
+  .albumBox,
+  .profileBox,
+  .contentBox,
+  .filterBox {
+    margin-top: 5%;
+    width: 100%;
+    margin-left: 0;
+  }
+  .container{
+    display: block;
+    width: 100%;
+    margin: auto;
+    
+   }
+   .userBox{
+    display: block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+   .multipleFile{
+    width: 100%;
+   }
+  h1{
+    font-size: 25px;
+  }
+  
+  .accountBox{
+    width: 100%;
+    margin: 5% auto;
+    
+  }
+  .filesBox{
+    display: flex;
+    justify-content: space-between;
+  }
+  .formBox{
+    display: block;
+    width: 100%;
+  }
+  .profileBox{
+    display: block;
+  }
+  .searchbar {
+    width: 100%;
+  }
+  .home {
+    width: 100%;
+    display: block;
+  }
+  .card {
+    width: 100%;
+  }
+
+  .sidebar-item {
+    float: left;
+  }
+  .columnMember {
+    display: block;
+  }
+  .cardMember {
+    width: 100%;
+  }
+  .albumSection {
+    margin: auto;
+    width: 100%;
+  }
 }
 
 /*

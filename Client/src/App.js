@@ -1,3 +1,5 @@
+import React from "react";
+
 import "./index.css";
 //import NavBarOne from './components/NavBarOne'
 import {
@@ -6,54 +8,50 @@ import {
   Routes,
   //Navigate
 } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
 import Filters from "./components/Filters";
 import Home from "./components/Home";
-import Register from "./components/Register";
-import Login from "./components/Login";
 import People from "./components/People";
-import Gallery from "./Gallery";
-import Upload from "./components/Upload";
 import Coaching from "./components/Coaching";
 import AboutUs from "./components/AboutUs";
 import ContactUs from "./components/ContactUs";
 import NotFound from "./components/NotFound";
 import Sidebar from "./components/Sidebar";
-import Account from "./components/Account";
-import Billing from "./components/Billing";
 import Notifications from "./components/Notifications";
-import ResetPassword from "./components/ResetPassword";
-import AddAlbum from "./components/AddAlbum";
+import PasswordReset from "./components/ResetPassword"
 import Profile from "./components/Profile";
 import Album from "./components/Album";
-function App() {
+import FAQ from "./components/FAQ";
+import ProfilePage from "./components/ProfilePage";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Albums from "./components/Albums";
+
+
+function App(props) {
+  
   return (
     <div className="App">
-      <Sidebar prop="user" />
+      <Sidebar props="user" />
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          {/*
-                    <Route exact path="/Login" element={user ? <Navigate to="/Album"/>:<Login/>} />
-                    <Route exact path="/Register" element={user ? <Navigate to="/Album"/>:<Register/>} />
-            */}
-
-          <Route exact path="/Login" element={<Login />} />
-          <Route exact path="/Register" element={<Register />} />
-          <Route exact path="/Filters" element={<Filters />} />
-          <Route exact path="/People" element={<People />} />
-          <Route exact path="/Gallery" element={<Gallery />} />
-          <Route exact path="/AddAlbum" element={<AddAlbum />} />
-          <Route exact path="/Upload" element={<Upload />} />
-          <Route exact path="/Coaching" element={<Coaching />} />
-          <Route exact path="/Profile" element={<Profile />} />
-          <Route exact path="/AboutUs" element={<AboutUs />} />
-          <Route exact path="/ContactUs" element={<ContactUs />} />
-          <Route exact path="/Account" element={<Account />} />
-          <Route exact path="/Billing" element={<Billing />} />
-          <Route exact path="/Album" element={<Album />} />
-          <Route exact path="/Notifications" element={<Notifications />} />
-          <Route exact path="/ResetPassword" element={<ResetPassword />} />
-          <Route path="*" element={<NotFound />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/user/:userId" element={<ProfilePage />} />
+          <Route exact path="/filters" element={<Filters />} />
+          <Route exact path="/people" element={<People />} />
+          <Route exact path="/coaching" element={<Coaching />} />
+          <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/aboutUs" element={<AboutUs />} />
+          <Route exact path="/contactUs" element={<ContactUs />} />
+          <Route exact path="/fAQ" element={<FAQ />} />
+          <Route exact path="/posts" element={<Album />} />
+          <Route exact path="/album" element={<Albums/>} />
+          <Route exact path="/notifications" element={<Notifications />} />
+          <Route exact path="/resetPassword" element={<PasswordReset />} />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </div>
