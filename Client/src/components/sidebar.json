@@ -28,10 +28,6 @@
       {
         "title": "Album",
         "path": "/album"
-      },
-      {
-        "title": "Posts",
-        "path": "/posts"
       }
 
     ]

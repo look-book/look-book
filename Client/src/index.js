@@ -4,11 +4,10 @@ import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
-import { reducers } from "./reducers";
 import thunk from "redux-thunk";
 //import AuthProvider from "./context/AuthProvider";
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const store = createStore( compose(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

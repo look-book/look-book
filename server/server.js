@@ -11,7 +11,6 @@ const expressSession = require("express-session");
 const authRoutes = require("./routes/authRoutes")
 const userRoutes = require("./routes/userRoutes")
 const authGoogle = require("./routes/auth");
-const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes")
 const fileRoutes = require('./routes/file-upload-routes');
 
@@ -23,6 +22,7 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
+  origin: "http://localhost:3000",
   credentials: true,
   optionSuccessStatus: 200,
   header: {
@@ -77,7 +77,6 @@ app.use("/", authRoutes)
 app.use("/", userRoutes)
 app.use("/api", routes);
 app.use("/auth", authGoogle);
-app.use("/posts", postRoutes);
 
 app.use('/api', fileRoutes.routes);
 
