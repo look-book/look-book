@@ -22,10 +22,9 @@ require("dotenv").config()
 const app = express();
 const path = require("path");
 
-
 //defining mongoose options
 const corsOptions = {
-  origin: ["http://localhost:3000" || "https://look-book-act-group42.herokuapp.com/"],
+  origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
   preflightContinue:false,
   credentials: true,
   optionSuccessStatus: 200,
