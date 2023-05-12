@@ -6,7 +6,6 @@ const routes = require("./routes/routes");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const multer = require("multer")
-
 const passport = require("passport");
 const router = express.Router()
 const expressSession = require("express-session");
@@ -46,7 +45,7 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
  mongoose.set('strictQuery', false);
- app.use(morgan('dev'));
+ 
 // use bodyparser middleware to receive form data
 app.use(bodyParser.json({limit: ' 50mb', extended: false}))
 app.use(bodyParser.urlencoded({limit: "50mb", extended:true}))
