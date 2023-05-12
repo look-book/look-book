@@ -5,8 +5,10 @@ const bodyParser = require("body-parser");
 const routes = require("./routes/routes");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const morgan = require('morgan');
+const multer = require("multer")
+
 const passport = require("passport");
+const router = express.Router()
 const expressSession = require("express-session");
 const authRoutes = require("./routes/authRoutes")
 const userRoutes = require("./routes/userRoutes")
@@ -22,7 +24,8 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://look-book-act-group42.herokuapp.com/",
+  preflightContinue:false,
   credentials: true,
   optionSuccessStatus: 200,
   header: {
@@ -65,11 +68,39 @@ app.use(passport.session());
 require("./models/passport");
 //DATABASE = 'mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority'
 
-//middleware
-app.use(express.json());
+if (process.env.NODE_ENV === 'production') {
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.resolve(__dirname, 'build'))
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.filename + '_' + Date.now() + '_' + file.originalname)
+    }
+  })
+} else {
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.resolve(__dirname, 'uploads'))
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.filename + '_' + Date.now() + '_' + file.originalname)
+    }
+  })
+}
+
+const uploads = multer({ storage: storage });
+
+app.use(uploads.any());
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.resolve(__dirname, 'build')));
+} else {
+  app.use(express.static('./public'));
+}
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-//Login
+
+app.use(methodOverride("_method"));
+
 
 //ROUTES
 app.use("/", Router)
