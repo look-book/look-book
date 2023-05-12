@@ -10,9 +10,9 @@
   "scripts": {
     "start": "node server/server.js",
     "build": "cd client && npm ci && npm run build",
-    "heroku-postbuild": "mkdir uploads && cd Client && npm install && npm run build",
-    "dev": "concurrently \"cd server && npm run watch\" \"cd Client && npm start\"",
-    "install": "cd server && npm i && cd Client && npm i"
+    "heroku-postbuild": "mkdir uploads && cd ../Client && npm install && npm run build",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
+    "install": "cd server && npm i && cd ../Client && npm i"
   },
   "repository": {
     "type": "git",
