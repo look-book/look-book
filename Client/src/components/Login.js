@@ -5,7 +5,7 @@ import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 
 function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState("")
+  const [isLoggedIn, setIsLoggedIn] = useState(null)
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -27,7 +27,7 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setIsLoggedIn(data);
+      setIsLoggedIn(data.message);
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +41,7 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) =>
-       (isLoggedIn ? history.push("/dashboard", data) : null)
+       (data.isLoggedIn ? history.push("/dashboard") : null)
       )
       .catch((err) => console.log(err));
   }, [isLoggedIn, history]);

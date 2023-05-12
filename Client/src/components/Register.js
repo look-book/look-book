@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
-  const [isLoggedIn, setIsLoggedIn] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const history = useNavigate();
 
@@ -28,7 +28,7 @@ function Register() {
       });
       const data = await res.json();
       console.log(data);
-      setIsLoggedIn(data);
+      setIsLoggedIn(data.message);
     } catch (err) {
       console.log(err);
     }
@@ -41,7 +41,7 @@ function Register() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (isLoggedIn ? history.push("/login", data) : null))
+      .then((data) => (data.isLoggedIn ? history.push("/login") : null))
       .catch((err) => console.log(err));
   }, [isLoggedIn, history]);
 
