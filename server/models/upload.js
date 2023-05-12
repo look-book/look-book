@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
 const uploadSchema = new mongoose.Schema({
-    myFile : String,
-    
+  myFile: String,
 });
 
-module.exports = mongoose.model('Upload', uploadSchema)
+module.exports = mongoose.model("Upload", uploadSchema);

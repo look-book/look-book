@@ -9,7 +9,6 @@ const multer = require("multer")
 const passport = require("passport");
 const router = express.Router()
 const expressSession = require("express-session");
-const methodOverride = require("method-override");
 const authRoutes = require("./routes/authRoutes")
 const userRoutes = require("./routes/userRoutes")
 const authGoogle = require("./routes/auth");
@@ -24,7 +23,7 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
+  origin: ["http://localhost:3000", "https://look-book-act-group42.herokuapp.com/"],
   preflightContinue:false,
   credentials: true,
   optionSuccessStatus: 200,

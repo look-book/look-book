@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { singleFileUpload, multipleFilesUpload } from "../data/api";
 import { CircularProgress } from "@mui/material";
 
@@ -10,18 +10,6 @@ const FileUploadScreen = (props) => {
   const [emotion, setEmotion] = useState("");
   const [singleProgress, setSingleProgress] = useState(0);
   const [multipleProgress, setMultipleProgress] = useState(0);
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    fetch("/api/isUserAuth", {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? setUser(data) : null))
-      .catch((err) => alert(err));
-  }, []);
 
   const SingleFileChange = (e) => {
     setSingleFile(e.target.files[0]);
@@ -53,16 +41,13 @@ const FileUploadScreen = (props) => {
     const formData = new FormData();
     formData.append("file", singleFile);
     formData.append("name", name);
-    formData.append("username", user.username);
     formData.append("emotion", emotion);
     await singleFileUpload(formData, singleFileOptions);
     props.getsingle();
   };
-
   const UploadMultipleFiles = async () => {
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("username", user.username);
     for (let i = 0; i < multipleFiles.length; i++) {
       formData.append("files", multipleFiles[i]);
     }
@@ -74,6 +59,7 @@ const FileUploadScreen = (props) => {
     <div className="formBox">
       <div className="formDiv">
         <div className="form-group">
+          
           <label>Who/What is in this photo?</label>
           <select
             type="text"
@@ -89,17 +75,16 @@ const FileUploadScreen = (props) => {
             <option value="Acquintances">Acquintances</option>
             <option value="Strangers">Strangers</option>
             <option value="Memorable Object">Memorable Object</option>
-          </select>
-          <br></br>
-          <br></br>
+          </select><br></br><br></br>
           <label>How does this photo make you feel? </label>
-
+          
           <select
             type="text"
             onChange={(e) => setEmotion(e.target.value)}
             placeholder="How does this photo make you feel? "
             className="form-control"
           >
+            
             <option value="Love/Adoratio">Love/Adoration</option>
             <option value="Happiness">Happiness</option>
             <option value="Excited">Excited</option>
@@ -111,9 +96,7 @@ const FileUploadScreen = (props) => {
             <option value="Confusion">Confusion</option>
             <option value="Disappointment">Disappointment</option>
             <option value="Fear">Fear</option>
-          </select>
-          <br></br>
-          <br></br>
+          </select><br></br><br></br>
           <label>Select Single File</label>
           <input
             type="file"
@@ -145,8 +128,7 @@ const FileUploadScreen = (props) => {
           placeholder="Enter title for your Album"
           className="form-control"
         />
-        <br></br>
-        <br></br>
+        <br></br><br></br>
         <div className="form-group">
           <label>Select Multiple Files</label>
           <input

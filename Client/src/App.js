@@ -20,12 +20,12 @@ import Sidebar from "./components/Sidebar";
 import Notifications from "./components/Notifications";
 import PasswordReset from "./components/ResetPassword"
 import Profile from "./components/Profile";
-import Album from "./components/Album";
 import FAQ from "./components/FAQ";
 import ProfilePage from "./components/ProfilePage";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Albums from "./components/Albums";
+import Album from "./components/Album";
 
 
 function App(props) {
@@ -44,6 +44,7 @@ function App(props) {
           <Route exact path="/people" element={<People />} />
           <Route exact path="/coaching" element={<Coaching />} />
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/post" element={<Album/>} />
           <Route exact path="/aboutUs" element={<AboutUs />} />
           <Route exact path="/contactUs" element={<ContactUs />} />
           <Route exact path="/fAQ" element={<FAQ />} />

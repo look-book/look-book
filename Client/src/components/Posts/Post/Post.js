@@ -36,7 +36,7 @@ const Post = ({ post, setCurrentId }) => {
               className="postImage"
             />
             <br></br>
-            <Typography variant="p" component="p">Creator: {post.creator}</Typography>
+            <Typography variant="p">Creator: {post.creator}</Typography>
           </CardMedia>
 
           <div className="cardInfo">
@@ -48,12 +48,12 @@ const Post = ({ post, setCurrentId }) => {
               {post.tags.map((tag) => `#${tag} `)}
             </Typography>
 
-            <Typography className="" gutterBottom variant="p" component="h4">
+            <Typography className="" gutterBottom variant="p" component="h2">
               {post.title}
             </Typography>
 
             <CardContent>
-              <Typography color="textSecondary" variant="p" component="p">
+              <Typography color="textSecondary" variant="p">
                 {post.message}
               </Typography>
             </CardContent>

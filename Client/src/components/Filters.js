@@ -57,7 +57,7 @@ function Filters() {
      
       </div>
       <br></br>
-     
+
       <h3>Locations</h3>
       <Locations />
     </section>

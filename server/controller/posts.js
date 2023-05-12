@@ -1,11 +1,10 @@
-const express = require('express');
+
+const e = require("express");
 const mongoose = require('mongoose');
-const User = require("../models/users")
-const PostMessage = require('../models/postMessage.js');
+const expressHandler = require("express-async-handler");
+const PostMessage = require('../models/postMessage');
 
-const router = express.Router();
-
- const getPosts = async (req, res) => { 
+ const getPosts = expressHandler( async (req, res) => { 
     try {
         const postMessages = await PostMessage.find();
                 
@@ -13,9 +12,9 @@ const router = express.Router();
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
-}
+});
 
- const getPost = async (req, res) => { 
+ const getPost = expressHandler(async (req, res) => { 
     const { id } = req.params;
 
     try {
@@ -25,9 +24,9 @@ const router = express.Router();
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
-}
+});
 
- const createPost = async (req, res) => {
+ const createPost = expressHandler(async (req, res) => {
     const { title, message, selectedFile, creator, tags } = req.body;
 
     const newPostMessage = new PostMessage({ title, message, selectedFile, creator, tags })
@@ -39,22 +38,22 @@ const router = express.Router();
     } catch (error) {
         res.status(409).json({ message: error.message });
     }
-}
+})
 
- const updatePost = async (req, res) => {
+ const updatePost = expressHandler(async (req, res) => {
     const { id } = req.params;
     const { title, message, creator, selectedFile, tags } = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    const updatedPost = { username, title, message, tags, selectedFile, _id: id };
+    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
 
     await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
 
     res.json(updatedPost);
-}
+})
 
- const deletePost = async (req, res) => {
+ const deletePost = expressHandler(async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
@@ -62,9 +61,9 @@ const router = express.Router();
     await PostMessage.findByIdAndRemove(id);
 
     res.json({ message: "Post deleted successfully." });
-}
+})
 
- const likePost = async (req, res) => {
+ const likePost = expressHandler(async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
@@ -74,14 +73,15 @@ const router = express.Router();
     const updatedPost = await PostMessage.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
     
     res.json(updatedPost);
-}
+})
 
 
-module.exports ={
+module.exports = {
     getPost,
     getPosts,
     createPost,
     updatePost,
     deletePost,
     likePost
-}
+};
+
