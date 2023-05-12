@@ -9,6 +9,9 @@ const {
   registrationValidation,
   loginValidation,
 } = require("../validation/validation");
+//if you need to del files after upload
+const fs = require('fs');
+
 
 function verifyJWT(req, res, next) {
   // removes 'Bearer` from token
@@ -171,7 +174,7 @@ router.get("/updateUserInfo", (req, res) => {
 });
 
 
-router.post("/updateUserInfo", verifyJWT, upload.single('file'), (req, res) => {
+router.post("/updateUserInfo", verifyJWT, (req, res) => {
   User.updateOne(
       {username: req.user.username},
       {$set: req.body}, 
@@ -182,33 +185,8 @@ router.post("/updateUserInfo", verifyJWT, upload.single('file'), (req, res) => {
 })
 
 
-//UPDATE
-router.put("/user/:userId", verifyJWT, upload.single('file'), async (req, res) => {
-  const username = req.params.userId;
-  if (req.body.userId === username) {
-    if (req.body.password) {
-      const salt = await bcrypt.genSalt(10);
-      req.body.password = await bcrypt.hash(req.body.password, salt);
-    }
-    try {
-      const updatedUser = await User.findByIdAndUpdate(
-         req.body.userId,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.status(200).json(updatedUser);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  } else {
-    res.status(401).json("You can update only your account!");
-  }
-});
-
-
-
+ 
+        
 /** GET: http://localhost:5000 */
 router.get("/users", (req, res) => {
   try {
@@ -236,6 +214,44 @@ router.get('/uploads', (req, res) => {
       res.json({error})
   }
 })
+//if you need to download (after upload) files in cloudinary 
+const cloudinary = require('cloudinary');
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_KEY,
+    api_secret: process.env.CLOUD_KEY_SECRET
+});
+
+router.post('/upload', (req, res, next) => {
+
+    let urls = [];    
+
+    async function sendImagesToCloudinary() {
+        for (let file of req.files) {
+            await cloudinary.uploader.upload(
+                file.path,
+                {
+                    public_id: `${Date.now()}`,
+                    resource_type: 'auto'
+                }
+            ).then(result => {
+                //del files after upload on cloudinary
+                fs.unlink(file.path, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                urls.push(result.url);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        }
+        res.json(urls);
+    }
+
+    sendImagesToCloudinary();
+});
 
 /** POST: http://localhost:5000/uploads  */
 router.post("/uploads", async (req, res) => {
