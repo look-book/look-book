@@ -27,7 +27,7 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setIsLoggedIn(data.message);
+      setIsLoggedIn(data);
     } catch (err) {
       console.log(err);
     }
@@ -41,10 +41,10 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) =>
-       (data.isLoggedIn ? history.push("/dashboard") : null)
+       (isLoggedIn ? history.push("/dashboard", data) : null)
       )
       .catch((err) => console.log(err));
-  }, [history]);
+  }, [isLoggedIn, history]);
 
   const onGoogle = () => {
     window.open("http://localhost:5000/auth/google", "_self");
