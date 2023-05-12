@@ -6,9 +6,9 @@
     "node": "^16.13.1"
     
    },
-  "main": "/server/server.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
+    "start": "node server/server.js",
     "build": "cd client && npm run build",
     "heroku-postbuild" : "mkdir uploads" ,
     "dev": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
