@@ -16,7 +16,6 @@ const authGoogle = require("./routes/auth");
 const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes")
 const fileRoutes = require('./routes/file-upload-routes');
-const categoryRoute = require("./routes/categories");
 
 //.env File Config
 require("dotenv").config()
@@ -26,13 +25,14 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: "https://look-book-act-group42.herokuapp.com/",
+  origin: ["http://localhost:3000" || "https://look-book-act-group42.herokuapp.com/"],
   preflightContinue:false,
   credentials: true,
   optionSuccessStatus: 200,
   header: {
-    "Access-Control-Allow-Origin": true,
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": true,
+    "Access-Control-Allow-Private-Network": true,
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
@@ -72,48 +72,15 @@ app.use(passport.session());
 require("./models/passport");
 //DATABASE = 'mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority'
 
-if (process.env.NODE_ENV === 'production') {
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.resolve(__dirname, 'build'))
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.filename + '_' + Date.now() + '_' + file.originalname)
-    }
-  })
-} else {
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.resolve(__dirname, 'uploads'))
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.filename + '_' + Date.now() + '_' + file.originalname)
-    }
-  })
-}
-
-const uploads = multer({ storage: storage });
-
-app.use(uploads.any());
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'build')));
-} else {
-  app.use(express.static('./public'));
-}
-
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(methodOverride("_method"));
-//app.use(express.urlencoded({ extended: false }));
 
 //ROUTES
-
 app.use("/", Router)
 app.use("/", authRoutes)
 app.use("/", userRoutes)
 app.use("/api", routes);
 app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
-app.use("/api/categories", categoryRoute);
 
 app.use('/api', fileRoutes.routes);
 
@@ -121,13 +88,27 @@ app.use('/api', fileRoutes.routes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../Client/build')));
+}
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Client/build/index.html'));
+});
+
 
 if(process.env.NODE_ENV=="production"){
   app.use(express.static('client/build'))
-  const path = require('path')
+
   app.get("*",(req,res)=>{
       res.sendFile(path.resolve(__dirname,'client','build','index.html'))
   })
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Client/build/index.html'));
+  });
+  
 }
 
 // Start the API server
