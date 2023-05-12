@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "engines": {
-   "node": "^16.13.1"
+    "node": "16.13.0",
+    "npm": "8.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +12,7 @@
     "watch": "nodemon"
   },
   "keywords": [],
-  "author": "ALMA_DEV914",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@2toad/profanity": "^2.2.0",
@@ -19,6 +20,7 @@
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "cloudinary": "^1.36.4",
     "concurrently": "^8.0.1",
     "config": "^3.3.9",
     "connect-mongo": "^3.2.0",
@@ -30,8 +32,7 @@
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "gridfs-stream": "^1.1.1",
-    "joi": "^17.9.1",
-    "joi-password-complexity": "^5.1.0",
+    "joi": "^17.9.2",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "mongodb": "^5.4.0",

@@ -5,7 +5,6 @@ import Posts from "./Posts/Posts";
 import { getPosts } from "../actions/posts";
 import Form from "./Form";
 
-
 const Album = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();

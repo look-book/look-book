@@ -20,8 +20,8 @@ const People = () => {
     <section className="memberBox">
       <h1>Members' Profile </h1>
       <div className="columnMember">
-        {data.map((data) => (
-          <div className="userMember">
+        {data.map((data, i) => (
+          <div className="userMember" key={i}>
             <button className="addContact">+</button>
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlf26-P4BSopUQrgSpw5dCKDLbGAyhHO6Kzw&usqp=CAU"

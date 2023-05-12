@@ -8,7 +8,7 @@ const Posts = ({currentId, setCurrentId}) => {
   const posts = useSelector((state) => state.posts);
   
   return (
-    !posts.length ? <CircularProgress /> : (
+    !posts ? <CircularProgress /> : (
       <Grid className="" container  spacing={2}>
         {posts.map((post) => (
           <>

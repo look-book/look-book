@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getPosts } from "../actions/posts";
 import Albums from "./Albums";
 import FileUploadScreen from "../screens/FileUploadScreen";
 import { getSingleFiles, getMultipleFiles } from "../data/api";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
-  const [currentId] = useState(0);
-  const dispatch = useDispatch();
   const [singleFiles, setSingleFiles] = useState([]);
   const [multipleFiles, setMultipleFiles] = useState([]);
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
 
   async function logout() {
     localStorage.removeItem("token");

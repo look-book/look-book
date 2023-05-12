@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Upload from "./AlbumIndividual";
 import moment from "moment";
-import Category from "./Category";
 import { getSingleFiles, getMultipleFiles } from "../data/api";
 
 function Albums() {
@@ -49,7 +48,6 @@ function Albums() {
       <h2>Single & Multiple File Upload </h2>
       <br></br>
       <div className="singleFile">
-        <Category /><br></br>
         <h4>Single Files List</h4>
         <br></br>
         <div className="singleAlbumBox">
