@@ -4,19 +4,15 @@
   "description": "",
   "main": "server/server.js",
   "engines": {
-    "node": "16.13.0", 
+    "node": "16.13.0",
     "npm": "8.1.0"
-    },
-
+  },
   "scripts": {
-
     "start": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
     "build": "cd client && npm ci && npm run build",
-    "heroku-postbuild" : "mkdir uploads" ,
+    "heroku-postbuild": "cd Client && npm install && npm run build",
     "dev": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
     "install": "cd server && npm i && cd ../Client && npm i"
-   
-
   },
   "repository": {
     "type": "git",
@@ -47,8 +43,7 @@
     "react-google-login": "^5.2.2",
     "react-router": "^6.10.0"
   },
-  
   "devDependencies": {
-    "concurrently": "^7.3.0"
+    "concurrently": "^7.6.0"
   }
 }
