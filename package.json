@@ -11,7 +11,7 @@
   "scripts": {
 
     "start": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm ci && npm run build",
     "heroku-postbuild" : "mkdir uploads" ,
     "dev": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
     "install": "cd server && npm i && cd ../Client && npm i"

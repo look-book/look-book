@@ -68,35 +68,6 @@ app.use(passport.session());
 require("./models/passport");
 //DATABASE = 'mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority'
 
-if (process.env.NODE_ENV === 'production') {
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.resolve(__dirname, 'build'))
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.filename + '_' + Date.now() + '_' + file.originalname)
-    }
-  })
-} else {
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.resolve(__dirname, 'uploads'))
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.filename + '_' + Date.now() + '_' + file.originalname)
-    }
-  })
-}
-
-const uploads = multer({ storage: storage });
-
-app.use(uploads.any());
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, 'build')));
-} else {
-  app.use(express.static('./public'));
-}
-
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(methodOverride("_method"));
