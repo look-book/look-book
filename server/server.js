@@ -69,9 +69,6 @@ require("./models/passport");
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use(methodOverride("_method"));
-
-
 //ROUTES
 app.use("/", Router)
 app.use("/", authRoutes)
