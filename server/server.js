@@ -12,24 +12,25 @@ const expressSession = require("express-session");
 const authRoutes = require("./routes/authRoutes")
 const userRoutes = require("./routes/userRoutes")
 const authGoogle = require("./routes/auth");
+const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes")
 const fileRoutes = require('./routes/file-upload-routes');
-const postRoutes = require("./routes/postRoutes");
+
 //.env File Config
 require("dotenv").config()
 const app = express();
 const path = require("path");
 
-
 //defining mongoose options
 const corsOptions = {
-  origin: "https://look-book-act-group42.herokuapp.com/",
+  origin: ["http://localhost:3000", "https://look-book-act-group42.herokuapp.com/"],
   preflightContinue:false,
   credentials: true,
   optionSuccessStatus: 200,
   header: {
-    "Access-Control-Allow-Origin": true,
     "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": true,
+    "Access-Control-Allow-Private-Network": true,
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
@@ -44,14 +45,16 @@ mongoose
 })
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
- mongoose.set('strictQuery', false);
- 
+  mongoose.set('strictQuery', false);
 // use bodyparser middleware to receive form data
-app.use(bodyParser.json({limit: ' 50mb', extended: false}))
+// use bodyparser middleware to receive form data
+
+app.use(bodyParser.json({limit: '50mb', extended: false}))
 app.use(bodyParser.urlencoded({limit: "50mb", extended:true}))
 
 app.use(express.urlencoded({limit: '50mb', extended:true}));
 app.use(express.json());
+
 
 app.use(
   expressSession({
@@ -76,8 +79,13 @@ app.use("/", userRoutes)
 app.use("/api", routes);
 app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
+
 app.use('/api', fileRoutes.routes);
 
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../Client/build')));
@@ -86,6 +94,20 @@ if (process.env.NODE_ENV === 'production') {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../Client/build/index.html'));
 });
+
+
+if(process.env.NODE_ENV=="production"){
+  app.use(express.static('client/build'))
+
+  app.get("*",(req,res)=>{
+      res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+  })
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Client/build/index.html'));
+  });
+  
+}
 
 // Start the API server
 const PORT = process.env.PORT || 5000;

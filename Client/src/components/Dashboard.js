@@ -18,7 +18,9 @@ function Dashboard() {
     try {
       const fileslist = await getSingleFiles();
       setSingleFiles(fileslist);
-    } catch (error) {
+      console.log(singleFiles)
+      
+    }catch(error){
       console.log(error);
     }
   };
