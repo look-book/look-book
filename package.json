@@ -8,7 +8,7 @@
     "npm": "8.1.0"
   },
   "scripts": {
-    "start": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
+    "start": "node server/server.js",
     "build": "cd client && npm ci && npm run build",
     "heroku-postbuild": "cd Client && npm install && npm run build",
     "dev": "concurrently \"cd server && npm run watch\" \"cd ../Client && npm start\"",
