@@ -31,6 +31,7 @@ const corsOptions = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Origin": true,
     "Access-Control-Allow-Private-Network": true,
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type", 
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
@@ -46,7 +47,6 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
   mongoose.set('strictQuery', false);
-// use bodyparser middleware to receive form data
 // use bodyparser middleware to receive form data
 
 app.use(bodyParser.json({limit: '50mb', extended: false}))
@@ -103,11 +103,12 @@ if(process.env.NODE_ENV=="production"){
       res.sendFile(path.resolve(__dirname,'client','build','index.html'))
   })
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Client/build/index.html'));
-  });
-  
 }
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Client/build/index.html'));
+});
+
 
 // Start the API server
 const PORT = process.env.PORT || 5000;

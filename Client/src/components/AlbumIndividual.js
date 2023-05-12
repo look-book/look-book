@@ -4,7 +4,7 @@ import Upload2 from "./Upload2";
 import { Container } from "@mui/material";
 
 
-const url = "https://look-book-act-group42.herokuapp.com/";
+const url = "http://localhost:5000/posts" || "https://look-book-act-group42.herokuapp.com/";
 
 function Upload() {
   const [postImage, setPostImage] = useState({ myFile: ""});
