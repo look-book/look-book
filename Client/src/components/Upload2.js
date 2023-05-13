@@ -10,7 +10,7 @@ function Upload2() {
     "Access-Control-Allow-Origin": true,
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       }
-    }
+    })
       .then((res) => res.json())
       .then((data) => {
         setData(data);
