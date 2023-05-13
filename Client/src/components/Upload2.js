@@ -4,8 +4,8 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/upload`, {
-      origin: ["http://localhost:5000/upload", "https://look-book-act-group42.herokuapp.com/"],
+    fetch(`/uploads`, {
+      origin: ["http://localhost:5000/uploads", "https://look-book-act-group42.herokuapp.com/"],
       mode: 'cors',
       credentials: 'include',
       headers: {
