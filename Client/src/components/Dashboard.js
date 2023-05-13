@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Albums from "./Albums";
 import FileUploadScreen from "../screens/FileUploadScreen";
 import { getSingleFiles, getMultipleFiles } from "../data/api";
+import Albums from "./Albums";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -18,9 +18,8 @@ function Dashboard() {
     try {
       const fileslist = await getSingleFiles();
       setSingleFiles(fileslist);
-      console.log(singleFiles)
-      
-    }catch(error){
+      console.log(singleFiles);
+    } catch (error) {
       console.log(error);
     }
   };
@@ -50,6 +49,7 @@ function Dashboard() {
       .catch((err) => alert(err));
   }, []);
 
+
   return (
     <div className="accountBox">
       {user ? (
@@ -69,6 +69,7 @@ function Dashboard() {
           <FileUploadScreen
             getsingle={() => getSingleFileslist()}
             getMultiple={() => getMultipleFilesList()}
+             setUser={setUser}
           />
           <div className="albumSection">
             <Albums />

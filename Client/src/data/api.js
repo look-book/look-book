@@ -17,14 +17,6 @@ export const getSingleFiles = async () => {
         throw error;
     }
 }
-export const getSingleFile = async () => {
-    try {
-            const {data} = await axios.get(apiUrl + 'getSingleFile');
-            return data;
-    } catch (error) {
-        throw error;
-    }
-}
 
 export const multipleFilesUpload = async (data, options) => {
     try {

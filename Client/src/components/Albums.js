@@ -9,7 +9,6 @@ function Albums() {
   const [show, setShow] = useState("");
   const [active, setActive] = useState("");
 
-
   const getSingleFileslist = async () => {
     try {
       const fileslist = await getSingleFiles();
@@ -44,7 +43,7 @@ function Albums() {
       <div className="contentBox">
         <Upload />
       </div>
-     <br></br>
+      <br></br>
       <h2>Single & Multiple File Upload </h2>
       <br></br>
       <div className="singleFile">
@@ -54,8 +53,8 @@ function Albums() {
           {singleFiles.map((file, index) => (
             <div className="singleAlbum">
               <img src={file.filePath} alt="img" width="100%" key={index} />
-              <p className="author">Author: {file.username}</p>
-              <p className="timePost">{moment(file.createdAt).fromNow()}</p>
+
+              <p className="author">Author:  {file.username  ? file.username : null }  -  {file.displayName  ?   file.displayName : null}</p>
               <p>
                 Who/What was in this photo? - <b> {file.name}</b>
               </p>
@@ -86,7 +85,9 @@ function Albums() {
                 >
                   {" "}
                   {element.title} Album {" - "} Created by:{" "}
-                  <b>{element.username}</b>
+                  <b>
+                  {element.username ? element.username : null} -  {element.displayName ? element.displayName : null}
+                  </b>
                   <p className="timePost">
                     {moment(element.createdAt).fromNow()}
                   </p>

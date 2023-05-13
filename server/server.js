@@ -31,7 +31,7 @@ const corsOptions = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Origin": true,
     "Access-Control-Allow-Private-Network": true,
-    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type", 
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Authorization", 
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };

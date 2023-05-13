@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { singleFileUpload, multipleFilesUpload } from "../data/api";
 import { CircularProgress } from "@mui/material";
 
@@ -10,10 +10,50 @@ const FileUploadScreen = (props) => {
   const [emotion, setEmotion] = useState("");
   const [singleProgress, setSingleProgress] = useState(0);
   const [multipleProgress, setMultipleProgress] = useState(0);
+  const [user, setUser] = useState({})
+
+  useEffect(() => {
+    fetch("/api/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? setUser(data) : null))
+      .catch((err) => alert(err));
+  }, []);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
 
   const SingleFileChange = (e) => {
     setSingleFile(e.target.files[0]);
     setSingleProgress(0);
+    
   };
 
   const MultipleFileChange = (e) => {
@@ -42,12 +82,16 @@ const FileUploadScreen = (props) => {
     formData.append("file", singleFile);
     formData.append("name", name);
     formData.append("emotion", emotion);
+    formData.append("username", user.username)
+    formData.append("displayName", user.displayName)
     await singleFileUpload(formData, singleFileOptions);
     props.getsingle();
   };
   const UploadMultipleFiles = async () => {
     const formData = new FormData();
     formData.append("title", title);
+    formData.append("username", user.username);
+    formData.append("displayName", user.displayName);
     for (let i = 0; i < multipleFiles.length; i++) {
       formData.append("files", multipleFiles[i]);
     }
@@ -108,6 +152,7 @@ const FileUploadScreen = (props) => {
               type="button"
               className="submitBtn"
               onClick={() => uploadSingleFile()}
+      
             >
               Upload
             </button>
@@ -145,6 +190,7 @@ const FileUploadScreen = (props) => {
               type="button"
               onClick={() => UploadMultipleFiles()}
               className="submitBtn"
+              
             >
               Upload
             </button>

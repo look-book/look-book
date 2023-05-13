@@ -142,10 +142,10 @@ hr{
   box-shadow: 4px 4px 4px 4px grey;
 }
 .formDiv{
-  background:#d6d2d2;
   padding: 15px;
   color: #535050;
   margin: 8px;
+  box-shadow: 4px 4px 4px 4px grey;
 }
 .albumSection{
   width: 148%;
@@ -204,9 +204,11 @@ hr{
   background-color:#d6d4d4;
   margin: 5px;
   width: 50%;
-  height: 50px;
+  height: 60px;
   align-items: center;
   padding: 12px;
+  cursor: pointer;
+
 }
 .albumsSection{
   display: inline-flex;
@@ -836,11 +838,20 @@ a:hover {
   .formBox{
     display: block;
     width: 100%;
+    
   }
   .profileBox{
     display: block;
   }
-  
+  .memberBox{
+     width: 100%;
+  }
+  .userMember{
+    width: 80%;
+   text-align: left;
+   margin: auto;
+   
+  }
   .searchbar {
     width: 100%;
   }
@@ -911,6 +922,14 @@ a:hover {
     margin: 5% auto;
     
   }
+  .memberBox{
+    width: 100%;
+ }
+ .userMember{
+   width: 80%;
+ text-align: left;
+ 
+ }
   .profileBox{
     display: block;
   }
@@ -944,6 +963,9 @@ a:hover {
   }
 }
 @media screen and (max-width: 390px) {
+  .link{
+    font-size: 18px;
+  }
   .sidebar {
     width: 100%;
     height: auto;
@@ -971,6 +993,114 @@ a:hover {
     margin: auto;
     
    }
+   .memberBox{
+    width: 100%;
+ }
+ .userMember{
+   width: 80%;
+ text-align: left;
+ 
+ }
+   .userBox{
+    display: block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+   .multipleFile{
+    width: 100%;
+   }
+  h1{
+    font-size: 25px;
+  }
+  
+  .accountBox{
+    width: 100%;
+    margin: 5% auto;
+    
+  }
+  .filesBox{
+    display: flex;
+    justify-content: space-between;
+  }
+  .formBox{
+    display: block;
+    width: 100%;
+  }
+  .profileBox{
+    display: block;
+  }
+  .searchbar {
+    width: 100%;
+  }
+  .home {
+    width: 100%;
+    display: block;
+  }
+  .card {
+    width: 100%;
+  }
+
+  .sidebar-item {
+    float: left;
+  }
+  .columnMember {
+    display: block;
+  }
+  .cardMember {
+    width: 100%;
+  }
+  .albumSection {
+    margin: auto;
+    width: 100%;
+  }
+  .cardPost{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .link{
+    font-size: 18px;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar-item {
+    text-align: center;
+    float: none;
+  }
+  .uploadForm,
+  .albumSection,
+  .col,
+  .homepage,
+  .contactBox,
+  .searchBox,
+  .albumBox,
+  .profileBox,
+  .contentBox,
+  .filterBox {
+    margin-top: 5%;
+    width: 100%;
+    margin-left: 0;
+  }
+  .container{
+    display: block;
+    width: 100%;
+    margin: auto;
+    
+   }
+   
+   .memberBox{
+    width: 100%;
+ }
+ .userMember{
+   width: 80%;
+ text-align: left;
+ 
+ }
    .userBox{
     display: block;
     width: 100%;
@@ -1025,7 +1155,6 @@ a:hover {
     width: 100%;
   }
 }
-
 /*
 
 :root {
