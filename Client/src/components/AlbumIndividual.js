@@ -4,7 +4,7 @@ import Upload2 from "./Upload2";
 import { Container } from "@mui/material";
 
 
-const url = "http://localhost:5000/upload" || "https://look-book-act-group42.herokuapp.com/";
+const url = "http://localhost:5000/uploads";
 
 const options = {
    mode: "cors",
