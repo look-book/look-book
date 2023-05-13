@@ -20,9 +20,12 @@ function Login() {
     try {
       const res = await fetch("/api/login", {
         method: "POST",
+	mode: "cors",
+	credentials: "include",     
         headers: {
           "Content-type": "application/json",
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
+		"Access-Control-Allow-Origin": true
         },
         body: JSON.stringify(user),
       });
@@ -36,8 +39,13 @@ function Login() {
 
   useEffect(() => {
     fetch("/api/isUserAuth", {
+      method: "GET",
+     credentials: "include",      
+     mode: "cors",
       headers: {
         "x-access-token": localStorage.getItem("token"),
+	"Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
+	      "Access-Control-Allow-Origin": true
       },
     })
       .then((res) => res.json())
