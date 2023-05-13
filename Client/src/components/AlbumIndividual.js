@@ -7,7 +7,6 @@ import { Container } from "@mui/material";
 const url = "http://localhost:5000/upload" || "https://look-book-act-group42.herokuapp.com/";
 
 const options = {
-  origin: ["http://localhost:5000/upload", "https://look-book-act-group42.herokuapp.com/"],
    mode: "cors",
   credentials: "include",
   optionSuccessStatus: 200,
