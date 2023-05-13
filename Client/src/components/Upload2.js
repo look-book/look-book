@@ -6,7 +6,7 @@ function Upload2() {
   useEffect(() => {
     fetch(`/api/uploads`, {
       headers: {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
     "Access-Control-Allow-Origin": true,
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       }
