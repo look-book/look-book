@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url =  'http://localhost:5000/posts' || 'https://look-book-act-group42.herokuapp.com/';
+const url =  'http://localhost:5000/posts';
 
 //defining  options
 const options = {
@@ -8,7 +8,7 @@ const options = {
   credentials: "include",
   optionSuccessStatus: 200,
   header: {
-    "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+    "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
     "Access-Control-Allow-Origin": true,
     "Access-Control-Allow-Private-Network": true,
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
