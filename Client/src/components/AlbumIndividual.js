@@ -11,7 +11,7 @@ function Upload() {
 
   const createPost = async (newImage) => {
     try {
-      await axios.post(url, newImage, options);
+      await axios.post(url, newImage);
     } catch (error) {
       console.log(error);
     }
