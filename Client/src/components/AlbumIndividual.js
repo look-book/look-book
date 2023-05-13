@@ -7,7 +7,7 @@ import { Container } from "@mui/material";
 const url = "https://look-book-act-group42.herokuapp.com/uploads";
 
 function Upload() {
-  const [postImage, setPostImage] = useState({ myFile: ""});
+  const [data, setData] = useState({ myFile: ""});
 
   const createPost = async (newImage) => {
     try {
@@ -19,7 +19,7 @@ function Upload() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(postImage);
+    createPost(data);
     console.log("Uploaded");
   };
 
