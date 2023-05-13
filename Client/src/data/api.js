@@ -4,7 +4,7 @@ const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.h
 
 //defining  options
 const options = {
-  origin: "http://localhost:3000", "https://look-book-act-group42.herokuapp.com",
+  origin: ["http://localhost:3000", "https://look-book-act-group42.herokuapp.com"],
    mode: "cors",
   credentials: "include",
   optionSuccessStatus: 200,
