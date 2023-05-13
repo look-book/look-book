@@ -222,9 +222,9 @@ cloudinary.config({
     api_secret: process.env.CLOUD_KEY_SECRET
 });
 
-router.post('/upload', (req, res, next) => {
+router.post('/uploads', (req, res, next) => {
 
-    let urls = [];    
+    let files = [];    
 
     async function sendImagesToCloudinary() {
         for (let file of req.files) {
@@ -241,13 +241,13 @@ router.post('/upload', (req, res, next) => {
                         console.log(err);
                     }
                 });
-                urls.push(result.url);
+                files.push(result.file);
             })
             .catch(err => {
                 console.log(err);
             });
         }
-        res.json(urls);
+        res.json(files);
     }
 
     sendImagesToCloudinary();
