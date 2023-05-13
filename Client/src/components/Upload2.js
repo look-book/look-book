@@ -5,6 +5,7 @@ function Upload2() {
 
   useEffect(() => {
     fetch(`/api/upload`, {
+      origin: ["http://localhost:5000/upload", "https://look-book-act-group42.herokuapp.com/"],
       mode: 'cors',
       credentials: 'include',
       headers: {
