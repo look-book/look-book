@@ -41,7 +41,7 @@ const Profile = () => {
       fetch("/auth/login/success", {
         method: "GET",
         credentials: "include",
-        method: "cors"
+        method: "cors",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
