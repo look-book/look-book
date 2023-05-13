@@ -68,7 +68,7 @@ app.use(passport.session());
 require("./models/passport");
 //DATABASE = 'mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority'
 
-app.use('/uploads', express.static(path.join(__dirname, '../server/uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //ROUTES
 app.use("/", Router)
