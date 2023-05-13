@@ -23,7 +23,6 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: ["http://localhost:3000", "https://look-book-act-group42.herokuapp.com"],
   credentials: true,
   optionSuccessStatus: 200,
   header: {
@@ -69,7 +68,7 @@ app.use(passport.session());
 require("./models/passport");
 //DATABASE = 'mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority'
 
-app.use('/uploads', express.static(path.join(__dirname, './uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../server/uploads')));
 
 //ROUTES
 app.use("/", Router)
