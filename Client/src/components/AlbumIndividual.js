@@ -27,7 +27,7 @@ function Upload() {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     console.log(base64);
-    setPostImage({ ...postImage, myFile: base64 });
+    setData({ ...data, myFile: base64 });
   };
 
   return (
