@@ -25,14 +25,14 @@ const FileUploadScreen = (props) => {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
+      fetch("/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
+          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
         },
       })
         .then((response) => {
