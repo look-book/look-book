@@ -1,5 +1,5 @@
 import React, {  useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
@@ -22,12 +22,13 @@ function Login() {
         method: "POST",
         headers: {
           "Content-type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(user),
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setIsLoggedIn(data.message);
+      setIsLoggedIn(data);
     } catch (err) {
       console.log(err);
     }
@@ -40,8 +41,7 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) =>
-       (data.isLoggedIn ? history.push("/dashboard") : null)
+      .then((data) => (data.isLoggedIn ? history.push("/dashboard") : null)
       )
       .catch((err) => console.log(err));
   }, [isLoggedIn, history]);
@@ -59,10 +59,11 @@ function Login() {
       <div className="contentBox">
         <div className="text-white flex flex-col h-screen w-screen items-center justify-center">
           <div className="p-5 text-3xl font-extrabold">Login</div>
+        {isLoggedIn ? <Navigate to="/dashboard"/> : <></>}
           <form
             className="mx-5 flex flex-col w-72"
-            onSubmit={(e) => handleLogin(e)}>
-        
+            onSubmit={(e) => handleLogin(e)}
+            >
             <label htmlFor="username">Email</label>
             <input
               className="input-field"
@@ -82,6 +83,7 @@ function Login() {
               className="submitBtn"
               type="submit"
               value="LOGIN"
+              
             /><br></br>
             <Link to="/resetPassword">
 							<p>Forgot Password ?</p>

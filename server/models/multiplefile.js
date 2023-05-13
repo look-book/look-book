@@ -7,6 +7,10 @@ const mulitipleFileSchema = new Schema({
         type: String,
         required: true
     },
+    displayName: {
+        type: String,
+        required: true,
+      },
     username: {
         type: String,
         required: true,
