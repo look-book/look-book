@@ -4,13 +4,14 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/uploads`, {
+    fetch(`https://look-book-act-group42.herokuapp.com/api/uploads`, {
       mode: 'cors',
       credentials: 'include',
       headers: {
-        "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
-    "Access-Control-Allow-Origin": true,
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+        "Access-Control-Allow-Origin": true,
+        "Access-Control-Allow-Private-Network": true,
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       }
     })
       .then((res) => res.json())
