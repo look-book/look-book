@@ -38,14 +38,16 @@ const Profile = () => {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
+      fetch("/auth/login/success", {
+        origin: ["http://localhost:5000/auth/login/success", "https://look-book-act-group42.herokuapp.com/"],
         method: "GET",
         credentials: "include",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Private-Network": true,
+          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
         },
       })
         .then((response) => {
