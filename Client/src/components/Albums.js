@@ -50,7 +50,7 @@ function Albums() {
         <h4>Single Files List</h4>
         <br></br>
         <div className="singleAlbumBox">
-          {singleFiles.map((file, index) => (
+          {singleFiles && singleFiles.map((file, index) => (
             <div className="singleAlbum">
               <img src={file.filePath} alt="img" width="100%" key={index} />
 
