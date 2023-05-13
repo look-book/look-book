@@ -4,7 +4,7 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/uploads`), {
+    fetch(`/api/uploads`, {
       headers: {
         "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Origin": true,
