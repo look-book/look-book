@@ -39,9 +39,9 @@ const Profile = () => {
   useEffect(() => {
     const getUser = () => {
       fetch("/auth/login/success", {
-        origin: ["http://localhost:5000/auth/login/success", "https://look-book-act-group42.herokuapp.com/"],
         method: "GET",
         credentials: "include",
+        method: "cors"
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
