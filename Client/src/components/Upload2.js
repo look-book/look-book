@@ -4,7 +4,7 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`api/uploads`, {
+    fetch(`/api/uploads`, {
       mode: 'cors',
       credentials: 'include',
       headers: {
