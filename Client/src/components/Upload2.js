@@ -4,7 +4,7 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://look-book-act-group42.herokuapp.com/api/uploads`, {
+    fetch(`https://look-book-act-group42.herokuapp.com/uploads`, {
       mode: 'cors',
       credentials: 'include',
       headers: {
