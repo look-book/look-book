@@ -4,7 +4,7 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://look-book-act-group42.herokuapp.com/api/uploads`)
+    fetch(`/api/uploads`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
