@@ -112,7 +112,6 @@ const Profile = () => {
               <b>Email:</b> {user.emails[0].value}
             </p>
           </div>
-    
           <hr></hr>
           <FileUploadScreen
             getsingle={() => getSingleFileslist()}
