@@ -4,7 +4,7 @@ import Upload2 from "./Upload2";
 import { Container } from "@mui/material";
 
 
-const url = "http://localhost:5000/uploads" || "https://look-book-act-group42.herokuapp.com/";
+const url = "https://look-book-act-group42.herokuapp.com/";
 
 function Upload() {
   const [data, setData] = useState({ myFile: ""});
@@ -12,13 +12,14 @@ function Upload() {
   const createPost = async (newImage) => {
     try {
       await axios.post(url,{ 
+        method: "POST",
         credentials: "include",
         mode:"cors",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+           "Access-Control-Allow-Origin": true,
+           Accept: "application/json",
+          "Content-Type": "application/json", 
         },
       }, newImage);
     } catch (error) {
