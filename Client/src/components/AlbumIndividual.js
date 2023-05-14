@@ -4,7 +4,7 @@ import Upload2 from "./Upload2";
 import { Container } from "@mui/material";
 
 
-const url = "https://look-book-act-group42.herokuapp.com/";
+const url = "https://look-book-act-group42.herokuapp.com/uploads";
 
 function Upload() {
   const [data, setData] = useState({ myFile: ""});
@@ -16,7 +16,7 @@ function Upload() {
         credentials: "include",
         mode:"cors",
         headers: {
-           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
            "Access-Control-Allow-Origin": true,
            Accept: "application/json",
           "Content-Type": "application/json", 
