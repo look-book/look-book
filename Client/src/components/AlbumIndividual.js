@@ -16,7 +16,7 @@ const options =  {
           "Access-Control-Allow-Credentials": true,
           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
         },
-      })
+      };
 
 function Upload() {
   const [data, setData] = useState({ myFile: ""});
