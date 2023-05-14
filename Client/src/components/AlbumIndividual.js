@@ -6,12 +6,24 @@ import { Container } from "@mui/material";
 
 const url = "http://localhost:5000/uploads" || "https://look-book-act-group42.herokuapp.com/";
 
+const options =  {
+        origin = ["http://localhost:5000/uploads", "https://look-book-act-group42.herokuapp.com/"],
+        method: "POST",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+        },
+      })
+
 function Upload() {
   const [data, setData] = useState({ myFile: ""});
 
   const createPost = async (newImage) => {
     try {
-      await axios.post(url, newImage);
+      await axios.post(url, newImage, options);
     } catch (error) {
       console.log(error);
     }
