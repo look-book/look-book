@@ -1,11 +1,11 @@
 import React, {  useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-
+import ValidationError from "./ValidationError";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 
 function Login() {
-  const [isLoggedIn, setIsLoggedIn] = useState(null)
+  const [errorMessage, setErrorMessage] = useState("");
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -20,48 +20,38 @@ function Login() {
     try {
       const res = await fetch("/api/login", {
         method: "POST",
-	mode: "cors",
-	credentials: "include",     
         headers: {
           "Content-type": "application/json",
-          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
-		"Access-Control-Allow-Origin": true
         },
         body: JSON.stringify(user),
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setIsLoggedIn(data);
+      setErrorMessage(data.message);
     } catch (err) {
-      console.log(err);
+      setErrorMessage(err);
     }
   }
 
   useEffect(() => {
     fetch("/api/isUserAuth", {
-      method: "GET",
-     credentials: "include",      
-     mode: "cors",
       headers: {
         "x-access-token": localStorage.getItem("token"),
-	"Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/",
-	      "Access-Control-Allow-Origin": true
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push("/dashboard") : null)
+      .then((data) =>
+       (data.isLoggedIn ? history.push("/dashboard") : null)
       )
-      .catch((err) => console.log(err));
-  }, [isLoggedIn, history]);
+      .catch((err) => setErrorMessage(err));
+  }, [history]);
 
   const onGoogle = () => {
-	  //was using localhost 5000
-    window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
   const onFacebook = () => {
-	  //was using localhost 5000
-    window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
+    window.open("http://localhost:5000/auth/facebook", "_self");
   };
 
   return (
@@ -69,11 +59,11 @@ function Login() {
       <div className="contentBox">
         <div className="text-white flex flex-col h-screen w-screen items-center justify-center">
           <div className="p-5 text-3xl font-extrabold">Login</div>
-        {isLoggedIn ? <Navigate to="/dashboard"/> : <></>}
+          {errorMessage ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
           <form
             className="mx-5 flex flex-col w-72"
-            onSubmit={(e) => handleLogin(e)}
-            >
+            onSubmit={(e) => handleLogin(e)}>
+          
             <label htmlFor="username">Email</label>
             <input
               className="input-field"
@@ -93,10 +83,9 @@ function Login() {
               className="submitBtn"
               type="submit"
               value="LOGIN"
-              
             /><br></br>
-            <Link to="/resetPassword">
-							<p>Forgot Password ?</p>
+            <Link to="/resetPassword" style={{ alignSelf: "flex-start" }}>
+							<p style={{ padding: "0 15px" }}>Forgot Password ?</p>
 						</Link>
             <br></br>
             <div className="flex flex-row items-center justify-center">

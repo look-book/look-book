@@ -29,7 +29,7 @@ const FileUploadScreen = (props) => {
         method: "GET",
         credentials: "include",
         headers: {
-           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+           "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
           "Content-Type": "application/json",
         },

@@ -4,10 +4,10 @@ import Upload2 from "./Upload2";
 import { Container } from "@mui/material";
 
 
-const url = "http://localhost:5000/uploads" || "https://look-book-act-group42.herokuapp.com/uploads";
+const url = "http://localhost:5000/uploads";
 
-function Upload() {
-  const [data, setData] = useState({ myFile: ""});
+function Upload({data}) {
+  const [postImage, setPostImage] = useState({ myFile: "", });
 
   const createPost = async (newImage) => {
     try {
@@ -19,7 +19,7 @@ function Upload() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createPost(data);
+    createPost(postImage);
     console.log("Uploaded");
   };
 
@@ -27,14 +27,14 @@ function Upload() {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     console.log(base64);
-    setData({ ...data, myFile: base64 });
+    setPostImage({ ...postImage, myFile: base64 });
   };
 
   return (
     <div className="galleryBox">
-      <div className="uploadForm">
-      <form onSubmit={handleSubmit}>
-        <h1>Share your photos or browse below</h1>
+      <div className="uploadBox">
+      <form onSubmit={handleSubmit} className="uploadForm">
+        <h1>Upload photos or browse below</h1>
         <label htmlFor="file-upload" className="custom-file-upload"></label>
         <input
           type="file"

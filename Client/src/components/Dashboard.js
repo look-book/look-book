@@ -69,7 +69,6 @@ function Dashboard() {
           <FileUploadScreen
             getsingle={() => getSingleFileslist()}
             getMultiple={() => getMultipleFilesList()}
-             setUser={setUser}
           />
           <div className="albumSection">
             <Albums />

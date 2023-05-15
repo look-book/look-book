@@ -222,7 +222,7 @@ cloudinary.config({
     api_secret: process.env.CLOUD_KEY_SECRET
 });
 
-router.post('/uploads', (req, res, next) => {
+router.post('/upload', (req, res, next) => {
 
     let files = [];    
 
