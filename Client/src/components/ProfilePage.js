@@ -9,7 +9,7 @@ function ProfilePage({ match }) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    fetch(`https://look-book-act-group42.herokuapp.com/api/user/${userId}`, {
+    fetch(`/api/user/${userId}`, {
       method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token"),

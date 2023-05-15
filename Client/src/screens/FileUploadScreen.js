@@ -13,7 +13,7 @@ const FileUploadScreen = (props) => {
   const [user, setUser] = useState({})
 
   useEffect(() => {
-    fetch("https://look-book-act-group42.herokuapp.com/api/isUserAuth", {
+    fetch("/api/isUserAuth", {
       method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token"),

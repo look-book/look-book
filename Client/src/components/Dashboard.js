@@ -39,8 +39,7 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
-    fetch("https://look-book-act-group42.herokuapp.com/api/isUserAuth", {
-      method: "GET",
+    fetch("/api/isUserAuth", {
         headers: {
           "x-access-token": localStorage.getItem("token"),
           'Content-type':'application/json',

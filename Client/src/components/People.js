@@ -4,7 +4,7 @@ const People = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://look-book-act-group42.herokuapp.com/api/users", {
+    fetch("/api/users", {
       method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token"),

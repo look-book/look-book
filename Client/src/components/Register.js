@@ -19,7 +19,7 @@ function Register() {
     };
 
     try {
-      const res = await fetch("https://look-book-act-group42.herokuapp.com/api/register", {
+      const res = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -36,7 +36,7 @@ function Register() {
   }
 
   useEffect(() => {
-    fetch("https://look-book-act-group42.herokuapp.com/api/isUserAuth", {
+    fetch("/api/isUserAuth", {
         method: "GET",
         headers: {
           "x-access-token": localStorage.getItem("token"),
