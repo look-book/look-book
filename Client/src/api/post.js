@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-const url ='https://look-book-act-group42.herokuapp.com/posts' || "http://localhost:5000/posts";
+const url = "http://localhost:5000/posts" || 'https://look-book-act-group42.herokuapp.com/posts';
 
 const options = {
   credentials: "include",
-  mode: "cors",
   optionSuccessStatus: 200,
   header: {
     "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
