@@ -21,21 +21,26 @@ require("dotenv").config()
 const app = express();
 const path = require("path");
 
-//defining mongoose options
-const corsOptions = {
-  origin: ["http://localhost:3000", "https://look-book-act-group42.herokuapp.com/"],
-  credentials: true,
-  optionSuccessStatus: 200,
-  header: {
-    "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
-    "Access-Control-Allow-Origin": true,
+//Cors Configuration - Start
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header(
     "Access-Control-Allow-Headers",
-     "Origin, X-Requested, Content-Type, Accept Authorization",
-    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-  },
-};
+    "Origin, X-Requested, Content-Type, Accept Authorization"
+  )
+  if (req.method === "OPTIONS") {
+    res.header(
+      "Access-Control-Allow-Methods",
+      "POST, PUT, PATCH, GET, DELETE"
+    )
+    return res.status(200).json({})
+  }
+  next()
+})
+//Cors Configuration - End
 
-app.use(cors(corsOptions));
+
+
 // DB Config
 const db = process.env.DATABASE;
 // Connect to MongoDB
