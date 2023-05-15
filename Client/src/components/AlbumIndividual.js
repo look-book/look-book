@@ -7,12 +7,11 @@ import { Container } from "@mui/material";
 const url = "http://localhost:5000/uploads" || "https://look-book-act-group42.herokuapp.com/uploads";
 
 const options = {
-        origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
         method: "POST",
         credentials: "include",
         mode: "no-cors",
         headers: {
-          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/uploads",
+          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
@@ -24,7 +23,7 @@ function Upload() {
 
   const createPost = async (newImage) => {
     try {
-      await axios.post(url, newImage);
+      await axios.post(url, newImage, options);
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +37,7 @@ function Upload() {
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
+    const base64 = await convertToBase64(file, options);
     console.log(base64);
     setData({ ...data, myFile: base64 });
   };
