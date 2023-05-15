@@ -4,6 +4,7 @@ const url = "http://localhost:5000/posts" || 'https://look-book-act-group42.hero
 
 const options = {
   credentials: "include",
+  mode: "no-cors",
   optionSuccessStatus: 200,
   header: {
     "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
