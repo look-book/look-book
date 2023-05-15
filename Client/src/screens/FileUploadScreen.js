@@ -129,7 +129,7 @@ const FileUploadScreen = (props) => {
             onChange={(e) => setEmotion(e.target.value)}
             placeholder="How does this photo make you feel? "
             className="form-control"
-           name="emotion"
+             name="emotion"
             id="emotion"
           >
             
@@ -148,8 +148,8 @@ const FileUploadScreen = (props) => {
           <label>Select Single File</label>
           <input
             type="file"
-            name="file"
-            id="file"
+            name="singleFile"
+            id="singleFile"
             className="form-control"
             onChange={(e) => SingleFileChange(e)}
           />
@@ -186,15 +186,13 @@ const FileUploadScreen = (props) => {
           <label>Select Multiple Files</label>
           <input
             type="file"
-            name="file"
-            id="file"
+            name="multipleFiles"
+            id="multipleFiles"
             onChange={(e) => MultipleFileChange(e)}
             className="form-control"
             multiple
           />
         </div>
-
-        <div>
           <div>
             <button
               type="button"
