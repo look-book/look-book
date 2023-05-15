@@ -2,18 +2,6 @@ import axios from 'axios';
 
 const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.herokuapp.com/api/';
 
-const options = {
-        method: "POST",
-        credentials: "include",
-        mode: "no-cors",
-        headers: {
-          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        }
-};
-
 export const singleFileUpload = async (data, options) => {
     try {
         await axios.post(apiUrl + 'singleFile', data, options);
