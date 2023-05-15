@@ -5,7 +5,7 @@ const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.h
 const options = {
   credentials: "include",
   optionSuccessStatus: 200,
-  mode: "no-cors",
+  mode: "cors",
   header: {
     "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
     "Access-Control-Allow-Origin": true,
