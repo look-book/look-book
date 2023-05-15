@@ -29,6 +29,8 @@ const corsOptions = {
   header: {
     "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
     "Access-Control-Allow-Origin": true,
+    "Access-Control-Allow-Headers",
+     "Origin, X-Requested, Content-Type, Accept Authorization",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
