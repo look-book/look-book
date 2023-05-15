@@ -13,7 +13,6 @@ function Upload() {
     try {
       await axios.post(url,{
         credentials: "include",
-        mode: "cors",
         headers: {
           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
           "Access-Control-Allow-Origin": true,
