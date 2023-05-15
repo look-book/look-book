@@ -3,14 +3,12 @@ import axios from 'axios';
 const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.herokuapp.com/api/';
 
 const options = {
-  origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
-  preflightContinue:false,
-  credentials: true,
+   method: "GET",
+  credentials: "include"
   optionSuccessStatus: 200,
   header: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Origin": true,
-    "Access-Control-Allow-Private-Network": true,
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
