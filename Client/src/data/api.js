@@ -3,8 +3,7 @@ import axios from 'axios';
 const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.herokuapp.com/api/';
 
 const options = {
-   method: "GET",
-  credentials: "include"
+  credentials: "include",
   optionSuccessStatus: 200,
   header: {
     "Access-Control-Allow-Origin": "*",
