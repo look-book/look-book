@@ -4,17 +4,7 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/uploads`, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-         
-        },
-      })
+    fetch(`/api/uploads`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
