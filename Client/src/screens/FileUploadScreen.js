@@ -100,6 +100,7 @@ const FileUploadScreen = (props) => {
   };
 
   return (
+    <>
     <div className="formBox">
       <div className="formDiv">
         <div className="form-group">
@@ -193,6 +194,7 @@ const FileUploadScreen = (props) => {
             multiple
           />
         </div>
+        <div>
           <div>
             <button
               type="button"
@@ -212,6 +214,7 @@ const FileUploadScreen = (props) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
