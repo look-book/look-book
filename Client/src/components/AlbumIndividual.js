@@ -10,6 +10,7 @@ const options = {
         origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
         method: "POST",
         credentials: "include",
+        mode: "no-cors",
         headers: {
           "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/uploads",
           Accept: "application/json",
