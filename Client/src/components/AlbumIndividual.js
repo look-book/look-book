@@ -6,6 +6,18 @@ import { Container } from "@mui/material";
 
 const url = "http://localhost:5000/uploads" || "https://look-book-act-group42.herokuapp.com/uploads";
 
+const options = {
+        origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com/uploads",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        }
+};
+
 function Upload() {
   const [data, setData] = useState({ myFile: ""});
 
