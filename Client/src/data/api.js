@@ -1,6 +1,19 @@
 import axios from 'axios';
 
-const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.herokuapp.com/';
+const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.herokuapp.com/api/';
+
+const options = {
+        origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
+        method: "POST",
+        credentials: "include",
+        mode: "no-cors",
+        headers: {
+          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        }
+};
 
 export const singleFileUpload = async (data, options) => {
     try {
