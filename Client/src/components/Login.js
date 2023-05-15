@@ -34,9 +34,12 @@ function Login() {
   }
 
   useEffect(() => {
-    fetch("/api/isUserAuth", {
+    fetch("https://look-book-act-group42.herokuapp.com/api/isUserAuth", {
+      method: "POST",
       headers: {
         "x-access-token": localStorage.getItem("token"),
+        'Content-type':'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
     })
       .then((res) => res.json())

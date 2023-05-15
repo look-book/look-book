@@ -19,7 +19,7 @@ function Register() {
     };
 
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch("https://look-book-act-group42.herokuapp.com/api/register", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -36,10 +36,14 @@ function Register() {
   }
 
   useEffect(() => {
-    fetch("/api/isUserAuth", {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
+    fetch("https://look-book-act-group42.herokuapp.com/api/isUserAuth", {
+        method: "GET",
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+          'Content-type':'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      
     })
       .then((res) => res.json())
       .then((data) => (data.isLoggedIn ? history.push("/login") : null))

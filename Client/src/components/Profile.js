@@ -38,14 +38,14 @@ const Profile = () => {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
-        method: "GET",
+      fetch("https://look-book-act-group42.herokuapp.com/auth/login/success", {
+        method: "POST",
         credentials: "include",
         headers: {
           "Access-Control-Allow-Origin": "*",
-          Accept: "application/json",
+          "Accept": "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
+  
         },
       })
         .then((response) => {
@@ -63,7 +63,7 @@ const Profile = () => {
   }, []);
 
   const logout = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
+    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
   };
 
 

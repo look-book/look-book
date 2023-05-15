@@ -13,9 +13,12 @@ const FileUploadScreen = (props) => {
   const [user, setUser] = useState({})
 
   useEffect(() => {
-    fetch("/api/isUserAuth", {
+    fetch("https://look-book-act-group42.herokuapp.com/api/isUserAuth", {
+      method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token"),
+        'Content-type':'application/json',
+        'Access-Control-Allow-Origin': '*',
       },
     })
       .then((res) => res.json())
@@ -25,12 +28,11 @@ const FileUploadScreen = (props) => {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("/auth/login/success", {
+      fetch("https://look-book-act-group42.herokuapp.com/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
            "Access-Control-Allow-Origin": "*",
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
       })

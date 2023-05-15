@@ -29,8 +29,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
   header: {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Origin": true,
-    "Access-Control-Allow-Private-Network": true,
+    "Content-type":"application/json",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };

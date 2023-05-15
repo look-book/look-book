@@ -39,10 +39,13 @@ function Dashboard() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/isUserAuth", {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
+    fetch("https://look-book-act-group42.herokuapp.com/api/isUserAuth", {
+      method: "GET",
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+          'Content-type':'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
     })
       .then((res) => res.json())
       .then((data) => (data.isLoggedIn ? setUser(data) : null))

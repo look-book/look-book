@@ -4,9 +4,16 @@ const People = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("/api/users", {
+    fetch("https://look-book-act-group42.herokuapp.com/api/users", {
+      method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token"),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+  
+        },
       },
     })
       .then((res) => res.json())
