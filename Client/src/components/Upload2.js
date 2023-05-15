@@ -7,6 +7,7 @@ function Upload2() {
     fetch(`/api/uploads`, {
         method: "GET",
         credentials: "include",
+      mode: "cors",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
