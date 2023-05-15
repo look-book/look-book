@@ -3,7 +3,6 @@ import axios from 'axios';
 const apiUrl =  'http://localhost:5000/api/' || 'https://look-book-act-group42.herokuapp.com/api/';
 
 const options = {
-        origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
         method: "POST",
         credentials: "include",
         mode: "no-cors",
