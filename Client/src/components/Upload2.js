@@ -7,10 +7,8 @@ function Upload2() {
     fetch(`/api/uploads`, {
         method: "GET",
         credentials: "include",
-      mode: "cors",
         headers: {
            "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
-           "Access-Control-Allow-Origin": true,
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
