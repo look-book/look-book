@@ -109,6 +109,8 @@ const FileUploadScreen = (props) => {
             type="text"
             onChange={(e) => setName(e.target.value)}
             placeholder="Who was in this photo?"
+            name="name"
+            id="name"
             className="form-control"
           >
             <option value="Parents/Older Family">Parents/Older Family</option>
@@ -127,6 +129,8 @@ const FileUploadScreen = (props) => {
             onChange={(e) => setEmotion(e.target.value)}
             placeholder="How does this photo make you feel? "
             className="form-control"
+           name="emotion"
+            id="emotion"
           >
             
             <option value="Love/Adoratio">Love/Adoration</option>
@@ -144,6 +148,8 @@ const FileUploadScreen = (props) => {
           <label>Select Single File</label>
           <input
             type="file"
+            name="file"
+            id="file"
             className="form-control"
             onChange={(e) => SingleFileChange(e)}
           />
@@ -172,12 +178,16 @@ const FileUploadScreen = (props) => {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter title for your Album"
           className="form-control"
+          name="title"
+          id="title"
         />
         <br></br><br></br>
         <div className="form-group">
           <label>Select Multiple Files</label>
           <input
             type="file"
+            name="file"
+            id="file"
             onChange={(e) => MultipleFileChange(e)}
             className="form-control"
             multiple
