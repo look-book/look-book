@@ -11,17 +11,7 @@ function Upload() {
 
   const createPost = async (newImage) => {
     try {
-      await axios.post(url,{
-        credentials: "include",
-        headers: {
-          "Access-Control-Allow-Origin": "https://look-book-act-group42.herokuapp.com",
-          "Access-Control-Allow-Origin": true,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-          
-        },
-      }, newImage);
+      await axios.post(url, newImage);
     } catch (error) {
       console.log(error);
     }
