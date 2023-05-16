@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = "https://look-book-act-group42.herokuapp.com/posts";
+const url = "http://localhost:5000/posts" || "https://look-book-act-group42.herokuapp.com/posts";
 
 const options = {
     header: {
