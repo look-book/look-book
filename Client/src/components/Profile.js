@@ -39,7 +39,6 @@ const Profile = () => {
   useEffect(() => {
     const getUser = () => {
       fetch("/auth/login/success", {
-        method: "POST",
         credentials: "include",
         headers: {
           "Access-Control-Allow-Origin": "*",

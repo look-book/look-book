@@ -14,7 +14,6 @@ const FileUploadScreen = (props) => {
 
   useEffect(() => {
     fetch("/api/isUserAuth", {
-      method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token"),
         'Content-type':'application/json',
