@@ -38,7 +38,7 @@ const Profile = () => {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("https://look-book-act-group42.herokuapp.com/auth/login/success", {
+      fetch("/auth/login/success", {
         method: "POST",
         credentials: "include",
         headers: {
