@@ -24,7 +24,7 @@ function Upload2() {
     <div className="gallerySection">
       {data.map((data, index) => (
         <div>
-          <img src={data.myFile} alt="" className="upload" name="myFile" id="file-upload" key={index} />
+          <img src={data.myFile} alt="" className="upload"  key={index} />
           <br></br>
           <div className="checkbox">
             <input type="checkbox" value={data.id} /> <span>Add image</span>
