@@ -48,11 +48,11 @@ function Upload() {
         <button type="submit">Submit</button>
       </form>
       </div><br></br>
-      <Container>
+    <Container>
         <h2>Photos Collections</h2><br></br>
        <Upload2 />
-      </Container>
-    </div>
+       </Container>
+      </div>
   );
 }
 

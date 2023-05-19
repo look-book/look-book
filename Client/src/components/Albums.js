@@ -39,10 +39,10 @@ function Albums() {
   };
 
   return (
-    <div className="albumBox">
-      <div className="contentBox">
+   <div className="albumBox">
+      
         <Upload />
-      </div>
+      
       <br></br>
       <h2>Single & Multiple File Upload </h2>
       <br></br>
@@ -115,7 +115,7 @@ function Albums() {
             </div>
           ))}
       </div>
-    </div>
+   </div>
   );
 }
 

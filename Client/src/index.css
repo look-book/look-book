@@ -784,10 +784,12 @@ a:hover {
     width: 100%;
     height: auto;
     position: relative;
+    margin-bottom: 5%;
   }
   .sidebar-item {
     text-align: center;
     float: none;
+    font-size: 18px;
   }
   .uploadForm,
   .col,
@@ -878,15 +880,22 @@ a:hover {
   }
 }
 @media screen and (max-width: 414px) {
+  .link{
+    font-size: 18px;
+  }
   .sidebar {
     width: 100%;
     height: auto;
     position: relative;
+    margin-bottom: 5%;
   }
   .sidebar-item {
     text-align: center;
     float: none;
+    font-size: 18px;
   }
+  .galleryBox,
+  .uploadBox,
   .col,
   .homepage,
   .contactBox,
@@ -897,13 +906,18 @@ a:hover {
   .filterBox {
     margin-top: 5%;
     width: 100%;
-    margin-left: 0;
+   margin: auto;
   }
   .container{
     display: block;
     width: 100%;
     margin: auto;
     
+   }
+
+   .gallerySection{
+    width: 100%;
+    margin-left: -5%;
    }
    .userBox{
     display: block;
@@ -963,6 +977,7 @@ a:hover {
   }
 }
 @media screen and (max-width: 390px) {
+  
   .link{
     font-size: 18px;
   }
@@ -970,11 +985,17 @@ a:hover {
     width: 100%;
     height: auto;
     position: relative;
+    margin-bottom: 5%;
   }
   .sidebar-item {
-    text-align: center;
+    text-align: left;
     float: none;
+    font-size: 18px;
+    cursor: pointer;
   }
+  
+  .galleryBox,
+  .uploadBox,
   .col,
   .homepage,
   .contactBox,
@@ -985,13 +1006,21 @@ a:hover {
   .filterBox {
     margin-top: 5%;
     width: 100%;
-    margin-left: 0;
+    margin: auto;
   }
   .container{
     display: block;
     width: 100%;
     margin: auto;
     
+   }
+   h2{
+    font-size: 22px;
+   }
+
+   .gallerySection{
+    width: 100%;
+    margin-left: -8%;
    }
    .memberBox{
     width: 100%;
@@ -1067,13 +1096,15 @@ a:hover {
     width: 100%;
     height: auto;
     position: relative;
+    margin-bottom: 5%;
   }
   .sidebar-item {
     text-align: center;
     float: none;
+    font-size: 18px;
   }
-  .uploadForm,
-  .albumSection,
+  .galleryBox,
+  .uploadBox,
   .col,
   .homepage,
   .contactBox,
@@ -1084,7 +1115,7 @@ a:hover {
   .filterBox {
     margin-top: 5%;
     width: 100%;
-    margin-left: 0;
+   margin: auto;
   }
   .container{
     display: block;
@@ -1092,7 +1123,11 @@ a:hover {
     margin: auto;
     
    }
-   
+
+   .gallerySection{
+    width: 100%;
+    margin-left: -14%;
+   }
    .memberBox{
     width: 100%;
  }

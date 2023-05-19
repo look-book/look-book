@@ -100,7 +100,7 @@ function Register() {
           />
           <br></br>
 
-          <input className="submitBtn" type="submit" value="REGISTER" />
+          <input className="submitBtn" type="submit" value="REGISTER" /><br></br>
           <div className="">
             <h2>Already have an account?</h2>
             <Link className="link" to="/login">
