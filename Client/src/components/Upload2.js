@@ -4,7 +4,7 @@ function Upload2() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(`https://look-book-act-group42.herokuapp.com/uploads`, {
+    fetch(`/api/uploads`, {
          method: "GET",
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -24,7 +24,7 @@ function Upload2() {
     <div className="gallerySection">
       {data.map((data, index) => (
         <div>
-          <img src={data.myFile} alt="" className="upload"  key={index} />
+          <img src={data.myFile} alt="" className="upload" key={index} />
           <br></br>
           <div className="checkbox">
             <input type="checkbox" value={data.id} /> <span>Add image</span>
