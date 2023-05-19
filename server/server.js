@@ -23,13 +23,13 @@ const path = require("path");
 
 //defining mongoose options
 const corsOptions = {
-  origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com"],
+  origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
   preflightContinue:false,
   credentials: true,
   optionSuccessStatus: 200,
   header: {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Credentials": true,
     "Content-type":"application/json",
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
