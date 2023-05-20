@@ -6,7 +6,7 @@ function Upload2() {
   useEffect(() => {
     fetch(`/api/uploads`, {
          method: "GET",
-        headers: {
+         headers: {
           "Access-Control-Allow-Origin": "*",
           "Accept": "application/json",
           "Content-Type": "application/json",
