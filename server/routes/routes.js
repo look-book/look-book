@@ -289,7 +289,7 @@ router.post("/login/success", (req, res) => {
 router.post("/logout", (req, res) => {
   req.logout(req.user, (err) => {
     if (err) return next(err);
-    res.redirect(ClientURL);
+    res.redirect("https://look-book-act-group42.herokuapp.com/");
   });
 });
 
