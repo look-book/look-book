@@ -55,21 +55,8 @@
     ]
   },
   {
-    "title": "About LookBook",
-    "children": [
-      {
-        "title": "FAQ",
-        "path": "/fAQ"
-      },
-      {
-        "title": "How To Guide",
-        "path": "/coaching"
-      },
-      {
-        "title": "Purpose",
-        "path": "/aboutUs"
-      }
-    ]
-  }
+    "title": "About Us",
+    "path": "/aboutus"
+  },
   
 ]
