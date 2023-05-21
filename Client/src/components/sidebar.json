@@ -16,7 +16,10 @@
     "title": "Contact Form",
     "path": "/contactUs"
   },
-
+{
+    "title": "About Us",
+    "path": "/aboutUs"
+  },
 
   {
     "title": "Gallery",
@@ -53,10 +56,5 @@
         "path": "/resetPassword"
       }
     ]
-  },
-  {
-    "title": "About Us",
-    "path": "/aboutUs"
-  },
-  
+  },  
 ]
