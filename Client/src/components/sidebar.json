@@ -1,3 +1,4 @@
+[
   {
     "title": "Home",
     "path": "/"
@@ -30,7 +31,7 @@
       },
       {
         "title": "Posts",
-        "path": "/posts"
+        "path": "/post"
       }
 
     ]
@@ -57,7 +58,15 @@
     "title": "About LookBook",
     "children": [
       {
-        "title": "About LookBook And Notes",
+        "title": "FAQ",
+        "path": "/fAQ"
+      },
+      {
+        "title": "How To Guide",
+        "path": "/coaching"
+      },
+      {
+        "title": "Purpose",
         "path": "/aboutUs"
       }
     ]
