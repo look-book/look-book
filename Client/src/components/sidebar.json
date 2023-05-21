@@ -56,15 +56,7 @@
   {
     "title": "About LookBook",
     "children": [
-      //{
-       // "title": "FAQ",
-       // "path": "/fAQ"
-     // },
-      //{
-       // "title": "How To Guide",
-      //  "path": "/coaching"
-      //},
-     // {
+      {
         "title": "About LookBook And Notes",
         "path": "/aboutUs"
       }
