@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server/server.js",
     "build": "cd Client && npm ci && npm run build",
-    "heroku-postbuild": " cd Client && npm install && npm run build",
+    "heroku-postbuild": "cd Client && npm install && npm run build",
     "dev": "concurrently \"cd server && npm run watch\" \"cd Client && npm start\"",
     "install": "cd server && npm i && cd ../Client && npm i"
   },
@@ -26,6 +26,9 @@
   "dependencies": {
     "@cloudinary/react": "^1.11.1",
     "@cloudinary/url-gen": "^1.9.2",
+    "@emotion/react": "^11.11.0",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "cloudinary": "^1.30.1",
     "cloudinary-react": "^1.8.1",
     "cookie-parser": "^1.4.6",
@@ -41,7 +44,9 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "react-google-login": "^5.2.2",
-    "react-router": "^6.10.0"
+    "react-router": "^6.10.0",
+    "react-spring": "^9.7.1",
+    "react-with-gesture": "^4.0.8"
   },
   "devDependencies": {
     "concurrently": "^7.6.0"

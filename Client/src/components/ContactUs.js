@@ -30,21 +30,13 @@ const ContactUs = () => {
     e.target.reset();
   };
   return (
-    <div className="homepage">
+    <div className="contactPage">
     <div className="contactBox">
-    <div className="iconItem">
-        <span className="sidebarTitle">FOLLOW US</span>
-        <div className="sidebarSocial">
-          <i className="sidebarIcon fab fa-facebook-square"></i>
-          <i className="sidebarIcon fab fa-twitter-square"></i>
-          <i className="sidebarIcon fab fa-pinterest-square"></i>
-          <i className="sidebarIcon fab fa-instagram-square"></i>
-        </div>
-      </div>
+    
     <h1><img src={contact} alt="" height="80" width="250"/></h1>
             <p>"Thank you for visiting our site! If you have any concerns or suggestion where we can improve our services, please reach out here. We are more than happy to serve you."</p>
        <br></br>
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={handleOnSubmit} className="contactForm">
         <input
           id="form-input-control-email"
           label="Email"
@@ -74,9 +66,10 @@ const ContactUs = () => {
           Submit
         </button>
       </form>
+      
     </div>
    
-    </div>
+   </div>
   );
 };
 

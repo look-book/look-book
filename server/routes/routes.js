@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs"); //was bcrypt
 const User = require("../models/users");
-const Upload = require("../models/upload")
 const jwt = require("jsonwebtoken");
-const {upload} = require("../helpers/filehelper")
+
 const {
   registrationValidation,
   loginValidation,
 } = require("../validation/validation");
 //if you need to del files after upload
 const fs = require('fs');
+const Upload = require("../models/upload");
 
 
 function verifyJWT(req, res, next) {
@@ -49,7 +49,7 @@ router.get("/searchfilter", (req, res) => {
 router.post("/searchfilter", (req, res) => {
   const searchTerm = req.body.searchTerm;
   Upload.find({ name: { $regex: "" + searchTerm, $options: "i" } })
-    .then((singleFiles) => res.json(singleFiles))
+    .then((upload) => res.json(upload))
     .catch((err) => console.log(err));
 });
 
@@ -100,6 +100,8 @@ router.post("/login", (req, res) => {
   }
 });
 
+
+
 router.get("/register", (req, res) => {
   res.send("register");
 });
@@ -127,14 +129,13 @@ router.post("/register", async (req, res) => {
           lastName: user.lastName,   
           profilePic: user.profilePic,     
           bio: "Hey!" +  user.firstName + " have not set a bio yet",
-          singleFile: [],
-          multipleFiles: [],
           posts:[],
           uploads:[]
       })
 
       dbUser.save()
       return res.json({message: "Success"})
+      
   }
 })
 
@@ -155,8 +156,6 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         canEdit: dbUser.password == req.user.password,
         bio: dbUser.bio,
         profilePic: dbUser.profilePic,
-        singleFile: dbUser.singleFile,
-        multipleFiles: dbUser.multipleFiles,
         posts: dbUser.posts,
         uploads: dbUser.uploads,
       })
@@ -166,6 +165,7 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         username: "User Not Found",
         canEdit: false,
         bio: "",
+        profilePic: "",
       })
     );
 });
@@ -180,7 +180,7 @@ router.post("/updateUserInfo", verifyJWT, (req, res) => {
       {username: req.user.username},
       {$set: req.body}, 
       {$set: {bio: req.body.newBio}},  
-      { $set:{ profilePic: req.body.newImage } },  
+      { $set:{ profilePic: req.body.newProfilePic } },  
       (updateRes) => updateRes
   )
 })
@@ -203,8 +203,9 @@ router.get("/users", (req, res) => {
   }
 });
 
+
 /** GET: http://localhost:5000 */
-router.get('/uploads', (req, res) => {
+/*router.get('/uploads', (req, res) => {
   try{
       Upload.find({}).then(data => {
           res.json(data)
@@ -215,47 +216,9 @@ router.get('/uploads', (req, res) => {
       res.json({error})
   }
 })
-//if you need to download (after upload) files in cloudinary 
-const cloudinary = require('cloudinary');
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_KEY,
-    api_secret: process.env.CLOUD_KEY_SECRET
-});
-
-router.post('/upload', (req, res, next) => {
-
-    let files = [];    
-
-    async function sendImagesToCloudinary() {
-        for (let file of req.files) {
-            await cloudinary.uploader.upload(
-                file.path,
-                {
-                    public_id: `${Date.now()}`,
-                    resource_type: 'auto'
-                }
-            ).then(result => {
-                //del files after upload on cloudinary
-                fs.unlink(file.path, function (err) {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
-                files.push(result.file);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        }
-        res.json(files);
-    }
-
-    sendImagesToCloudinary();
-});
 
 /** POST: http://localhost:5000/uploads  */
-router.post("/uploads", async (req, res) => {
+/*router.post("/uploads", async (req, res) => {
   const body = req.body;
   try{
       const newImage = await Upload.create(body)
@@ -264,7 +227,8 @@ router.post("/uploads", async (req, res) => {
   }catch(error){
       res.status(409).json({ message : error.message })
   }
-})
+})*///
+
 
 router.get("/login/success", (req, res) => {
   if (req.user) {

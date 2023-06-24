@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import avatar from "../assets/subProfile.png";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import Settings from "./ResetPassword";
+import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 
 function ProfilePage({ match }) {
   const { userId } = useParams(match);
@@ -13,8 +14,8 @@ function ProfilePage({ match }) {
       method: "GET",
       headers: {
         "x-access-token": localStorage.getItem("token"),
-        'Content-type':'application/json',
-        'Access-Control-Allow-Origin': '*',
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     })
       .then((res) => res.json())
@@ -52,54 +53,53 @@ function ProfilePage({ match }) {
         <header className="flex flex-row justify-center p-5">
           {user.username ? (
             <>
-            <div>
-              <div className="arrowback">
-                <KeyboardDoubleArrowLeftIcon />
-                <Link to="/dashboard">Back to dashboard</Link>
-              </div>
-              <img className="avatar" src={avatar} alt="" />
-              <h1 className="text-3xl py-5 px-3">
-                {user.firstName} {user.lastName}
-              </h1>
+              <div className="profileAccount">
+                <div>
+                  <img className="avatar" src={avatar} alt="profile" />
+                  <br></br>
+                  <h3>
+                    {user.firstName} {user.lastName}
+                  </h3>
 
-              <br></br>
-              <h2>Biography</h2>
+                  <p>
+                    <b>Email:</b>
+                    {user.username}
+                  </p>
+                  <p>
+                    <b>Bio:</b> {user.bio}
+                  </p>
 
-              <p>
-                <b> Name:</b> {user.firstName} {user.lastName}
-              </p>
-              <p>
-                <b>Email:</b>
-                {user.username}
-              </p>
-              <p>
-                <b>Bio:</b> {user.bio}
-              </p>
+                  {user.canEdit !== "Not found" ? (
+                    <>
+                      <form onSubmit={(e) => changeUserInfo(e)} className="bio">
+                        <label htmlFor="bio">Add or Change your Bio</label>
+
+                        <textarea
+                          type="text"
+                          placeholder="Add bio..."
+                          name="bio"
+                          id="bio"
+                        />
+
+                        <input type="submit" value="Submit" />
+                        <p className="text-sm my-1">1000 characters maximum</p>
+                      </form>
+                    </>
+                  ) : null}
+                </div>
+                <div>
+                  <Settings />
+                </div>
               </div>
-              
             </>
           ) : (
-            <p>Hey! {user.firstName} you have set a bio yet.</p>
+            <div className="logoutSection">
+              <h2>You're logout successfully!</h2>
+              <Link to="/login">Signin back</Link>{" "}
+              <video src={bgVideo} autoPlay loop muted />
+            </div>
           )}
         </header>
-        
-        {user.canEdit !== "Not found" ? (
-          <form onSubmit={(e) => changeUserInfo(e)} className="bio">
-            <label htmlFor="bio">Add or Change your Bio</label>
-
-            <textarea
-              type="text"
-              placeholder="Add bio..."
-              name="bio"
-              id="bio"
-            />
-
-            <input type="submit" value="Submit" />
-            <p className="text-sm my-1">1000 characters maximum</p>
-          </form>
-        ) : (
-          <></>
-        )}
       </div>
     </>
   );

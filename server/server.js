@@ -14,7 +14,7 @@ const userRoutes = require("./routes/userRoutes")
 const authGoogle = require("./routes/auth");
 const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes")
-const fileRoutes = require('./routes/file-upload-routes');
+const uploadRoutes = require("./routes/uploadRoutes")
 
 //.env File Config
 require("dotenv").config()
@@ -26,7 +26,6 @@ const corsOptions = {
   origin: ["http://localhost:3000" , "https://look-book-act-group42.herokuapp.com/"],
   preflightContinue:false,
   credentials: true,
-  optionSuccessStatus: 200,
   header: {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Credentials": true,
@@ -67,9 +66,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 require("./models/passport");
-//DATABASE = 'mongodb+srv://lookbook-admin:Actgroup42*@cluster0.u5xrckk.mongodb.net/look-book?retryWrites=true&w=majority'
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //ROUTES
 app.use("/", Router)
@@ -78,8 +76,7 @@ app.use("/", userRoutes)
 app.use("/api", routes);
 app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
-
-app.use('/api', fileRoutes.routes);
+app.use("/uploads", uploadRoutes)
 
 
 // Serve up static assets (usually on heroku)

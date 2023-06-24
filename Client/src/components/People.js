@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import avatar from "../assets/subProfile.png"
 
 const People = () => {
   const [data, setData] = useState([]);
@@ -31,14 +32,14 @@ const People = () => {
           <div className="userMember" key={i}>
             <button className="addContact">+</button>
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlf26-P4BSopUQrgSpw5dCKDLbGAyhHO6Kzw&usqp=CAU"
-              alt=""
-              width="120"
+              src={avatar}
+              alt="userProfile"
+              width="80"
               className="userProfile"
             />
-            <h4>
+            <p>
               {data.firstName} {data.lastName}
-            </h4>
+            </p>
             <p>
               <a href={`mailto:${data.username}`} className="linkMail">
                 {data.username}

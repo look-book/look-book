@@ -1,18 +1,18 @@
 import "../assets/css/settings.css";
-import {  useState, useEffect } from "react";
-import avatar from "../assets/avatar.jpg";
+import { useState, useEffect } from "react";
+import avatar from "../assets/subProfile.png";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-export default function Settings({match}) {
+export default function Settings({ match }) {
   const [file, setFile] = useState(null);
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("")
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({});
-  const {userId} = useParams(match);
+  const { userId } = useParams(match);
 
   //const PF = "http://localhost:5000/uploads/"
 
@@ -28,14 +28,16 @@ export default function Settings({match}) {
       })
       .catch((err) => alert(err));
   }, [userId]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedUser = {
       userId: user._id,
       username,
-     firstName, 
-	    lastName,
+      firstName,
+      lastName,
       password,
+      
     };
     if (file) {
       const data = new FormData();
@@ -44,15 +46,15 @@ export default function Settings({match}) {
       data.append("file", file);
       updatedUser.profilePic = filename;
       try {
-        await axios.post("/api/upload", data);
+        await axios.post("/api/uploads", data);
       } catch (err) {}
     }
     try {
       const res = await axios.put(`/api/user/${userId}`, updatedUser);
       setSuccess(true);
-       setUser(res)
+      setUser(res);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
 
@@ -63,31 +65,30 @@ export default function Settings({match}) {
           <span className="settingsUpdateTitle">Update Your Account</span>
           <span className="settingsDeleteTitle">Delete Account</span>
         </div>
+        
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="settingsPP">
-            <img
-              src={file ? URL.createObjectURL(file) : avatar}
-              alt=""
-            />
+            <img src={file ? URL.createObjectURL(file) : avatar} alt="" />
+            
             <label htmlFor="fileInput">
               <i className="settingsPPIcon far fa-user-circle"></i>
             </label>
             <input
               type="file"
               id="fileInput"
-			  name="file"
+              name="file"
               style={{ display: "none" }}
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
-		  <label>FirstName</label>
+          <label>FirstName</label>
           <input
             type="text"
             placeholder={user.firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-		  <label>LastName</label>
+          <label>LastName</label>
           <input
             type="text"
             placeholder={user.lastName}
@@ -97,10 +98,10 @@ export default function Settings({match}) {
           <input
             type="text"
             placeholder={user.username}
-			value={user.username}
+            value={user.username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          
+
           <label>Password</label>
           <input
             type="password"
@@ -121,4 +122,3 @@ export default function Settings({match}) {
     </div>
   );
 }
-

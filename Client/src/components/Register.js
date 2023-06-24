@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
+
 
 function Register() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-
+  const [errorMessage, setErrorMessage] = useState("");
   const history = useNavigate();
 
   async function handleRegister(e) {
@@ -30,6 +31,8 @@ function Register() {
       const data = await res.json();
       console.log(data);
       setIsLoggedIn(data.message);
+      setErrorMessage(data.message)
+      window.location.replace("/login")
     } catch (err) {
       console.log(err);
     }
@@ -37,28 +40,24 @@ function Register() {
 
   useEffect(() => {
     fetch("/api/isUserAuth", {
-        method: "GET",
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-          'Content-type':'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      
+      method: "GET",
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push("/login") : null))
+      .then((data) => (data.isLoggedIn ? history.push("/login") : redirect("/login")))
       .catch((err) => console.log(err));
   }, [isLoggedIn, history]);
 
   return (
     <div className="contentBox">
-      <div className="">
-        <div className="">Register</div>
-
-        <form
-          className="mx-5 flex flex-col w-72"
-          onSubmit={(e) => handleRegister(e)}
-        >
+      <div className="registerSection">
+        Register
+        {errorMessage}
+        <form onSubmit={(e) => handleRegister(e)} className="registerForm">
           <label htmlFor="firstName">Firstname</label>
           <input
             className="input-field"
@@ -100,9 +99,10 @@ function Register() {
           />
           <br></br>
 
-          <input className="submitBtn" type="submit" value="REGISTER" /><br></br>
+          <input className="submitBtn" type="submit" value="REGISTER" />
+          <br></br>
           <div className="">
-            <h2>Already have an account?</h2>
+            <h5>Already have an account?</h5>
             <Link className="link" to="/login">
               LOGIN
             </Link>

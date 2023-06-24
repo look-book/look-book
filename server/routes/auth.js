@@ -2,7 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 
 //const ClientURL = "http://localhost:3000/";
-const ClientURL ="https://look-book-act-group42.herokuapp.com/";
+const ClientURL = "https://look-book-act-group42.herokuapp.com/";
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
@@ -23,12 +23,14 @@ router.get("/login/failed", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-	req.logout();
-	res.redirect(ClientURL);
+  req.logout();
+  res.redirect(ClientURL);
 });
 
-
-router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
 router.get(
   "/google/callback",
@@ -38,12 +40,15 @@ router.get(
   })
 );
 
-router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["profile"] })
+);
 
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
-    successRedirect:(ClientURL),
+    successRedirect: `${ClientURL}profile`,
     failureRedirect: "/login/failed",
   })
 );

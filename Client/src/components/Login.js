@@ -1,6 +1,5 @@
-import React, {  useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import ValidationError from "./ValidationError";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 
@@ -27,6 +26,7 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
+       window.location.replace("/")
       setErrorMessage(data.message);
     } catch (err) {
       setErrorMessage(err);
@@ -37,35 +37,37 @@ function Login() {
     fetch("/api/isUserAuth", {
       headers: {
         "x-access-token": localStorage.getItem("token"),
-        'Content-type':'application/json',
-        'Access-Control-Allow-Origin': '*',
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     })
       .then((res) => res.json())
-      .then((data) =>
-       (data.isLoggedIn ? history.push("/dashboard") : null)
-      )
+      .then((data) => (data.isLoggedIn ? history.push("/profile") : null))
       .catch((err) => setErrorMessage(err));
   }, [history]);
 
+
   const onGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
+    window.open(
+      "https://look-book-act-group42.herokuapp.com/auth/google",
+      "_self"
+    );
   };
 
   const onFacebook = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
+    window.open(
+      "https://look-book-act-group42.herokuapp.com/auth/facebook",
+      "_self"
+    );
   };
 
   return (
-   <>
+    <>
       <div className="contentBox">
-        <div className="text-white flex flex-col h-screen w-screen items-center justify-center">
-          <div className="p-5 text-3xl font-extrabold">Login</div>
-          {errorMessage ?  <Navigate to="/dashboard"/> :  <ValidationError message={errorMessage} />}
-          <form
-            className="mx-5 flex flex-col w-72"
-            onSubmit={(e) => handleLogin(e)}>
-          
+        <div className="loginSection">
+          Login
+          {errorMessage}
+          <form onSubmit={(e) => handleLogin(e)} className="loginForm">
             <label htmlFor="username">Email</label>
             <input
               className="input-field"
@@ -81,17 +83,14 @@ function Login() {
               id="password"
             />
             <br></br>
-            <input
-              className="submitBtn"
-              type="submit"
-              value="LOGIN"
-            /><br></br>
-            <Link to="/resetPassword" style={{ alignSelf: "flex-start" }}>
-							<p style={{ padding: "0 15px" }}>Forgot Password ?</p>
-						</Link>
+            <input className="submitBtn" type="submit" value="LOGIN" />
             <br></br>
-            <div className="flex flex-row items-center justify-center">
-              <h2>Don't have an account?</h2>
+            <Link to="/resetPassword" style={{ alignSelf: "flex-start" }}>
+              <p style={{ padding: "0 15px" }}>Forgot Password ?</p>
+            </Link>
+
+            <div className="flex  items-center justify-center">
+              <h5>Don't have an account?</h5>
               <Link
                 className="m-1 px-2 py-1 rounded font-bold text-xl border-2 border-green-400 text-green-400 text-center"
                 to="/register"
@@ -99,21 +98,19 @@ function Login() {
                 REGISTER
               </Link>
             </div>
-        </form>
-          <br></br>
-
+          </form>
           <div className="center">
-            <hr></hr>
             <div className="or">OR</div>
           </div>
-
-          <div className="loginButton google" onClick={onGoogle}>
-            <img src={Google} alt="" className="icon" />
-            Google
-          </div>
-          <div className="loginButton facebook" onClick={onFacebook}>
-            <img src={Facebook} alt="" className="icon" />
-            Facebook
+          <div className="social">
+            <div className="loginButton google" onClick={onGoogle}>
+              <img src={Google} alt="" className="icon" />
+              Google
+            </div>
+            <div className="loginButton facebook" onClick={onFacebook}>
+              <img src={Facebook} alt="" className="icon" />
+              Facebook
+            </div>
           </div>
         </div>
       </div>

@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
     },
     creator: {type: String
     },
+    
+    age: {
+        type: Number
+   },
 
     tags: [String],
     selectedFile: String,

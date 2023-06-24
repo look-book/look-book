@@ -7,14 +7,12 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
-import { likePost, deletePost } from "../../../actions/posts";
+import { likePost } from "../../../actions/posts";
 import { useDispatch } from "react-redux";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import moment from "moment";
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post }) => {
   const dispatch = useDispatch();
 
   return (
@@ -22,33 +20,30 @@ const Post = ({ post, setCurrentId }) => {
       <Card className="cardPost">
         <div className="cardContent">
           <CardMedia>
-            <Button
-              style={{ color: "black" }}
-              size="small"
-              className="dotPost"
-              onClick={() => setCurrentId(post._id)}
-            >
-              <MoreHorizIcon fontSize="default" />
-            </Button>
             <img
               src={post.selectedFile}
               alt={post.title}
               className="postImage"
             />
-            <br></br>
-            <Typography variant="p" component="p">Creator: {post.creator}</Typography>
           </CardMedia>
 
           <div className="cardInfo">
+            <Typography variant="p" component="p">
+              Caregiver's name: <b>{post.creator}</b>
+            </Typography>
+            <Typography variant="p" component="p">
+              Alzheimer patient's age: <b>{post.age}</b>
+            </Typography>
             <Typography variant="body2" className="timePost">
               {moment(post.createdAt).fromNow()}
             </Typography>
 
             <Typography color="textSecondary" component="p">
+              How does your patient feels about this photo?{" "}
               {post.tags.map((tag) => `#${tag} `)}
             </Typography>
 
-            <Typography className="" gutterBottom variant="p" component="h4">
+            <Typography className="" gutterBottom variant="p" component="h5">
               {post.title}
             </Typography>
 
@@ -57,26 +52,18 @@ const Post = ({ post, setCurrentId }) => {
                 {post.message}
               </Typography>
             </CardContent>
-          </div>
+        
           <CardActions className="card-action">
             <Button
               size="small"
               color="primary"
               onClick={() => dispatch(likePost(post._id))}
             >
-              <ThumbUpAltIcon fontSize="small" /> {post.likeCount}{" "}
+              <ThumbUpAltIcon fontSize="small" className="tumbicon" />{" "}
+              {post.likeCount} Likes{" "}
             </Button>
-            
-            <Button
-              size="small"
-              color="primary"
-              onClick={() => dispatch(deletePost(post._id))}
-              setCurrentId={setCurrentId}
-            >
-              <DeleteIcon fontSize="small" /> Delete
-            </Button>
-           
           </CardActions>
+          </div>
         </div>
       </Card>
     </>
