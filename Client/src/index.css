@@ -226,6 +226,7 @@ ul li {
  justify-content: space-between;
  
 }
+
 .userBox div{
   margin: 5px;
   align-items: center;
@@ -313,8 +314,8 @@ input{
   padding: 15px;
 }
 .postImage {
-  width: 100%;
-  
+  width: 400px;
+  height: 350px;
 }
 .timePost{
   font-size: 12px;
