@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {Container} from "@mui/material;
+import {Container} from "@mui/material";
 import EvaluationTest from './EvaluationTest';
 
 function Coaching() {
