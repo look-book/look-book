@@ -4,7 +4,6 @@ import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 
 function Login() {
-  const [errorMessage, setErrorMessage] = useState("");
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -25,11 +24,9 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setErrorMessage(data.message);
       window.location.reload("/");
     } catch (err) {
-      console.log(err)
-     setErrorMessage(errorMessage);
+      console.log(err);
     }
   }
 
