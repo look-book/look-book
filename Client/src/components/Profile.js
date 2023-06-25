@@ -70,6 +70,7 @@ const Profile = () => {
   
   const logoutGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+    window.location.reload("/profile")
   };
 
   return (

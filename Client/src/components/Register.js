@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
@@ -49,6 +49,7 @@ function Register() {
   }, [isLoggedIn, history]);
 
   return (
+    <>
     <div className="contentBox">
       <div className="registerSection">
         Register
@@ -105,6 +106,8 @@ function Register() {
         </form>
       </div>
     </div>
+    </>
   );
 }
 export default Register;
+

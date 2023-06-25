@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; 
+import React,  { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
@@ -26,7 +26,7 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
       setErrorMessage(data.message);
-      window.location.reload("/");
+      window.location.replace(`/user/${user.username}`);
     } catch (err) {
       console.log(err);
       setErrorMessage(err);
@@ -48,6 +48,7 @@ function Login() {
 
   const onGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
+    
   };
 
   const onFacebook = () => {
@@ -55,7 +56,7 @@ function Login() {
   };
 
   return (
-    <>
+   <>
       <div className="contentBox">
         <div className="loginSection">
           Login
@@ -112,3 +113,5 @@ function Login() {
 }
 
 export default Login;
+
+

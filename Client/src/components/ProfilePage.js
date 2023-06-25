@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link,  useParams } from "react-router-dom";
 import avatar from "../assets/subProfile.png";
 import Settings from "./ResetPassword";
@@ -7,6 +7,12 @@ import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 function ProfilePage({ match }) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
+
+  async function logout() {
+    localStorage.removeItem("token");
+    window.location.reload(`/user/${user.username}`);
+  }
+ 
 
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
@@ -53,7 +59,11 @@ function ProfilePage({ match }) {
           {user.username ? (
             <>
               <div className="profileAccount">
+             
                 <div>
+                <button className="profileLink" id="logout" onClick={logout}>
+                LOGOUT
+              </button>
                   <img className="avatar" src={avatar} alt="profile" />
                   <br></br>
                   <h3>
