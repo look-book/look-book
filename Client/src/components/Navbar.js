@@ -70,12 +70,12 @@ function Navbar({ isLoggedIn }) {
             </li>
 
             <li className="nav-item right">
-              <a className="nav-link" href="/login">
+              <a className="nav-link" href="/loginUser">
                 Login
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/register">
+              <a className="nav-link" href="/registerUser">
                 Register
               </a>
             </li>

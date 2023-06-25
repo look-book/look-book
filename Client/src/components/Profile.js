@@ -177,7 +177,7 @@ const Profile = () => {
         <>
           <div className="logoutSection">
             <h2>You're logout successfully!</h2>
-            <Link to="/login">Signin back</Link>{" "}
+            <Link to="/loginUser">Signin back</Link>{" "}
             <video src={bgVideo} autoPlay loop muted />
           </div>
         </>

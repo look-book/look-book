@@ -34,8 +34,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/loginUser" element={<Login />} />
+          <Route exact path="/registerUser" element={<Register />} />
           <Route exact path="/user/:userId" element={<ProfilePage />} />
           <Route exact path="/filters" element={<Filters />} />
           <Route exact path="/profile" element={<Profile />} />
