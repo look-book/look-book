@@ -130,7 +130,7 @@ function Navbar() {
               <button className="profileLink" id="logout" onClick={logout}>
                 LOGOUT
               </button>
-              </>
+            
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/profile`}>
                   <img src={avatar} alt="profile" width="40px" />
