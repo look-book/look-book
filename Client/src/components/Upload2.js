@@ -15,7 +15,7 @@ import Upload from "./Upload";
 import { useParams } from "react-router";
 import { TextField } from "@mui/material";
 
-function Upload2({ match, upload }) {
+function Upload2({ match }) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
   const dispatch = useDispatch();
@@ -59,13 +59,7 @@ function Upload2({ match, upload }) {
     <div className="container">
       <div className="uploadBox">
         <h1>Upload photos or browse below</h1>
-        
-        {user.username ? (
-          <UploadForm
-            user={user}
-            setUser={setUser}
-          />
-        ) : null}
+        <UploadForm user={user} setUser={setUser} />
       </div>
       <br></br>
       <div className="main">

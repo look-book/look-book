@@ -19,7 +19,8 @@ const Album = () => {
         <h2>Caregivers Posts</h2>
         <p>
           By sharing your experience with Alzheimers patient, together we can
-          create a way to make their memory active. You can search which images triggers their all kinds of emotions, and what are the patient's age.
+          create a way to make their memory active. You can search which images
+          triggers their all kinds of emotions, and what are the patient's age.
         </p>
         <br></br>
 
