@@ -33,7 +33,6 @@ function Register() {
       console.log(data);
       setErrorMessage(data.message)
       setIsLoggedIn(data.message);
-      window.location.replace("/login")
     } catch (err) {
       console.log(err);
     }
