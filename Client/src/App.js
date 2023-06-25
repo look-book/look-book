@@ -30,7 +30,7 @@ import Profile from "./components/Profile";
 function App(props) {
   return (
     <div className="App">
-       <Navbar {...props} />
+       <Navbar props={user} />
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
