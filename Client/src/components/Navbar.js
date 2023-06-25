@@ -3,54 +3,7 @@ import avatar from "../assets/profile.jpg";
 import logo from "../assets/logo.png";
 
 
-function Navbar() {
-  const [user, setUser] = useState(null);
- 
-  async function logout() {
-    localStorage.removeItem("token");
-    window.location.reload("/");
-  }
- 
-  useEffect(() => {
-    fetch("/api/isUserAuth", {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? setUser(data) : null))
-      .catch((err) => alert(err));
-  }, []);
-
-  useEffect(() => {
-    const getUser = () => {
-      fetch("/auth/login/success", {
-        credentials: "include",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setUser(resObject.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getUser();
-  }, []);
-
-  const logoutGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
-  };
+function Navbar({user) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
