@@ -50,7 +50,7 @@ function Navbar() {
   
 
   const logoutGoogle = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
+    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
   };
 
   
@@ -73,8 +73,7 @@ function Navbar() {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          {user ? (
-            <>
+          
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -122,7 +121,7 @@ function Navbar() {
               </li>
             
               {user.username ? 
-              <>
+             
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/user/${user.username}`}>
                   <img src={avatar} alt="profile" width="40px" />
@@ -132,9 +131,9 @@ function Navbar() {
               <button className="profileLink" id="logout" onClick={logout}>
                 LOGOUT
               </button>
-              </>
+            
               : 
-              <>
+             
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/profile`}>
                   <img src={avatar} alt="profile" width="40px" />
@@ -143,7 +142,7 @@ function Navbar() {
               <button className="profileLink" id="logoutGoogle" onClick={logoutGoogle}>
                 LOGOUT
               </button>
-            </>
+         
               }
     
               </>
