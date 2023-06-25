@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Register() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
   const history = useNavigate();
 
   async function handleRegister(e) {
@@ -31,7 +30,6 @@ function Register() {
       const data = await res.json();
       console.log(data);
       setIsLoggedIn(data.message);
-      setErrorMessage(data.message)
       window.location.replace("/login")
     } catch (err) {
       console.log(err);
@@ -48,7 +46,7 @@ function Register() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push("/login") : redirect("/login")))
+      .then((data) => (data.isLoggedIn ? history.push("/login") : null))
       .catch((err) => console.log(err));
   }, [isLoggedIn, history]);
 
@@ -56,7 +54,7 @@ function Register() {
     <div className="contentBox">
       <div className="registerSection">
         Register
-        {errorMessage}
+        
         <form onSubmit={(e) => handleRegister(e)} className="registerForm">
           <label htmlFor="firstName">Firstname</label>
           <input
