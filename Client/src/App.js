@@ -45,7 +45,6 @@ function App(props) {
           <Route exact path="/aboutUs" element={<AboutUs />} />
           <Route exact path="/contactUs" element={<ContactUs />} />
           <Route exact path="/fAQ" element={<FAQ />} />
-          <Route exact path="/post" element={<Album />} />
           <Route exact path="/album" element={<Upload2 />} />
           <Route exact path="/notifications" element={<Notifications />} />
           <Route exact path="/resetPassword" element={<PasswordReset />} />
