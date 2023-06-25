@@ -40,7 +40,7 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => (data.isLoggedIn ? history.push("/user/:userId") : null))
-      .catch((err) => setErrorMessage(err));
+      .catch((err) => console.log(err));
   }, [history]);
 
   const onGoogle = () => {
