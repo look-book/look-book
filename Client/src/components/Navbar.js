@@ -195,7 +195,6 @@ function Navbar() {
                   Faq
                 </a>
               </li>
-            
               
               <li className="nav-item right">
                 <a className="nav-link" href="/login">
