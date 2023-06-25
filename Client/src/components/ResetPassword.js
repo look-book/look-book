@@ -1,5 +1,5 @@
 import "../assets/css/settings.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import avatar from "../assets/subProfile.png";
 import axios from "axios";
 import { useParams } from "react-router-dom";
