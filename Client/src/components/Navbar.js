@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import avatar from "../assets/profile.jpg";
 import logo from "../assets/logo.png";
 
+
 function Navbar() {
   const [user, setUser] = useState(null);
-
+ 
   async function logout() {
     localStorage.removeItem("token");
     window.location.reload("/");
   }
-
+ 
   useEffect(() => {
     fetch("/api/isUserAuth", {
       headers: {
@@ -21,6 +22,30 @@ function Navbar() {
       .then((res) => res.json())
       .then((data) => (data.isLoggedIn ? setUser(data) : null))
       .catch((err) => alert(err));
+  }, []);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("/auth/login/success", {
+        credentials: "include",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
   }, []);
 
   const logoutGoogle = () => {
@@ -94,33 +119,28 @@ function Navbar() {
                 </a>
               </li>
             
-              {user.username ? 
-            <>
+              
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/user/${user.username}`}>
                   <img src={avatar} alt="profile" width="40px" />
                 </a>
               </li>
             
-              <button className="profileLink" id="logout" onClick={logout}>
+              <button className="profileLink" id="logout" onClick={logout ? logout : logoutGoogle}>
                 LOGOUT
               </button>
-            
-             </> :
-              <>
+              <button className="profileLink" id="logout" onClick={logoutGoogle}>
+                LOGOUT
+              </button>
+        
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/profile`}>
                   <img src={avatar} alt="profile" width="40px" />
                 </a>
               </li>
-            
-              <button className="profileLink" id="logout" onClick={logoutGoogle}>
-                LOGOUT
-              </button>
+        
               </>
-              }
-              
-            </>
+           
           ) : (
             <>
               <li className="nav-item dropdown">
