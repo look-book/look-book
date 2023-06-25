@@ -27,10 +27,10 @@ import Upload2 from "./components/Upload2";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 
-function App(props) {
+function App() {
   return (
     <div className="App">
-       <Navbar props="user" />
+       <Navbar />
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
