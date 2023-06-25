@@ -120,10 +120,7 @@ function Navbar() {
                   Faq
                 </a>
               </li>
-            
-              
-              {user.username ? (
-            <>
+        
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/user/${user.username}`}>
                   <img src={avatar} alt="profile" width="40px" />
@@ -133,9 +130,7 @@ function Navbar() {
               <button className="profileLink" id="logout" onClick={logout}>
                 LOGOUT
               </button>
-              </>)
-            : (
-              <>
+              </>
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/profile`}>
                   <img src={avatar} alt="profile" width="40px" />
@@ -144,8 +139,7 @@ function Navbar() {
               <button className="profileLink" id="logoutGoogle" onClick={logoutGoogle}>
                 LOGOUT
               </button>
-             </>
-              )}
+            
               
            </>
           ) : (
