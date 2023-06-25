@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //"http://localhost:5000/posts" ||
- const url ="http://localhost:5000/posts" || "https://look-book-act-group42.herokuapp.com/posts";
+ const url ="https://look-book-act-group42.herokuapp.com/posts";
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
