@@ -81,8 +81,8 @@ function Navbar() {
                   Register
                 </a>
               </li>
-            </>
-          )}
+           
+         
         </ul>
       </div>
     </nav>
