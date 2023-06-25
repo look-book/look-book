@@ -14,7 +14,6 @@ export default function Settings({ match }) {
   const [user, setUser] = useState({});
   const { userId } = useParams(match);
 
-  //const PF = "http://localhost:5000/uploads/"
 
   useEffect(() => {
     fetch(`/api/user/${userId}`, {

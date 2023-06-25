@@ -4,6 +4,7 @@ import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 
 function Login() {
+  const [errorMessage, setErrorMessage] = useState("");
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -24,9 +25,11 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
+      setErrorMessage(data.message);
       window.location.reload("/");
     } catch (err) {
       console.log(err);
+      setErrorMessage(err);
     }
   }
 
@@ -44,7 +47,7 @@ function Login() {
   }, [history]);
 
   const onGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
   const onFacebook = () => {
