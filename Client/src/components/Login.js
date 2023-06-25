@@ -1,9 +1,11 @@
-import React, { useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState} from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
+import ValidationError from "./ValidationError";
 
 function Login() {
+  const [errorMessage, setErrorMessage] = useState("");
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -24,6 +26,7 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
+      setErrorMessage(data.message);
       window.location("/")
     } catch (err) {
       alert(err);
@@ -40,7 +43,7 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) => (data.isLoggedIn ? history.push("/user/:userId") : null))
-      .catch((err) => alert(err));
+      .catch((err) => setErrorMessage(err));
   }, [history]);
 
 
@@ -66,6 +69,7 @@ function Login() {
           
           <form onSubmit={(e) => handleLogin(e)} className="loginForm">
             <label htmlFor="username">Email</label>
+            {errorMessage  ?  <Navigate to="/user/:userId"/> :  <ValidationError message={errorMessage} />}
             <input
               className="input-field"
               type="text"

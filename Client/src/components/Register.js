@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import ValidationError from "./ValidationError";
 
 
 function Register() {
+  const [errorMessage, setErrorMessage] = useState("")
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useNavigate();
 
@@ -29,6 +31,7 @@ function Register() {
       });
       const data = await res.json();
       console.log(data);
+      setErrorMessage(data.message)
       setIsLoggedIn(data.message);
       window.location.replace("/login")
     } catch (err) {
@@ -56,6 +59,7 @@ function Register() {
         Register
         
         <form onSubmit={(e) => handleRegister(e)} className="registerForm">
+        {errorMessage == "Success" ? <Navigate to="/login"/> : <ValidationError message={errorMessage} />}
           <label htmlFor="firstName">Firstname</label>
           <input
             className="input-field"
