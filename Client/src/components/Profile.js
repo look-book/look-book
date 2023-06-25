@@ -13,6 +13,7 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
 
+
   useEffect(() => {
     const getUser = () => {
       fetch("/auth/login/success", {
@@ -66,8 +67,9 @@ const Profile = () => {
     }
   };
 
+  
   const logoutGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+    window.open("http://localhost:5000/auth/logout", "_self");
   };
 
   return (

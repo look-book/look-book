@@ -72,9 +72,9 @@ function Navbar() {
       </button>
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
+        
         {user ? (
-        <>
+        <ul className="navbar-nav mr-auto">
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -141,9 +141,9 @@ function Navbar() {
               </button>
             
               
-           </>
+           </ul>
           ) : (
-            <>
+            <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -200,9 +200,7 @@ function Navbar() {
                   Register
                 </a>
               </li>
-            </>
-          )}
-        </ul>
+        </ul>)}
       </div>
     </nav>
   );
