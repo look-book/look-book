@@ -8,7 +8,6 @@ function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-
     const form = e.target;
     const user = {
       username: form[0].value,
@@ -25,8 +24,7 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-       window.location.replace("/")
-      
+      window.location("/")
     } catch (err) {
       alert(err);
     }
