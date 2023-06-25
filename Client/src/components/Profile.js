@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 import axios from "axios";
-iimport { Container } from "@mui/material";
-
+import { Container } from "@mui/material";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
