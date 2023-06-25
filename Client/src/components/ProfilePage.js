@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link,  useParams } from "react-router-dom";
 import avatar from "../assets/subProfile.png";
 import Settings from "./ResetPassword";

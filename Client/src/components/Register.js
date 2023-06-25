@@ -31,7 +31,6 @@ function Register() {
       setIsLoggedIn(data.message);
     } catch (err) {
       console.log(err);
-  
     }
   }
 

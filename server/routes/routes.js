@@ -8,9 +8,6 @@ const {
   registrationValidation,
   loginValidation,
 } = require("../validation/validation");
-//if you need to del files after upload
-const fs = require('fs');
-const Upload = require("../models/upload");
 
 
 function verifyJWT(req, res, next) {

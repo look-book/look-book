@@ -1,5 +1,6 @@
-import { Container } from "@mui/material";
 import React from "react";
+import { Container } from "@mui/material";
+
 
 function FAQ() {
   return (
