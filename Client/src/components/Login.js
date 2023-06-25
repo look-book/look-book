@@ -78,8 +78,8 @@ function Login() {
             <br></br>
             <input className="submitBtn" type="submit" value="LOGIN" />
             <br></br>
-            <Link to="/resetPassword" style={{ alignSelf: "flex-start" }}>
-              <p style={{ padding: "0 15px" }}>Forgot Password ?</p>
+            <Link to="/resetPassword">
+              <p>Forgot Password ?</p>
             </Link>
 
             <div className="flex  items-center justify-center">
