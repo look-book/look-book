@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
-  const [errorMessage, setErrorMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useNavigate();
 
@@ -29,11 +28,10 @@ function Register() {
       });
       const data = await res.json();
       console.log(data);
-      
       setIsLoggedIn(data.message);
     } catch (err) {
       console.log(err);
-      setErrorMessage(errorMessage);
+  
     }
   }
 
