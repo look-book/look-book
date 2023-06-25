@@ -2,63 +2,40 @@ import React, { useState, useEffect } from "react";
 import { Button, Paper, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
-
 import { createUpload, updateUpload } from "../actions/uploads";
-import { useParams } from "react-router";
 
-const UploadForm = ({ match }) => {
-  const { userId } = useParams(match);
-  const [user, setUser] = useState({});
-  const [authorName, setAuthorName] = useState(userId);
-
+const UploadForm = ({ currentId, setCurrentId }) => {
   const [uploadData, setUploadData] = useState({
     myFile: "",
     title: "",
-    authorName,
   });
 
   const upload = useSelector((state) =>
-    userId ? state.uploads.find((upload) => upload._id === userId) : null
+    currentId ? state.uploads.find((upload) => upload._id === currentId) : null
   );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`/api/user/${userId}`, {
-      method: "GET",
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
-      })
-      .catch((err) => alert(err));
-  }, [userId]);
-
-  useEffect(() => {
-    if (upload === userId) {
+    if (upload === currentId) {
       setUploadData(upload);
-      setAuthorName(userId)
     }
-  }, [upload, userId]);
+  }, [upload, currentId]);
 
   const clear = () => {
+    setCurrentId(0);
     setUploadData({ mydFile: "", title: "" });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (user.username) {
+    if (currentId === 0) {
       dispatch(createUpload(uploadData));
-      setAuthorName(userId);
+
       clear();
     } else {
-      dispatch(updateUpload(userId, uploadData));
+      dispatch(updateUpload(currentId, uploadData));
       clear();
     }
   };

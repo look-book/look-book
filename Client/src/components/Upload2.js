@@ -12,12 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUploads } from "../actions/uploads";
 import UploadForm from "./UploadForm";
 import Upload from "./Upload";
-import { useParams } from "react-router";
 import { TextField } from "@mui/material";
 
-function Upload2({ match }) {
-  const { userId } = useParams(match);
-  const [user, setUser] = useState({});
+function Upload2() {
+  const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
 
   const [q, setQ] = useState("");
@@ -25,23 +23,7 @@ function Upload2({ match }) {
 
   useEffect(() => {
     dispatch(getUploads());
-  }, [userId, dispatch]);
-
-  useEffect(() => {
-    fetch(`/api/user/${userId}`, {
-      method: "GET",
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-        "Content-type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
-      })
-      .catch((err) => alert(err));
-  }, [userId]);
+  }, [ dispatch]);
 
   const uploads = useSelector((state) => state.uploads);
 
@@ -59,7 +41,8 @@ function Upload2({ match }) {
     <div className="container">
       <div className="uploadBox">
         <h1>Upload photos or browse below</h1>
-        <UploadForm user={user} setUser={setUser} />
+        <UploadForm currentId={currentId}
+                setCurrentId={setCurrentId}/>
       </div>
       <br></br>
       <div className="main">
@@ -100,8 +83,8 @@ function Upload2({ match }) {
           <SwiperSlide key={upload.id}>
             <Upload
               upload={upload}
-              user={user}
-              setUser={setUser}
+              currentId={currentId}
+              setCurrentId={setCurrentId}
               key={upload._id}
             />
           </SwiperSlide>

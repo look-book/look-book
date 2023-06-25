@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', getUploads);
 router.post('/', createUpload);
-router.get('/:id/userId', getUpload);
+router.get('/', getUpload);
 router.patch('/:id', updateUpload);
 router.delete('/:id', deleteUpload);
 router.patch('/:id/loveUpload', loveUpload);
