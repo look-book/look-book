@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
-import ValidationError from "./ValidationError";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -27,8 +26,10 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
       setErrorMessage(data.message);
+      window.location.reload("/");
     } catch (err) {
-      alert(err);
+      console.log(err)
+     setErrorMessage(errorMessage);
     }
   }
 
@@ -46,11 +47,11 @@ function Login() {
   }, [history]);
 
   const onGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
   const onFacebook = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
+    window.open("http://localhost:5000/auth/facebook", "_self");
   };
 
   return (
@@ -58,12 +59,8 @@ function Login() {
       <div className="contentBox">
         <div className="loginSection">
           Login
-          <form onSubmit={(e) => handleLogin(e)} className="loginForm"> 
-            {errorMessage === "Success" ? (
-              <Navigate to="/" />
-            ) : (
-              <ValidationError message={errorMessage}/>
-            )}
+          
+          <form onSubmit={(e) => handleLogin(e)} className="loginForm">
             <label htmlFor="username">Email</label>
             <input
               className="input-field"
@@ -115,4 +112,3 @@ function Login() {
 }
 
 export default Login;
-
