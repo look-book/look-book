@@ -3,7 +3,7 @@ import avatar from "../assets/profile.jpg";
 import logo from "../assets/logo.png";
 
 
-function Navbar({user) {
+function Navbar({user}) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
