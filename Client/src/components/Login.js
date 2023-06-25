@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 
 function Login() {
-  const [errorMessage, setErrorMessage] = useState("");
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -27,9 +26,9 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
        window.location.replace("/")
-      setErrorMessage(data.message);
+      
     } catch (err) {
-      setErrorMessage(err);
+      alert(err);
     }
   }
 
@@ -42,8 +41,8 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push("/profile") : null))
-      .catch((err) => setErrorMessage(err));
+      .then((data) => (data.isLoggedIn ? history.push("/user/:userId") : null))
+      .catch((err) => alert(err));
   }, [history]);
 
 
@@ -66,7 +65,7 @@ function Login() {
       <div className="contentBox">
         <div className="loginSection">
           Login
-          {errorMessage}
+          
           <form onSubmit={(e) => handleLogin(e)} className="loginForm">
             <label htmlFor="username">Email</label>
             <input
