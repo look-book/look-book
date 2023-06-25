@@ -4,7 +4,15 @@ import logo from "../assets/logo.png";
 
 
 function Navbar({user}) {
-
+  async function logout() {
+    localStorage.removeItem("token");
+    window.location.reload("/");
+  }
+  
+const logoutGoogle = () => {
+    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+  };
+  
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
