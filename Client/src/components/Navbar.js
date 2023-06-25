@@ -50,7 +50,7 @@ function Navbar() {
   
 
   const logoutGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+    window.open("http://localhost:5000/auth/logout", "_self");
   };
 
   
@@ -73,7 +73,8 @@ function Navbar() {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-        
+        {user ? (
+        <>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -119,19 +120,10 @@ function Navbar() {
                   Faq
                 </a>
               </li>
-            <li className="nav-item right">
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/register">
-                  Register
-                </a>
-              </li>
+            
               
-              {user ? 
-              <>
+              {user.username ? (
+            <>
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/user/${user.username}`}>
                   <img src={avatar} alt="profile" width="40px" />
@@ -141,7 +133,9 @@ function Navbar() {
               <button className="profileLink" id="logout" onClick={logout}>
                 LOGOUT
               </button>
-            
+              </>)
+            : (
+              <>
               <li className="nav-item right">
                 <a className="navbar-brand" href={`/profile`}>
                   <img src={avatar} alt="profile" width="40px" />
@@ -150,10 +144,59 @@ function Navbar() {
               <button className="profileLink" id="logoutGoogle" onClick={logoutGoogle}>
                 LOGOUT
               </button>
-              </>
-           
-           : (
+             </>
+              )}
+              
+           </>
+          ) : (
             <>
+            <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="/gallery"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Gallery
+                </a>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a className="dropdown-item" href="/filters">
+                    Filters
+                  </a>
+                  <a className="dropdown-item" href="/album">
+                    Album
+                  </a>
+                  <div className="dropdown-divider"></div>
+                  <a className="dropdown-item" href="/post">
+                    Posts
+                  </a>
+                </div>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/aboutUs">
+                  About
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/contactUs">
+                  Contact
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/coaching">
+                  Guidelines
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/fAQ">
+                  Faq
+                </a>
+              </li>
+            
+              
               <li className="nav-item right">
                 <a className="nav-link" href="/login">
                   Login
