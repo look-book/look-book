@@ -49,14 +49,14 @@ function Login() {
 
   const onGoogle = () => {
     window.open(
-      "http://localhost:5000/auth/google",
+      "https://look-book-act-group42.herokuapp.com/auth/google",
       "_self"
     );
   };
 
   const onFacebook = () => {
     window.open(
-      "https://localhost:5000/auth/facebook",
+      "https://look-book-act-group42.herokuapp.com/auth/facebook",
       "_self"
     );
   };
