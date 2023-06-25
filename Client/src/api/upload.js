@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const url = "http://localhost:5000/uploads" 
- //const url = "https://look-book-act-group42.herokuapp.com/uploads";
+//const url = "http://localhost:5000/uploads" 
+ const url = "https://look-book-act-group42.herokuapp.com/uploads";
 
 export const fetchUploads = () => axios.get(url);
 export const createUpload = (newUpload) => axios.post(url, newUpload);
