@@ -23,31 +23,8 @@ function Navbar() {
       .then((data) => (data.isLoggedIn ? setUser(data) : null))
       .catch((err) => alert(err));
   }, []);
-
-  useEffect(() => {
-    const getUser = () => {
-      fetch("/auth/login/success", {
-        credentials: "include",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setUser(resObject.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getUser();
-  }, []);
-
+  
+  
   const logoutGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
   };
@@ -139,10 +116,11 @@ function Navbar() {
                   <img src={avatar} alt="profile" width="40px" />
                 </a>
               </li>
-            
-              <button className="profileLink" id="logout" onClick={logoutGoogle}>
+              <button className="profileLink" id="logoutGoogle" onClick={logoutGoogle}>
                 LOGOUT
-              </button></>}
+              </button>
+            </>
+              }
     
               </>
            

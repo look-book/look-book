@@ -66,13 +66,19 @@ const Profile = () => {
     }
   };
 
+  const logoutGoogle = () => {
+    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+  };
+
   return (
     <Container>
     <section className="profileBox">
       {user ? (
        <>
           <div className="profileInfo">
-         
+          <button className="profileLink" id="logout" onClick={logoutGoogle}>
+                LOGOUT
+              </button>
             <div className="list">
               <div className="listItem">
                 <img

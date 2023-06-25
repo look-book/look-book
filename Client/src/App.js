@@ -30,15 +30,15 @@ import Profile from "./components/Profile";
 function App(props) {
   return (
     <div className="App">
-      <Navbar />
       <Router>
         <Routes>
+          <Navbar props="user" />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/user/:userId" element={<ProfilePage />} />
           <Route exact path="/filters" element={<Filters />} />
-          <Route exact path="/profile" element={<Profile/>} />
+          <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/people" element={<People />} />
           <Route exact path="/coaching" element={<Coaching />} />
           <Route exact path="/post" element={<Album />} />
