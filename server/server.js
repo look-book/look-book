@@ -67,7 +67,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./models/passport");
 
-//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //ROUTES
 app.use("/", Router)
