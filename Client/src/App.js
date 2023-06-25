@@ -30,9 +30,10 @@ import Profile from "./components/Profile";
 function App(props) {
   return (
     <div className="App">
+     <Navbar props="user" />
       <Router>
         <Routes>
-          <Navbar props="user" />
+         
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
