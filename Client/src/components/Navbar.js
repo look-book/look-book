@@ -22,6 +22,7 @@ function Navbar() {
       .then((data) => (data.isLoggedIn ? setUser(data) : null))
       .catch((err) => alert(err));
   }, []);
+  
 
   useEffect(() => {
     const getUser = () => {
