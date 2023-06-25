@@ -27,7 +27,7 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
       setErrorMessage(data.message);
-      window.location("/")
+      window.location.replace("user/:userId")
     } catch (err) {
       alert(err);
     }
