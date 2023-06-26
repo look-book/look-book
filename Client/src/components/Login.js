@@ -5,7 +5,7 @@ import Facebook from "../assets/facebook.png";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState({});
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -43,7 +43,7 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? setUser(data) : null))
+      .then((data) => (data.isLoggedIn ? setIsLoggedIn(data) : null))
       .catch((err) => console.log(err));
   }, [history]);
 
