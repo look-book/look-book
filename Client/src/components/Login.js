@@ -43,9 +43,9 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push(`/user/${user.username}`)
+      .then((data) => (data.isLoggedIn ? history.push(`/user/${user.username}`) : null))
       .catch((err) => console.log(err));
-  }, [history]);
+  }, [history, user]);
 
 
   const onGoogle = () => {
