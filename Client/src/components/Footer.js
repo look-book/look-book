@@ -29,10 +29,10 @@ const Footer = () => {
             <div className="socialicons">
           <span className="sidebarTitle">FOLLOW US</span>
         <div className="sidebarSocial">
-          <i className="sidebarIcon fab fa-facebook-square"></i>
-          <i className="sidebarIcon fab fa-twitter-square"></i>
-          <i className="sidebarIcon fab fa-pinterest-square"></i>
-          <i className="sidebarIcon fab fa-instagram-square"></i>
+         <a href="https://www.facebook.com/profile.php?id=100087309482589" ><i className="sidebarIcon fab fa-facebook-square"></i></a>
+         <a href="https://twitter.com/PetersVirtServ"><i className="sidebarIcon fab fa-twitter-square"></i></a>
+         <a href="https://cpetersresume.com/" ><i className="sidebarIcon fab fa-pinterest-square"></i></a>
+         <a href="/" ><i className="sidebarIcon fab fa-instagram-square"></i></a>
         </div>
       </div>
       </Grid>

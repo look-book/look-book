@@ -139,6 +139,10 @@ ul li {
 }
 .contactForm{
   width: 100%;
+  background-color: #e9eaeb;
+  padding: 15px;
+  border-radius: 8px;
+  
 }
 
 .bio{
@@ -333,10 +337,10 @@ input{
 .footerp{
   font-size: medium !important;
 }
-.fa-facebook-square{
+.fa-facebook-square, .fa-facebook{
   color: blue;
 }
-.fa-twitter-square{
+.fa-twitter-square, .fa-twitter{
   color: skyblue;
 }
 .fa-pinterest-square{
@@ -345,11 +349,25 @@ input{
 .fa-instagram-square{
   color: rgb(150, 66, 35);
 }
+.fa-linkedin{
+  color: #507cc0;
+}
+.fa-dribbble{
+  color: #009688;
+}
 .time{
   font-size: medium;
   color: #9e9797;
 }
-
+.research{
+  
+  padding: 12px;
+  margin-bottom : 5px  !important;
+  
+}
+.researchlink{
+  color: #507cc0 !important;
+}
 .loginButton {
   width: 100%;
   padding: 15px 25px;
@@ -471,13 +489,25 @@ button,
 textarea {
   font-family: "Facinate", sans-serif;
   font-size: 22px;
-  padding: 0.65rem;
+  padding: 0.50rem;
   border-radius: 25px;
+  outline: #eeecec;
+}
+.MuiOutlinedInput-notchedOutline {
+  border-color: #979797 !important;
+}
+
+.MuiFilledInput-root {
+  border-bottom: 1px solid #ced1ce !important;
+}
+
+.MuiInput-root {
+  border-bottom: 1px solid #d2d4d2 !important;
 }
 
 label,
 button {
-  margin-top: 1rem;
+  margin-top: .5rem;
 }
 .submitBtn{
   background-color: #009688;
@@ -552,43 +582,35 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
-.btn {
-  margin: 0 auto;
-  border: none;
-  outline: none;
-  padding: 0.75em 1em;
-  font-size: 1em;
-  letter-spacing: 1px;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 3px;
-  background-color: rgb(134, 49, 0);
-  color: #fff;
-}
 
+.intro{
+  font-weight: 800;
+}
 .columnMember {
-  display: flex;
-  flex-wrap: wrap;
+   display: flex;
+  text-align: center;
   width: 100%;
+  margin-left: 0;
+  
 }
 .evaluationForm{
   text-align: center;
 }
 .cardMember {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 30%;
+  box-shadow: 0 4px 8px gray;
+  width: 50%;
   margin: 12px;
   padding: 1rem;
   text-align: center;
   font-family: arial;
-  background-color: #e6e6e6;
+  border-radius: 12px;
 }
 .profileMember {
   width: 250px;
   height: 250px;
   padding: 8px;
   border-radius: 100%;
+  
 }
 i{
   margin: 5px;

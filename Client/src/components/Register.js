@@ -53,7 +53,7 @@ function Register() {
     <>
     <div className="contentBox">
       <div className="registerSection">
-        Register
+       <h4> Register</h4>
         <form onSubmit={(e) => handleRegister(e)} className="registerForm">
           <label htmlFor="firstName">Firstname</label>
           <input
@@ -99,14 +99,14 @@ function Register() {
           <input className="submitBtn" type="submit" value="REGISTER" />
           <br></br>
           <div className="">
-            <h5>Already have an account?</h5>
+            <h6>Already have an account?</h6>
             <Link className="link" to="/loginUser">
               LOGIN
             </Link>
           </div>
         </form>
       </div>
-    </div>
+    </div><br></br><br></br>
     </>
   );
 }

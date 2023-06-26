@@ -54,6 +54,7 @@ function Upload2() {
             variant="outlined"
             fullWidth
             placeholder="Search categories..."
+    
           />
         </div>
       </div>

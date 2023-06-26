@@ -25,7 +25,7 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setErrorMessage(data.message);
+      setErrorMessage(data.token);
       window.location.replace(`/user/${user.username}`);
     } catch (err) {
       console.log(err);
@@ -45,7 +45,7 @@ function Login() {
       .then((data) => (data.isLoggedIn ? history.push("/user/:userId") : null))
       .catch((err) => console.log(err));
   }, [history]);
-  
+
 
   const onGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
@@ -60,8 +60,7 @@ function Login() {
    <>
       <div className="contentBox">
         <div className="loginSection">
-          Login
-          
+          <h4>Login</h4>
           <form onSubmit={(e) => handleLogin(e)} className="loginForm">
             <label htmlFor="username">Email</label>
             <input
@@ -85,7 +84,7 @@ function Login() {
             </Link>
 
             <div className="flex  items-center justify-center">
-              <h5>Don't have an account?</h5>
+              <h6>Don't have an account?</h6>
               <Link
                 className="m-1 px-2 py-1 rounded font-bold text-xl border-2 border-green-400 text-green-400 text-center"
                 to="/register"
@@ -108,7 +107,7 @@ function Login() {
             </div>
           </div>
         </div>
-      </div>
+      </div><br></br><br></br>
     </>
   );
 }

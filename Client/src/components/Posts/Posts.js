@@ -37,6 +37,7 @@ function Album() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           variant="outlined"
+          className="searchInput"
           fullWidth
           placeholder="Search categories..."
         />

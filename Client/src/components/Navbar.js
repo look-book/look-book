@@ -7,7 +7,7 @@ function Navbar() {
 
   async function logout() {
     localStorage.removeItem("token");
-    window.location.reload("/user/:userId");
+    window.location.reload(`/user/${user.username}`);
   }
 
   useEffect(() => {
