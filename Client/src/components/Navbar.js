@@ -23,16 +23,6 @@ function Navbar() {
       .catch((err) => console.log(err));
   }, []);
 
-  
-  const logoutGoogle = () => {
-    window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/logout",
-      "_self"
-    );
-    window.location.reload("/profile");
-  };
-
-
   useEffect(() => {
     const getUser = () => {
       fetch("/auth/login/success", {
@@ -56,6 +46,15 @@ function Navbar() {
     };
     getUser();
   }, []);
+
+  const logoutGoogle = () => {
+    window.open(
+      "https://look-book-act-group42.herokuapp.com/auth/logout",
+      "_self"
+    );
+    window.location.reload("/profile");
+  };
+
 
   
   return (
