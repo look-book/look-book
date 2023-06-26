@@ -79,9 +79,7 @@ const Profile = () => {
       {user ? (
        <>
           <div className="profileInfo">
-          <button className="profileLink" id="logout" onClick={logoutGoogle}>
-                LOGOUT
-              </button>
+         
             <div className="list">
               <div className="listItem">
                 <img
@@ -91,12 +89,16 @@ const Profile = () => {
                   height="120"
                   className="profile"
                 />
+                 
               </div>
 
              <br></br>
               <h4 className="listItem">{user.displayName}</h4>
             </div>{" "}
             <h2>Biography</h2>
+            <button className="profileLink" id="logout" onClick={logoutGoogle}>
+                LOGOUT
+              </button>
             <p>
               <b>Given name:</b> {user.name.givenName}
             </p>

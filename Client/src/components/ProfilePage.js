@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link,  useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import avatar from "../assets/subProfile.png";
 import Settings from "./ResetPassword";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
@@ -12,7 +12,6 @@ function ProfilePage({ match }) {
     localStorage.removeItem("token");
     window.location.reload(`/user/${user.username}`);
   }
- 
 
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
@@ -59,17 +58,16 @@ function ProfilePage({ match }) {
           {user.username ? (
             <>
               <div className="profileAccount">
-             
                 <div>
-                <button className="profileLink" id="logout" onClick={logout}>
-                LOGOUT
-              </button>
                   <img className="avatar" src={avatar} alt="profile" />
                   <br></br>
+                  <button className="profileLink" id="logout" onClick={logout}>
+                LOGOUT
+              </button>
                   <h3>
                     {user.firstName} {user.lastName}
                   </h3>
-
+                  
                   <p>
                     <b>Email:</b>
                     {user.username}
