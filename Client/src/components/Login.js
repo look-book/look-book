@@ -5,7 +5,7 @@ import Facebook from "../assets/facebook.png";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState({});
+  const [user, setUser] = useState(null);
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -26,7 +26,7 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-       setIsLoggedIn(data.token);
+       setUser(data.token);
       window.location.replace(`/user/${user.username}`);
     } catch (err) {
       console.log(err);
@@ -43,7 +43,7 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? setIsLoggedIn(data) : null))
+      .then((data) => (data.isLoggedIn ? history.push(`/user/${user.username}`)
       .catch((err) => console.log(err));
   }, [history]);
 
