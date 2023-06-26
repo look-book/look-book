@@ -45,6 +45,7 @@ function Login() {
       .then((data) => (data.isLoggedIn ? history.push("/user/:userId") : null))
       .catch((err) => console.log(err));
   }, [history]);
+  
 
   const onGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");

@@ -29,6 +29,7 @@ function Register() {
       const data = await res.json();
       console.log(data);
       setIsLoggedIn(data.message);
+      window.location.replace("/loginUser")
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +45,7 @@ function Register() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push("/login") : null))
+      .then((data) => (data.isLoggedIn ? history.push("/loginUser") : null))
       .catch((err) => console.log(err));
   }, [isLoggedIn, history]);
 
