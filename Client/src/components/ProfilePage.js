@@ -8,11 +8,6 @@ function ProfilePage({ match }) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
 
-  async function logout() {
-    localStorage.removeItem("token");
-    window.location.reload(`/user/${user.username}`);
-  }
-
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
       method: "GET",
@@ -61,13 +56,10 @@ function ProfilePage({ match }) {
                 <div>
                   <img className="avatar" src={avatar} alt="profile" />
                   <br></br>
-                  <button className="profileLink" id="logout" onClick={logout}>
-                LOGOUT
-              </button>
                   <h3>
                     {user.firstName} {user.lastName}
                   </h3>
-                  
+
                   <p>
                     <b>Email:</b>
                     {user.username}

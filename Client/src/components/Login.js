@@ -5,6 +5,7 @@ import Facebook from "../assets/facebook.png";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useNavigate();
 
   async function handleLogin(e) {
@@ -25,11 +26,11 @@ function Login() {
       });
       const data = await res.json();
       localStorage.setItem("token", data.token);
-      setErrorMessage(data.token);
+       setIsLoggedIn(data.token);
       window.location.replace(`/user/${user.username}`);
     } catch (err) {
       console.log(err);
-      setErrorMessage(err);
+      setErrorMessage(errorMessage);
     }
   }
 
@@ -42,7 +43,7 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push("/user/:userId") : null))
+      .then((data) => (data.isLoggedIn ? history.push(`/user/:userId`) : null))
       .catch((err) => console.log(err));
   }, [history]);
 

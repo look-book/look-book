@@ -121,7 +121,7 @@ function Navbar() {
                   Faq
                 </a>
               </li>
-              {user.username ? (
+              {user.username  ? (
                 <>
                   <li className="nav-item right">
                     <a className="navbar-brand" href={`/user/${user.username}`}>
