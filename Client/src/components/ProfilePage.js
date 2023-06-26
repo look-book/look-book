@@ -4,9 +4,10 @@ import avatar from "../assets/subProfile.png";
 import Settings from "./ResetPassword";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 
-function ProfilePage({ match }) {
+function ProfilePage({ match}) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState({});
 
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
@@ -18,8 +19,9 @@ function ProfilePage({ match }) {
       },
     })
       .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
+      .then((data) => { 
+        setUser(data)
+        setIsLoggedIn(data)
       })
       .catch((err) => alert(err));
   }, [userId]);
@@ -50,7 +52,7 @@ function ProfilePage({ match }) {
     <>
       <div className="userBox">
         <header className="flex flex-row justify-center p-5">
-          {user.username ? (
+          {user.username && isLoggedIn ? (
             <>
               <div className="profileAccount">
                 <div>

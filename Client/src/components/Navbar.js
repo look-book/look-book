@@ -4,7 +4,8 @@ import logo from "../assets/logo.png";
 
 function Navbar() {
   const [user, setUser] = useState(null);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+  
   async function logout() {
     localStorage.removeItem("token");
     window.location.reload(`/user/${user.username}`);
@@ -20,8 +21,18 @@ function Navbar() {
     })
       .then((res) => res.json())
       .then((data) => (data.isLoggedIn ? setUser(data) : null))
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   }, []);
+
+
+  const logoutGoogle = () => {
+    window.open(
+      "https://look-book-act-group42.herokuapp.com/auth/logout",
+      "_self"
+    );
+    window.location.reload("/profile");
+  };
+
 
   useEffect(() => {
     const getUser = () => {
@@ -47,14 +58,7 @@ function Navbar() {
     getUser();
   }, []);
 
-  const logoutGoogle = () => {
-    window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/logout",
-      "_self"
-    );
-    window.location.reload("/profile");
-  };
-
+  
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -121,7 +125,7 @@ function Navbar() {
                   Faq
                 </a>
               </li>
-              {user.username  ? (
+              {user.username ? (
                 <>
                   <li className="nav-item right">
                     <a className="navbar-brand" href={`/user/${user.username}`}>
