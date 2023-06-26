@@ -27,7 +27,7 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
        setUser(data.token);
-      window.location.replace(`/user/${user.username}`);
+      window.location.replace(`/userProfile/${user.username}`);
     } catch (err) {
       console.log(err);
       setErrorMessage(errorMessage);
@@ -43,7 +43,7 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? setUser(data) : null))
+      .then((data) => (data.isLoggedIn ? history.push("/userProfile/:userId") : null))
       .catch((err) => console.log(err));
   }, [history, user]);
 

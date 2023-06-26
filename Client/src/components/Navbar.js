@@ -7,7 +7,7 @@ function Navbar() {
   
   async function logout() {
     localStorage.removeItem("token");
-    window.location.reload(`/user/${user.username}`);
+    window.location.reload(`/userProfile/${user.username}`);
   }
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Navbar() {
       .catch((err) => console.log(err));
   }, []);
 
-
+  
   const logoutGoogle = () => {
     window.open(
       "https://look-book-act-group42.herokuapp.com/auth/logout",
@@ -127,7 +127,7 @@ function Navbar() {
               {user.username ? (
                 <>
                   <li className="nav-item right">
-                    <a className="navbar-brand" href={`/user/${user.username}`}>
+                    <a className="navbar-brand" href={`/userProfile/${user.username}`}>
                       <img src={avatar} alt="profile" width="40px" />
                     </a>
                   </li>

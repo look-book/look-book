@@ -7,8 +7,7 @@ import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 function ProfilePage({ match}) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState({});
-
+  
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
       method: "GET",
@@ -19,10 +18,8 @@ function ProfilePage({ match}) {
       },
     })
       .then((res) => res.json())
-      .then((data) => { 
-        setUser(data)
-        setIsLoggedIn(data)
-      })
+      .then((data) => {
+        setUser(data) })
       .catch((err) => alert(err));
   }, [userId]);
 
@@ -52,7 +49,7 @@ function ProfilePage({ match}) {
     <>
       <div className="userBox">
         <header className="flex flex-row justify-center p-5">
-          {user.username && isLoggedIn ? (
+          {user.username ? (
             <>
               <div className="profileAccount">
                 <div>

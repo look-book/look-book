@@ -45,7 +45,7 @@ function Register() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push("/loginUser") : null))
+      .then((data) => (data.isLoggedIn ? history.push("/user/:userId") : null))
       .catch((err) => console.log(err));
   }, [isLoggedIn, history]);
 
