@@ -43,7 +43,7 @@ function Login() {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? history.push(`/user/${user.username}`) : null))
+      .then((data) => (data.isLoggedIn ? setUser(data) : null))
       .catch((err) => console.log(err));
   }, [history, user]);
 

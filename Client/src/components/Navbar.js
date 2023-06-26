@@ -4,7 +4,6 @@ import logo from "../assets/logo.png";
 
 function Navbar() {
   const [user, setUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
   
   async function logout() {
     localStorage.removeItem("token");

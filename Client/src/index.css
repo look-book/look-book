@@ -360,13 +360,12 @@ input{
   color: #9e9797;
 }
 .research{
-  
-  padding: 12px;
-  margin-bottom : 5px  !important;
+  margin-bottom : 5px   !important;
   
 }
 .researchlink{
   color: #507cc0 !important;
+  padding: 15px !important;
 }
 .loginButton {
   width: 100%;
