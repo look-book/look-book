@@ -13,7 +13,7 @@ import ChecklistIcon from "@mui/icons-material/Checklist";
 
 function AboutUs() {
   return (
-    <section className="aboutUsBox">
+    <section className="container aboutUsBox">
       <h1>About Us</h1>
       <p className="intro">
         LookBook is a groundbreaking platform that aims to enhance cognition and
@@ -127,8 +127,8 @@ function AboutUs() {
 
           <Grid item xs={12}>
             <ListItem>
-              Join us on this exciting journey as we pave the way for a new era
-              of cognitive enhancement through LookBook.
+           <p className="intro">Join us on this exciting journey as we pave the way for a new era
+              of cognitive enhancement through LookBook.</p>
             </ListItem>
           </Grid>
         </Grid>
@@ -137,7 +137,7 @@ function AboutUs() {
       <br></br>
       <br></br>
      
-      <h2 className="text-center">OUR MEMBERS </h2>
+      <h3 className="text-center">OUR MEMBERS </h3>
       <br></br>
       <div className="columnMember">
         <div className="cardMember bg-light">
@@ -194,11 +194,11 @@ function AboutUs() {
       <br></br>
       <br></br>
       <Box sx={{ flexGrow: 1 }}>
-        <h3>Some Research Facts</h3>
+        <h5>Some Research Facts</h5>
         <br></br>
-        <br></br>
-        <Grid container>
-          <Grid item xs={6} className="research p-2">
+        
+        <Grid container className="researhSection">
+          <Grid item xs={12} sm={6} className="p-2 research">
             <img
               src="https://slack-imgs.com/?c=1&o1=wi32.he32.si.gu&url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fcoreutils%2Fnwds%2Fimg%2Ffavicons%2Ffavicon-57.png"
               alt=""
@@ -220,7 +220,7 @@ function AboutUs() {
               combination with certain serotonergic radiotracers.
             </p>
           </Grid>
-          <Grid item xs={6} className="research p-2">
+          <Grid item xs={12} sm={6} className="p-2 research">
             <img
               src="https://slack-imgs.com/?c=1&o1=ro.gu&url=https%3A%2F%2Fwww.ncbi.nlm.nih.gov%2Fcorehtml%2Fpmc%2Fpmcgifs%2Fpmc-card-share.jpg%3F_%3D0"
               alt=""
@@ -240,7 +240,7 @@ function AboutUs() {
               intracerebroventricular distribution of an oxytocin derivative.
             </p>
           </Grid>
-          <Grid item xs={6} className="research p-2">
+          <Grid item xs={12} sm={6} className="p-2 research">
             <a
               href="https://theconversation.com/could-love-hormone-oxytocin-help-treat-alzheimers-disease-heres-what-researchers-currently-know-163301"
               className="researchlink p-2"
@@ -253,7 +253,7 @@ function AboutUs() {
             </p>
           </Grid>
 
-          <Grid item xs={6} className="research p-2">
+          <Grid item xs={12} sm={6} className="p-2 research">
             <img
               src="https://slack-imgs.com/?c=1&o1=ro.gu&url=https%3A%2F%2Fmedia-cldnry.s-nbcnews.com%2Fimage%2Fupload%2Ft_nbcnews-fp-1024-512%2Cf_auto%2Cq_auto%3Abest%2Fnewscms%2F2017_26%2F2057816%2F170630-cute-animal-ac-439p.jpg"
               alt="dog"
@@ -266,14 +266,14 @@ function AboutUs() {
             <br></br>
             <p>Why looking at your photos can rekindle your marriage</p>
           </Grid>
-          <Grid item xs={6} className="research p-2">
+          <Grid item xs={12} sm={6} className="p-2 research">
            
               <a href="https://onlinelibrary.wiley.com/doi/10.1002/npr2.12292" className="researchlink p-2">
                <p className="p-2"> Wiley Online Library research. Some interesting results according from their experts.</p>
               </a>
            
           </Grid>
-          <Grid item xs={6} className="research p-2">
+          <Grid item xs={12} sm={6} className="p-2 research">
             
               <a href="https://core.ac.uk/download/pdf/302079066.pdf" className="researchlink p-2">
                <p className="p-2"> Effects of Intranasal Oxytocin on Long-Term Memoryin

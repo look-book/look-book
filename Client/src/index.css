@@ -44,7 +44,7 @@ select{
 }
 
 .search {
-  width: 50%;
+  width: 60%;
 }
 
 ul li {
@@ -516,8 +516,8 @@ button {
   color: #f1f1f1;
 }
 .submitBtn:hover{
-  background: #b8d4d3;
-  color: #636161;
+  background: #e9ecec;
+  color: #151515;
 }
 
 .instructions {
@@ -687,25 +687,16 @@ a:hover {
   width: 100px;
 }
 
-
-@media screen and (max-width: 760px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar-item {
-    float: left;
-  }
-}
-
 @media screen and (max-width: 575px) {
-  
+  .settings,
+ .settingsForm{
+  width: 130%;
+ justify-content: center;
+  margin-left: -15%;
+ }
   .uploadForm,
   .col,
-  .homeBox,
   .accountBox,
-  .homepage,
   .contactBox,
   .searchBox,
   .albumBox,
@@ -716,13 +707,28 @@ a:hover {
     width: 100%;
     margin: auto;
   }
+  .homeBox{
+    position: relative;
+    width: 100%;
+  }
+  .homepage{
+    width: 100%;
+    position: relative;
+  }
+   .d-flex{
+    display: block !important;
+   }
    .container{
     display: block;
     width: 100%;
     margin: auto;
     
    }
-   
+  .researhSection{
+    display: block !important;
+    width: 100% !important;
+  }
+  
   h1{
     font-size: 25px;
   }
@@ -749,8 +755,13 @@ a:hover {
     width: 100%;
     
   }
+  .profileAccount,
   .profileBox{
     display: block;
+    width: 100%;
+  }
+  .profileAccount div{
+    width: 100%;
   }
   .memberBox{
      width: 100%;
@@ -819,6 +830,23 @@ a:hover {
 }
 
 @media screen and (max-width: 414px) {
+  .settings,
+ .settingsForm{
+  width: 130%;
+ justify-content: center;
+  margin-left: -15%;
+ }
+  .homeBox{
+    position: relative;
+    width: 100%;
+  }
+  .homepage{
+    width: 100%;
+    position: relative;
+  }
+   .d-flex{
+    display: block !important;
+   }
   .link{
     font-size: 18px;
   }
@@ -827,6 +855,14 @@ a:hover {
     margin: auto;
     justify-content: center;
     
+  }
+  .profileAccount,
+  .profileBox{
+    display: block;
+    width: 100%;
+  }
+  .profileAccount div{
+    width: 100%;
   }
   form, .social{
     width: 100%;
@@ -921,7 +957,31 @@ a:hover {
   }
 }
 @media screen and (max-width: 390px) {
-  
+  .settings,
+ .settingsForm{
+  width: 130%;
+ justify-content: center;
+  margin-left: -15%;
+ }
+  .homeBox{
+    position: relative;
+    width: 100%;
+  }
+  .homepage{
+    width: 100%;
+    position: relative;
+  }
+   .d-flex{
+    display: block !important;
+   }
+  .profileAccount,
+  .profileBox{
+    display: block;
+    width: 100%;
+  }
+  .profileAccount div{
+    width: 100%;
+  }
   .link{
     font-size: 18px;
   }
@@ -1037,6 +1097,31 @@ a:hover {
 }
 
 @media screen and (max-width: 375px) {
+  .settings,
+ .settingsForm{
+  width: 130%;
+ justify-content: center;
+  margin-left: -15%;
+ }
+  .homeBox{
+    position: relative;
+    width: 100%;
+  }
+  .homepage{
+    width: 100%;
+    position: relative;
+  }
+   .d-flex{
+    display: block !important;
+   }
+  .profileAccount,
+  .profileBox{
+    display: block;
+    width: 100%;
+  }
+  .profileAccount div{
+    width: 100%;
+  }
   .link{
     font-size: 18px;
   }

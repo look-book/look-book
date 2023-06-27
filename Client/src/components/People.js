@@ -26,7 +26,7 @@ const People = () => {
 
   return (
     <section className="memberBox">
-      <h1>Members' Profile </h1>
+      <h3>Members' Profile </h3><br></br>
       <div className="colMember row">
         {data.map((data, i) => (
           <div className="userMember" key={i}>
