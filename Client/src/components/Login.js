@@ -1,7 +1,8 @@
 import React,  { useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
+import ValidationError from './ValidationError';
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -27,6 +28,7 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
        setUser(data.token);
+       setErrorMessage(data.message)
       window.location.replace(`/userProfile/${user.username}`);
     } catch (err) {
       console.log(err);
@@ -63,6 +65,7 @@ function Login() {
         <div className="loginSection">
           <h4>Login</h4>
           <form onSubmit={(e) => handleLogin(e)} className="loginForm">
+            <p className='errmsg'> {errorMessage == "Success" ?  <Navigate to="/userProfile/:userId"/> :  <ValidationError message={errorMessage} />}</p>
             <label htmlFor="username">Email</label>
             <input
               className="input-field"

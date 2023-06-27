@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import ValidationError from "./ValidationError";
 
 function Register() {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useNavigate();
 
@@ -28,10 +31,12 @@ function Register() {
       });
       const data = await res.json();
       console.log(data);
-      setIsLoggedIn(data.message);
-      window.location.replace("/loginUser")
+      setIsLoggedIn(data);
+      setErrorMessage(data.message);
+      window.location.replace("/loginUser");
     } catch (err) {
       console.log(err);
+
     }
   }
 
@@ -51,64 +56,71 @@ function Register() {
 
   return (
     <>
-    <div className="contentBox">
-      <div className="registerSection">
-       <h4> Register</h4>
-        <form onSubmit={(e) => handleRegister(e)} className="registerForm">
-          <label htmlFor="firstName">Firstname</label>
-          <input
-            className="input-field"
-            type="text"
-            name="firstName"
-            id="firstName"
-          />
+      <div className="contentBox">
+      
+        <div className="registerSection">
+          <h4> Register</h4>
+          <form onSubmit={(e) => handleRegister(e)} className="registerForm">
+          <p>{errorMessage == "Success" ? (
+              <Navigate to="/loginUser" />
+            ) : (
+              <ValidationError message={errorMessage} />
+            )}</p>
+            <label htmlFor="firstName">Firstname</label>
+            <input
+              className="input-field"
+              type="text"
+              name="firstName"
+              id="firstName"
+            />
 
-          <label htmlFor="lastName">LastName</label>
-          <input
-            className="input-field"
-            type="text"
-            name="lastName"
-            id="lastName"
-          />
+            <label htmlFor="lastName">LastName</label>
+            <input
+              className="input-field"
+              type="text"
+              name="lastName"
+              id="lastName"
+            />
 
-          <label htmlFor="username">Email</label>
-          <input
-            className="input-field"
-            type="text"
-            name="username"
-            id="username"
-          />
+            <label htmlFor="username">Email</label>
+            <input
+              className="input-field"
+              type="text"
+              name="username"
+              id="username"
+            />
 
-          <label htmlFor="password">Password</label>
-          <input
-            className="input-field"
-            type="password"
-            name="password"
-            id="password"
-          />
+            <label htmlFor="password">Password</label>
+            <input
+              className="input-field"
+              type="password"
+              name="password"
+              id="password"
+            />
 
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            className="input-field"
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-          />
-          <br></br>
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              className="input-field"
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+            />
+            <br></br>
 
-          <input className="submitBtn" type="submit" value="REGISTER" />
-          <br></br>
-          <div className="">
-            <h6>Already have an account?</h6>
-            <Link className="link" to="/loginUser">
-              LOGIN
-            </Link>
-          </div>
-        </form>
+            <input className="submitBtn" type="submit" value="REGISTER" />
+            <br></br>
+            <div className="">
+              <h6>Already have an account?</h6>
+              <Link className="link" to="/loginUser">
+                LOGIN
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
-    </div><br></br><br></br>
+      <br></br>
+      <br></br>
     </>
   );
 }
 export default Register;
-

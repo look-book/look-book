@@ -48,7 +48,7 @@ function ProfilePage({ match}) {
   return (
     <>
       <div className="userBox">
-        <header className="flex flex-row justify-center p-5">
+        <header className="flex flex-row justify-center p-2">
           {user.username ? (
             <>
               <div className="profileAccount">
@@ -85,7 +85,7 @@ function ProfilePage({ match}) {
                     </>
                   ) : null}
                 </div>
-                <div>
+                <div className="p-2">
                   <Settings />
                 </div>
               </div>

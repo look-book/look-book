@@ -503,7 +503,9 @@ textarea {
 .MuiInput-root {
   border-bottom: 1px solid #d2d4d2 !important;
 }
-
+.colMember{
+  display: inline-flex;
+}
 label,
 button {
   margin-top: .5rem;
@@ -550,13 +552,18 @@ button {
   color: red;
   margin-left: 0.25rem;
 }
+.gmap_canvas {
+  overflow:hidden;
+  background:none!important;
+  height:500px;
+  width:100%;
+}
 
+iframe {
+  width:100%;height:100%;}
 .errmsg {
-  background-color: lightpink;
   color: firebrick;
   font-weight: bold;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .line {
