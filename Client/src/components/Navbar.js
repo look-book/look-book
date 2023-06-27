@@ -9,7 +9,7 @@ function Navbar() {
     localStorage.removeItem("token");
     window.location.reload(`/userProfile/${user.username}`);
   }
-  
+
   useEffect(() => {
     fetch("/api/isUserAuth", {
       headers: {
@@ -54,18 +54,6 @@ function Navbar() {
     );
     window.location.reload("/profile");
   };
-
-
-  
-  const logoutGoogle = () => {
-    window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/logout",
-      "_self"
-    );
-    window.location.reload("/profile");
-  };
-
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
