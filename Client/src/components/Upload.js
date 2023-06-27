@@ -27,7 +27,7 @@ const Upload = ({ upload }) => {
 
   return (
     <>
-      <Card className="p-2">
+      <Card className="p-2 cardImages">
         <div>
           <CardMedia>
             <img src={upload.myFile} alt={upload.title} />

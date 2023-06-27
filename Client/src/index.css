@@ -5,11 +5,12 @@
   padding: 0;
   box-sizing: border-box;
 }
-.navbar-toggler{
+.navbar-toggler {
   width: 80px;
 }
 
-html, body{
+html,
+body {
   font-family: "Aboreto", cursive;
   font-size: 22px;
   color: #000;
@@ -17,21 +18,21 @@ html, body{
   -moz-osx-font-smoothing: grayscale;
 }
 
-video{
+video {
   object-fit: contain;
   width: 100%;
   height: 100%;
 }
-p{
+p {
   font-size: 18px;
 }
 
-select{
+select {
   padding: 8px;
   width: 100%;
   border-radius: 20px;
 }
-.right{
+.right {
   margin-left: 90%;
 }
 
@@ -49,9 +50,9 @@ select{
 
 ul li {
   font-size: 20px;
-} 
-.subHeader{
-  background-color:#fff;
+}
+.subHeader {
+  background-color: #fff;
   padding: 15px;
 }
 .btn-large {
@@ -68,26 +69,27 @@ ul li {
   padding: 8px 12px;
   width: auto;
 }
-.loggedBox{
+.loggedBox {
   margin: auto;
 }
 .link {
   text-decoration: none;
   color: #507cc0;
 }
-.registerSection, .loginSection{
+.registerSection,
+.loginSection {
   width: 40%;
   margin: auto;
 }
 
-.reviews div{
- display: flex;
- justify-content: space-between;
+.reviews div {
+  display: flex;
+  justify-content: space-between;
 }
 
-.contactBox{
+.contactBox {
   width: 50%;
-  margin:  auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,61 +105,58 @@ ul li {
   justify-content: center;
   align-items: center;
   background-color: aliceblue;
-  opacity: .8;
+  opacity: 0.8;
   padding: 15px;
   border-radius: 20px;
   position: absolute;
-  
 }
 
-.galleryBox{
+.galleryBox {
   margin: 2% auto;
   padding: 15px;
   border-radius: 20px;
 }
 
-.contactPage{
+.contactPage {
   background-image: url("../src/assets/backgroundcouple.jpg");
   background-size: cover;
 }
 
 .contentBox {
- margin: auto;
+  margin: auto;
   padding: 1rem;
   border-radius: 10px;
   color: #63666a;
   justify-content: center;
-  
 }
 
-.formBox{
+.formBox {
   display: flex;
   justify-content: space-between;
   margin-top: 5%;
   background-color: #e6e6e6;
   padding: 15px;
 }
-.contactForm{
+.contactForm {
   width: 100%;
   background-color: #e9eaeb;
   padding: 15px;
   border-radius: 8px;
-  
 }
 
-.bio{
+.bio {
   background-color: #e6e6e6;
   border-radius: 20px;
   height: 400px;
   box-shadow: 4px 4px 4px 4px grey;
 }
-.formDiv{
+.formDiv {
   padding: 15px;
   color: #535050;
   margin: 8px;
   box-shadow: 4px 4px 4px 4px grey;
 }
-.albumSection{
+.albumSection {
   width: 148%;
   margin-left: -32%;
 }
@@ -173,42 +172,40 @@ ul li {
   margin-left: 20%;
 }
 
-.uploadSection{
+.uploadSection {
   width: 100%;
-  
 }
-.uploadBox{
- margin-top: 3%;
+.uploadBox {
+  margin-top: -3%;
 }
-.iconItem{
+.iconItem {
   float: right;
 }
-.albumBtn h6{
-  background-color:#d6d4d4;
+.albumBtn h6 {
+  background-color: #d6d4d4;
   margin: 5px;
   width: 50%;
   height: 60px;
   align-items: center;
   padding: 12px;
   cursor: pointer;
-
 }
-.albumsSection{
+.albumsSection {
   display: inline-flex;
   flex-wrap: wrap;
 }
-.cardAlbum{
+.cardAlbum {
   margin: 5px;
   width: 250px;
   height: 250px;
   display: inline-flex;
 }
-.author{
+.author {
   font-size: 14px;
   font-weight: 700;
   color: #000;
 }
-.userMember{
+.userMember {
   width: 15%;
   font-size: 15px;
   box-shadow: 4px 4px 4px 4px grey;
@@ -216,43 +213,41 @@ ul li {
   padding: 12px;
   text-align: center;
 }
-.userProfile{
+.userProfile {
   width: 80px;
   height: 80px;
   border-radius: 100%;
 }
-.linkMail{
+.linkMail {
   font-size: 14px;
   color: #507cc0;
 }
-.userBox{
- display: flex;
- justify-content: space-between;
- 
+.userBox {
+  display: flex;
+  justify-content: space-between;
 }
 
-.userBox div{
+.userBox div {
   margin: 5px;
   align-items: center;
   padding: 15px;
 }
-.loggedBox{
+.loggedBox {
   height: 50vh;
   background-image: url("../src/assets/backgroundcouple.jpg");
   background-size: cover;
 }
-b{
-  color:#507cc0;
-  
+b {
+  color: #507cc0;
 }
-.profileBox{
-   width: 80%;
-   margin: 5% auto;
-   padding: 15px;
-   justify-content: space-between;
-   display: flex;
+.profileBox {
+  width: 80%;
+  margin: 5% auto;
+  padding: 15px;
+  justify-content: space-between;
+  display: flex;
 }
-.profileLink{
+.profileLink {
   background: none;
   align-items: center;
   color: #9e9797;
@@ -260,13 +255,13 @@ b{
   font-size: 20px;
 }
 
-.profile{
+.profile {
   border-radius: 100%;
   width: 200px;
   height: 200px;
 }
 
-input{
+input {
   width: 100%;
 }
 
@@ -285,35 +280,34 @@ input{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #b3b0b0; 
+  background: #b3b0b0;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
-.card-action{
+.card-action {
   text-align: left;
 }
-.cardPost{
+.cardPost {
   padding: 15px;
   width: 100%;
 }
-.tumbicon{
+.tumbicon {
   margin: 5px;
-  
 }
-.cardContent{
+.cardContent {
   display: flex;
   padding: 15px;
 }
-.cardInfo{
+.cardInfo {
   margin: 5px;
   padding: 15px;
 }
@@ -321,7 +315,7 @@ input{
   width: 400px;
   height: 350px;
 }
-.timePost{
+.timePost {
   font-size: 12px;
   color: #b3b0b0;
 }
@@ -334,36 +328,37 @@ input{
   margin: 10px !important;
   background-color: #9e9797 !important;
 }
-.footerp{
+.footerp {
   font-size: medium !important;
 }
-.fa-facebook-square, .fa-facebook{
+.fa-facebook-square,
+.fa-facebook {
   color: blue;
 }
-.fa-twitter-square, .fa-twitter{
+.fa-twitter-square,
+.fa-twitter {
   color: skyblue;
 }
-.fa-pinterest-square{
+.fa-pinterest-square {
   color: rgb(144, 47, 47);
 }
-.fa-instagram-square{
+.fa-instagram-square {
   color: rgb(150, 66, 35);
 }
-.fa-linkedin{
+.fa-linkedin {
   color: #507cc0;
 }
-.fa-dribbble{
+.fa-dribbble {
   color: #009688;
 }
-.time{
+.time {
   font-size: medium;
   color: #9e9797;
 }
-.research{
-  margin-bottom : 5px   !important;
-  
+.research {
+  margin-bottom: 5px !important;
 }
-.researchlink{
+.researchlink {
   color: #507cc0 !important;
   padding: 15px !important;
 }
@@ -381,7 +376,6 @@ input{
 
 .google {
   background-color: #df4930;
-  
 }
 .facebook {
   background-color: #507cc0;
@@ -451,10 +445,10 @@ input{
   font-size: 18px;
   line-height: 24px;
 }
-.col{
+.col {
   text-align: center;
 }
-.avatar{
+.avatar {
   width: 200px;
   height: 200px;
   border-radius: 100%;
@@ -488,7 +482,7 @@ button,
 textarea {
   font-family: "Facinate", sans-serif;
   font-size: 22px;
-  padding: 0.50rem;
+  padding: 0.5rem;
   border-radius: 25px;
   outline: #eeecec;
 }
@@ -503,19 +497,19 @@ textarea {
 .MuiInput-root {
   border-bottom: 1px solid #d2d4d2 !important;
 }
-.colMember{
+.colMember {
   display: inline-flex;
 }
 label,
 button {
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
-.submitBtn{
+.submitBtn {
   background-color: #009688;
   cursor: pointer;
   color: #f1f1f1;
 }
-.submitBtn:hover{
+.submitBtn:hover {
   background: #e9ecec;
   color: #151515;
 }
@@ -553,14 +547,16 @@ button {
   margin-left: 0.25rem;
 }
 .gmap_canvas {
-  overflow:hidden;
-  background:none!important;
-  height:500px;
-  width:100%;
+  overflow: hidden;
+  background: none !important;
+  height: 500px;
+  width: 100%;
 }
 
 iframe {
-  width:100%;height:100%;}
+  width: 100%;
+  height: 100%;
+}
 .errmsg {
   color: firebrick;
   font-weight: bold;
@@ -584,22 +580,21 @@ h1 {
 .boxSidebar {
   position: absolute;
 }
-.profileAccount{
+.profileAccount {
   display: flex;
   justify-content: space-between;
 }
 
-.intro{
+.intro {
   font-weight: 800;
 }
 .columnMember {
-   display: flex;
+  display: flex;
   text-align: center;
   width: 100%;
   margin-left: 0;
-  
 }
-.evaluationForm{
+.evaluationForm {
   text-align: center;
 }
 .cardMember {
@@ -616,9 +611,8 @@ h1 {
   height: 250px;
   padding: 8px;
   border-radius: 100%;
-  
 }
-i{
+i {
   margin: 5px;
 }
 
@@ -626,7 +620,7 @@ i{
   color: grey;
   font-size: 18px;
 }
-.logoutSection{
+.logoutSection {
   height: 100vh;
 }
 button {
@@ -653,30 +647,6 @@ a:hover {
   opacity: 0.7;
 }
 
-.fillerBox {
-  height: 50px;
-  width: 50px;
-  background-color: black;
-  margin: 5px;
-  float: left;
-  display: block;
-}
-
-.fillerLocationBox {
-  height: auto;
-  width: auto;
-  margin: 5px;
-  border-radius: 10px;
-  display: flex;
-}
-
-.fillerCircle {
-  background-color: black;
-  height: 50px;
-  border-radius: 50%;
-  width: 50px;
-}
-
 .contactInfo {
   font-size: 15px;
   padding: 0 10px;
@@ -689,11 +659,11 @@ a:hover {
 
 @media screen and (max-width: 575px) {
   .settings,
- .settingsForm{
-  width: 130%;
- justify-content: center;
-  margin-left: -15%;
- }
+  .settingsForm {
+    width: 130%;
+    justify-content: center;
+    margin-left: -15%;
+  }
   .uploadForm,
   .col,
   .accountBox,
@@ -707,70 +677,66 @@ a:hover {
     width: 100%;
     margin: auto;
   }
-  .homeBox{
+  .homeBox {
     position: relative;
     width: 100%;
   }
-  .homepage{
+  .homepage {
     width: 100%;
     position: relative;
   }
-   .d-flex{
+  .d-flex {
     display: block !important;
-   }
-   .container{
+  }
+  .container {
     display: block;
     width: 100%;
     margin: auto;
-    
-   }
-  .researhSection{
+  }
+  .researhSection {
     display: block !important;
     width: 100% !important;
   }
-  
-  h1{
+
+  h1 {
     font-size: 25px;
   }
-  .userBox{
+  .userBox {
     display: block;
     width: 100%;
     margin: auto;
     text-align: center;
   }
-  .accountBox{
+  .accountBox {
     width: 100%;
     margin: 5% auto;
-    
   }
-  .albumBtn h6{
+  .albumBtn h6 {
     width: 100%;
     height: auto;
   }
-  .cardAlbum{
+  .cardAlbum {
     width: 100%;
   }
-  .formBox{
+  .formBox {
     display: block;
     width: 100%;
-    
   }
   .profileAccount,
-  .profileBox{
+  .profileBox {
     display: block;
     width: 100%;
   }
-  .profileAccount div{
+  .profileAccount div {
     width: 100%;
   }
-  .memberBox{
-     width: 100%;
+  .memberBox {
+    width: 100%;
   }
-  .userMember{
+  .userMember {
     width: 80%;
-   text-align: left;
-   margin: auto;
-   
+    text-align: left;
+    margin: auto;
   }
   .searchbar {
     width: 100%;
@@ -796,19 +762,20 @@ a:hover {
     margin: auto;
     width: 100%;
   }
-  .loginSection, .registerSection{
+  .loginSection,
+  .registerSection {
     width: 100%;
     margin: auto;
     justify-content: center;
-    
   }
-  form, .social{
+  form,
+  .social {
     width: 100%;
   }
-  .right{
+  .right {
     margin-left: 0;
   }
-  .cardContent{
+  .cardContent {
     display: block;
     width: 100%;
   }
@@ -830,41 +797,37 @@ a:hover {
 }
 
 @media screen and (max-width: 414px) {
-  .settings,
- .settingsForm{
-  width: 130%;
- justify-content: center;
-  margin-left: -15%;
- }
-  .homeBox{
+  
+  .homeBox {
     position: relative;
     width: 100%;
   }
-  .homepage{
+  .homepage {
     width: 100%;
     position: relative;
   }
-   .d-flex{
+  .d-flex {
     display: block !important;
-   }
-  .link{
+  }
+  .link {
     font-size: 18px;
   }
-  .loginSection, .registerSection{
+  .loginSection,
+  .registerSection {
     width: 100%;
     margin: auto;
     justify-content: center;
-    
   }
   .profileAccount,
-  .profileBox{
+  .profileBox {
     display: block;
     width: 100%;
   }
-  .profileAccount div{
+  .profileAccount div {
     width: 100%;
   }
-  form, .social{
+  form,
+  .social {
     width: 100%;
   }
   .galleryBox,
@@ -879,52 +842,49 @@ a:hover {
   .filterBox {
     margin-top: 5%;
     width: 100%;
-   margin: auto;
+    margin: auto;
   }
-  .container{
+  .container {
     display: block;
     width: 100%;
     margin: auto;
-    
-   }
+  }
 
-   .gallerySection{
+  .gallerySection {
     width: 100%;
     margin-left: -5%;
-   }
-   .userBox{
+  }
+  .userBox {
     display: block;
     width: 100%;
     margin: auto;
     text-align: center;
   }
-   .multipleFile{
+  .multipleFile {
     width: 100%;
-   }
-  h1{
+  }
+  h1 {
     font-size: 25px;
   }
-  .accountBox{
+  .accountBox {
     width: 100%;
     margin: 5% auto;
-    
   }
-  .memberBox{
+  .memberBox {
     width: 100%;
- }
- .userMember{
-   width: 80%;
- text-align: left;
- 
- }
-  .profileBox{
+  }
+  .userMember {
+    width: 80%;
+    text-align: left;
+  }
+  .profileBox {
     display: block;
   }
-  .formBox{
+  .formBox {
     display: block;
     width: 100%;
   }
-  .cardContent{
+  .cardContent {
     display: block;
     width: 100%;
   }
@@ -952,53 +912,53 @@ a:hover {
     margin: auto;
     width: 100%;
   }
-  .right{
+  .right {
     margin-left: 0;
+  }
+  
+  .reviews div{
+    margin-left: -10%;
   }
 }
 @media screen and (max-width: 390px) {
-  .settings,
- .settingsForm{
-  width: 130%;
- justify-content: center;
-  margin-left: -15%;
- }
-  .homeBox{
+  
+  .homeBox {
     position: relative;
     width: 100%;
   }
-  .homepage{
+  .homepage {
     width: 100%;
     position: relative;
   }
-   .d-flex{
+  .d-flex {
     display: block !important;
-   }
+  }
   .profileAccount,
-  .profileBox{
+  .profileBox {
     display: block;
     width: 100%;
   }
-  .profileAccount div{
+  .profileAccount div {
     width: 100%;
   }
-  .link{
+  .link {
     font-size: 18px;
   }
-  .loginSection, .registerSection{
+  .loginSection,
+  .registerSection {
     width: 100%;
     margin: auto;
     justify-content: center;
-    
   }
-  .cardContent{
+  .cardContent {
     display: block;
     width: 100%;
   }
-  form, .social{
+  form,
+  .social {
     width: 100%;
   }
-  
+
   .galleryBox,
   .uploadBox,
   .col,
@@ -1013,55 +973,52 @@ a:hover {
     width: 100%;
     margin: auto;
   }
-  .container{
+  .container {
     display: block;
     width: 100%;
     margin: auto;
-    
-   }
-   h2{
+  }
+  h2 {
     font-size: 22px;
-   }
+  }
 
-   .gallerySection{
+  .gallerySection {
     width: 100%;
     margin-left: -8%;
-   }
-   .memberBox{
+  }
+  .memberBox {
     width: 100%;
- }
- .userMember{
-   width: 80%;
- text-align: left;
- 
- }
-   .userBox{
+  }
+  .userMember {
+    width: 80%;
+    text-align: left;
+  }
+  .userBox {
     display: block;
     width: 100%;
     margin: auto;
     text-align: center;
   }
-   .multipleFile{
+  .multipleFile {
     width: 100%;
-   }
-  h1{
+  }
+  h1 {
     font-size: 25px;
   }
-  
-  .accountBox{
+
+  .accountBox {
     width: 100%;
     margin: 5% auto;
-    
   }
-  .filesBox{
+  .filesBox {
     display: flex;
     justify-content: space-between;
   }
-  .formBox{
+  .formBox {
     display: block;
     width: 100%;
   }
-  .profileBox{
+  .profileBox {
     display: block;
   }
   .searchbar {
@@ -1074,7 +1031,10 @@ a:hover {
   .card {
     width: 100%;
   }
-
+  
+  .reviews div{
+    margin-left: -10%;
+  }
   .sidebar-item {
     float: left;
   }
@@ -1088,54 +1048,54 @@ a:hover {
     margin: auto;
     width: 100%;
   }
-  .cardPost{
+  .cardPost {
     width: 100%;
   }
-  .right{
+  .right {
     margin-left: 0;
   }
 }
 
 @media screen and (max-width: 375px) {
-  .settings,
- .settingsForm{
-  width: 130%;
- justify-content: center;
-  margin-left: -15%;
- }
-  .homeBox{
+  
+  .reviews div{
+    margin-left: -10%;
+  }
+  
+  .homeBox {
     position: relative;
     width: 100%;
   }
-  .homepage{
+  .homepage {
     width: 100%;
     position: relative;
   }
-   .d-flex{
+  .d-flex {
     display: block !important;
-   }
+  }
   .profileAccount,
-  .profileBox{
+  .profileBox {
     display: block;
     width: 100%;
   }
-  .profileAccount div{
+  .profileAccount div {
     width: 100%;
   }
-  .link{
+  .link {
     font-size: 18px;
   }
-  .loginSection, .registerSection{
+  .loginSection,
+  .registerSection {
     width: 100%;
     margin: auto;
     justify-content: center;
-    
   }
-  .cardContent{
+  .cardContent {
     display: block;
     width: 100%;
   }
-  form, .social{
+  form,
+  .social {
     width: 100%;
   }
   .galleryBox,
@@ -1152,52 +1112,49 @@ a:hover {
     width: 100%;
     margin: auto;
   }
-  .container{
+  .container {
     display: block;
     width: 100%;
     margin: auto;
-    
-   }
+  }
 
-   .gallerySection{
+  .gallerySection {
     width: 100%;
     margin-left: -14%;
-   }
-   .memberBox{
+  }
+  .memberBox {
     width: 100%;
- }
- .userMember{
-   width: 80%;
- text-align: left;
- 
- }
-   .userBox{
+  }
+  .userMember {
+    width: 80%;
+    text-align: left;
+  }
+  .userBox {
     display: block;
     width: 100%;
     margin: auto;
     text-align: center;
   }
-   .multipleFile{
+  .multipleFile {
     width: 100%;
-   }
-  h1{
+  }
+  h1 {
     font-size: 25px;
   }
-  
-  .accountBox{
+
+  .accountBox {
     width: 100%;
     margin: 5% auto;
-    
   }
-  .filesBox{
+  .filesBox {
     display: flex;
     justify-content: space-between;
   }
-  .formBox{
+  .formBox {
     display: block;
     width: 100%;
   }
-  .profileBox{
+  .profileBox {
     display: block;
   }
   .searchbar {
@@ -1224,7 +1181,7 @@ a:hover {
     margin: auto;
     width: 100%;
   }
-  .right{
+  .right {
     margin-left: 0;
   }
 }
