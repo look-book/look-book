@@ -4,10 +4,10 @@ import avatar from "../assets/subProfile.png";
 import Settings from "./ResetPassword";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 
-function ProfilePage({ match}) {
+function ProfilePage({ match }) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
-  
+
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
       method: "GET",
@@ -19,7 +19,8 @@ function ProfilePage({ match}) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUser(data) })
+        setUser(data);
+      })
       .catch((err) => alert(err));
   }, [userId]);
 
@@ -46,60 +47,59 @@ function ProfilePage({ match}) {
   }
 
   return (
-    <>
-      <div className="userBox">
-        <header className="flex flex-row justify-center p-2">
-          {user.username ? (
-            <>
-              <div className="profileAccount">
-                <div>
-                  <img className="avatar" src={avatar} alt="profile" />
-                  <br></br>
-                  <h3>
-                    {user.firstName} {user.lastName}
-                  </h3>
+    <div className="userBox">
+      <header className="flex flex-row justify-center p-1">
+        {user.username ? (
+          <>
+            <div className="profileAccount">
+              <div>
+                <img className="avatar" src={avatar} alt="profile" />
+                <br></br>
+                <h3>
+                  {user.firstName} {user.lastName}
+                </h3>
 
-                  <p>
-                    <b>Email:</b>
-                    {user.username}
-                  </p>
-                  <p>
-                    <b>Bio:</b> {user.bio}
-                  </p>
+                <p>
+                  <b>Email:</b>
+                  {user.username}
+                </p>
+                <p>
+                  <b>Bio:</b> {user.bio}
+                </p>
 
-                  {user.canEdit !== "Not found" ? (
-                    <>
-                      <form onSubmit={(e) => changeUserInfo(e)} className="bio">
-                        <label htmlFor="bio">Add or Change your Bio</label>
+                {user.canEdit !== "Not found" ? (
+                  <>
+                    <form onSubmit={(e) => changeUserInfo(e)} className="bio">
+                      <label htmlFor="bio">Add or Change your Bio</label>
 
-                        <textarea
-                          type="text"
-                          placeholder="Add bio..."
-                          name="bio"
-                          id="bio"
-                        />
+                      <textarea
+                        type="text"
+                        placeholder="Add bio..."
+                        name="bio"
+                        id="bio"
+                      />
 
-                        <input type="submit" value="Submit" />
-                        <p className="text-sm my-1">1000 characters maximum</p>
-                      </form>
-                    </>
-                  ) : null}
-                </div>
-                <div className="p-2">
-                  <Settings />
-                </div>
+                      <input type="submit" value="Submit" />
+                      <p className="text-sm my-1">1000 characters maximum</p>
+                    </form>
+                  </>
+                ) : null}
               </div>
-            </>
-          ) : (
-            <div className="logoutSection">
-              <h2>You're logout successfully!</h2>
-              <Link to="/loginUser">Signin back</Link>{" "}
-              <video src={bgVideo} autoPlay loop muted />
+
+              <Settings />
             </div>
-          )}
-        </header>
-      </div>
-    </>
+          </>
+        ) : (
+          <div className="logoutSection">
+            <h2>You're logout successfully!</h2>
+            <Link to="/loginUser">Signin back</Link>
+            <div className="logoutVideo">
+            <video src={bgVideo} autoPlay loop muted />
+            </div>
+          </div>
+        )}
+      </header>
+    </div>
   );
 }
 

@@ -63,7 +63,7 @@ html {
   height: 520px;
   margin-bottom: 12px !important;
   border-radius: 2rem;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .swiper-slide-shadow-left,
@@ -151,7 +151,7 @@ html {
     width: 100%;
     padding: 15px;
     position: relative;
-    height: 33rem;
+    height: 42rem;
   }
   
   .swiper_container{
@@ -160,12 +160,13 @@ html {
   }
   .swiper-slide{
     width: 450px !important;
-    height: 600px !important;
+    height: 800px !important;
   }
   .swiper-slide img{
     width: 100% !important;
-    object-fit: cover;
-    height: 280px;
+    object-fit: contain;
+    height: 250px;
+  
   }
 }
 
@@ -189,8 +190,8 @@ html {
   }
   .swiper-slide img{
     width: 100% !important;
-    object-fit: cover;
-    height: 280px;
+    object-fit: contain;
+    height: 250px;
   }
 }
 
@@ -214,8 +215,8 @@ html {
   }
   .swiper-slide img{
     width: 100% !important;
-    object-fit: cover;
-    height: 280px;
+    object-fit: contain;
+    height: 250px;
   }
 }
 
@@ -237,8 +238,8 @@ html {
   }
   .swiper-slide img{
     width: 100% !important;
-    object-fit: cover;
-    height: 280px;
+    object-fit: contain;
+    height: 250px;
   }
 }
 

@@ -51,7 +51,7 @@ function Login() {
 
 
   const onGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
+    window.open("http://localhost:5000/auth/google", "_self");
     
   };
 

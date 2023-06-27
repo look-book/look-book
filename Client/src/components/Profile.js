@@ -72,7 +72,7 @@ const Profile = () => {
           <>
             <div className="profileInfo">
               <div className="list">
-                <div className="listItem">
+                <div className="listItem ">
                   <img
                     src={user.photos[0].value}
                     alt=""
@@ -96,16 +96,15 @@ const Profile = () => {
                 <b>Email:</b> {user.emails[0].value}
               </p>
             </div>
-            <div className="settings">
-              <div className="settingsWrapper">
+            <div className="settingsG bg-light">
+              <div className="settingsWrapperG">
                 <div className="settingsTitle">
                   <span className="settingsUpdateTitle">
                     Update Your Account
                   </span>
-                  <span className="settingsDeleteTitle">Delete Account</span>
                 </div>
 
-                <form className="settingsForm" onSubmit={handleSubmit}>
+                <form className="settingsFormG" onSubmit={handleSubmit}>
                   <label>Profile Picture</label>
                   <div className="settingsPP">
                     <img src={user.photos[0].value} alt="profile" />
@@ -168,8 +167,11 @@ const Profile = () => {
           <>
             <div className="logoutSection">
               <h2>You're logout successfully!</h2>
-              <Link to="/loginUser">Signin back</Link>{" "}
-              <video src={bgVideo} autoPlay loop muted />
+              <Link to="/loginUser">Signin back</Link>
+              <br></br>
+              <div className="logoutVideo">
+                <video src={bgVideo} autoPlay loop muted />
+              </div>
             </div>
           </>
         )}

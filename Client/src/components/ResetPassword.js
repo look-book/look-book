@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import avatar from "../assets/subProfile.png";
 import axios from "axios";
@@ -14,7 +13,6 @@ export default function Settings({ match }) {
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({});
   const { userId } = useParams(match);
-
 
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
@@ -37,7 +35,6 @@ export default function Settings({ match }) {
       firstName,
       lastName,
       password,
-      
     };
     if (file) {
       const data = new FormData();
@@ -63,14 +60,13 @@ export default function Settings({ match }) {
       <div className="settingsWrapper">
         <div className="settingsTitle">
           <span className="settingsUpdateTitle">Update Your Account</span>
-          <span className="settingsDeleteTitle">Delete Account</span>
         </div>
-        
+
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="settingsPP">
             <img src={file ? URL.createObjectURL(file) : avatar} alt="" />
-            
+
             <label htmlFor="fileInput">
               <i className="settingsPPIcon far fa-user-circle"></i>
             </label>

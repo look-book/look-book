@@ -7,109 +7,191 @@ import InputLabel from "@mui/material/InputLabel";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { CalendarIcon } from "@mui/x-date-pickers";
 
-const presidents = [
-  {
-    value: "Donald J. Trump",
-    label: "Donald J. Trump",
+//craete an array of questions giving the choice as boolean
+let questions = [{
+  question: "What does Html stand for?",
+  answers: [{
+    "textContent": "Hypertext Markup Language",
+    isCorrect: true
+  },
+    {
+    "textContent": "Hyperlinks and Text Markup Language",
+    isCorrect: false
+    },
+    {
+    "textContent": "Home Tool Markup Language ",
+    isCorrect:false
+},
+]
+},
+{
+  question: "Who is making the Web standards?",
+  answers: [{
+    "textContent": "Google",
+    isCorrect: false
   },
   {
-    value: "Joseph R. Biden",
-    label: "Joseph R. Biden",
+    "textContent": "Mozilla",
+    isCorrect: false
+  },
+    {
+    "textContent": "Microsoft",
+    isCorrect: false
+  },
+    {
+    "textContent": "The World Wide Web Consortium",
+    isCorrect: true
+  },
+]
+},
+{
+  question: "What does CSS stand for?",
+  answers: [{
+    "textContent": "Colorful Style Sheets",
+    isCorrect: false
   },
   {
-    value: "Bill Clinton",
-    label: "Bill Clinton",
+    "textContent": "Computer Style Sheets",
+    isCorrect: false
   },
+  {
+    "textContent" : "Creative Style Sheets",
+    isCorrect: false
+  },
+  {
+  "textContent": "Cascading Style Sheets",
+  isCorrect: true
+  },
+  ]
+},
+{
+  question:
+    "Where in an HTML document is the correct place to refer to an external style sheet?",
+  answers: [{
+    "textContent": "In the < body > section",
+    isCorrect: false
+  },
+    {
+      "textContent": "At the end of the document",
+      isCorrect: false
+    },
+    {
+      "textContent": "In the < head > section",
+      isCorrect: true
+    },
+]
+},
+{
+  question: "Whict is the correct CSS syntax?",
+  answers: [{
+    "textContent" : "{body; color:black;}",
+    isCorrect: false
+  },
+  {
+    "textContent": "body: color:black;",
+    isCorrect: false
+  },
+  {
+    "textContent": "{body:color=black;}",
+    isCorrect: false
+  },
+  {
+    "textContent": "body{color:black;}",
+    isCorrect: true
+  },
+]
+},
+{
+  question:
+    "What is the correct syntax for referring to an external script called 'xxx.js'?",
+  answers: [{
+    "textContent": "< script name = 'xxx.js' >",
+    isCorrect: false
+  },
+  {
+    "textContent" : "< script href = 'xxx.js' >",
+    isCorrect: false
+  },
+  {
+    "textContent": "< script src = 'xxx.js' >",
+    isCorrect: true
+  },
+]
+},
+{
+  question: "Inside which HTML element do we put the JavaScript?",
+  answers: [{
+    "textContent" : "< scripting >",
+    isCorrect: false
+  },
+  {
+    "textContent": "< script >",
+    isCorrect: true
+  },
+  {
+    "textContent": "javascript",
+    isCorrect: false
+  },
+  {
+    "textContent": "< js >",
+    isCorrect: false
+  },
+]
+},
+{
+  question: "Who invented JavaScript?",
+  answers: [{
+    "textContent": "Douglas Crockford",
+    isCorrect: false
+  },
+  {
+    "textContent": "Sheryl Sandberg",
+    isCorrect: false
+  },
+  {
+    "textContent": "Brendan Eich",
+    isCorrect: true
+  },
+]
+},
+{
+  question: "Which one of these is a JavaScript package manager?",
+  answers: [{
+    "textContent" : "Node.js",
+    isCorrect: false
+  },
+  {
+    "textContent": "TypeScript",
+    isCorrect: false
+  },
+  {
+    "textContent": "npm",
+    isCorrect: true
+  },
+]
+},
+{
+  question: "Which tool can you use to ensure code quality?",
+  answers: [{
+    "textContent": "Angular",
+    isCorrect: false
+  },
+    {
+    "textContent": "jQuery",
+    isCorrect: false
+  },
+  {
+    "textContent": "RequireJS",
+    isCorrect: false
+  },
+  {
+    "textContent": "ESLint",
+    isCorrect: true
+  },
+]
+},
 ];
 
-const states = [
-  {
-    value: "Florida",
-    label: "Florida",
-  },
-  {
-    value: "California",
-    label: "California",
-  },
-  {
-    value: "Nevada",
-    label: "Nevada",
-  },
-];
-const circles = [
-  {
-    value: "first photo - A",
-    label: "first photo - A",
-  },
-  {
-    value: "second photo - B",
-    label: "second photo - B",
-  },
-  {
-    value: "third photo - C",
-    label: "third photo - C",
-  },
-];
-
-const squares = [
-  {
-    value: "first photo - 1",
-    label: "first photo - 1",
-  },
-  {
-    value: "second photo - 2",
-    label: "second photo - 2",
-  },
-  {
-    value: "third photo - 3",
-    label: "third photo - 3",
-  },
-];
-
-const sums = [
-  {
-    value: "4",
-    label: "4",
-  },
-  {
-    value: "6",
-    label: "6",
-  },
-  {
-    value: "5",
-    label: "5",
-  },
-];
-
-const colors = [
-  {
-    value: "COLOR RED",
-    label: "COLOR RED",
-  },
-  {
-    value: "Color Blue",
-    label: "Color Blue",
-  },
-  {
-    value: "Color yellow",
-    label: "Color yellow",
-  },
-];
-
-const afterNumbers = [
-  {
-    value: "Number 15",
-    label: "Number 15",
-  },
-  {
-    value: "Number 10",
-    label: "Number 10",
-  },
-  {
-    value: "Number 12",
-    label: "Number 12",
-  },
-];
 
 function EvaluationTest() {
   return (
@@ -130,116 +212,7 @@ function EvaluationTest() {
         </Box>
       </Box>
 
-      <Box
-        component="form"
-        className="evaluationForm"
-        sx={{
-          "& .MuiTextField-root": { m: 2, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <h3>Questions for subsequent recall test</h3>
-        <div>
-          <TextField
-            id="outlined-select-president"
-            select
-            label=""
-            helperText="Who is the current President? "
-            variant="filled"
-          >
-            {presidents.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            label=""
-            helperText="What state are you in?"
-            id="outlined-select-states"
-            select
-            variant="filled"
-          >
-            {states.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-        <div>
-          <TextField
-            id="filled-select-square"
-            select
-            label=""
-            helperText="Which one is a square? "
-            variant="filled"
-          >
-            {squares.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="filled-select-circle"
-            select
-            label=""
-            helperText="Which one is a circle? "
-            variant="filled"
-          >
-            {circles.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-        <div>
-          <TextField
-            id="filled-select-after"
-            select
-            label=""
-            helperText="What number comes after 11?"
-            variant="filled"
-          >
-            {afterNumbers.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="filled-select-colors"
-            select
-            label=""
-            helperText="What color is shown?  "
-            variant="filled"
-          >
-            {colors.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-        <div>
-          <TextField
-            id="standard-select-sum"
-            select
-            label=""
-            helperText="What is 2 + 2?"
-            variant="filled"
-          >
-            {sums.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-      </Box>
+      
     </Container>
   );
 }

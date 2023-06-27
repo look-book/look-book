@@ -424,8 +424,8 @@ input {
   align-items: center;
 }
 
-.postImg {
-  width: 100%;
+.postImage {
+  width: 250px;
   height: 300px;
   object-fit: cover;
   margin-bottom: 20px;
@@ -584,7 +584,9 @@ h1 {
   display: flex;
   justify-content: space-between;
 }
-
+.logoutVideo{
+  margin-top: 5%;
+}
 .intro {
   font-weight: 800;
 }
@@ -656,13 +658,31 @@ a:hover {
   height: 100px;
   width: 100px;
 }
+@media screen and (max-width:1280) {
+  .right{
+   margin-left: 80%;
+  }
+}
+@media screen and (max-width:1024) {
+   .right{
+    margin-left: 85%;
+   }
+}
+@media only screen and (max-width: 600px) {
+  section {
+    width: 100%;
+  }
+}
+
 
 @media screen and (max-width: 575px) {
   .settings,
   .settingsForm {
-    width: 130%;
-    justify-content: center;
-    margin-left: -15%;
+    width: 100%;
+   justify-content: center;
+   width: 350px;
+   margin-left: -12%;
+    
   }
   .uploadForm,
   .col,
@@ -779,24 +799,21 @@ a:hover {
     display: block;
     width: 100%;
   }
-}
-
-@media only screen and (max-width: 600px) {
-  section {
-    width: 100%;
-  }
-
-  body {
-    background-image: none;
-  }
-
-  div {
-    margin: 0 auto;
-    width: 95%;
+  .postImage{
+    width: 100%; 
+    object-fit: contain;
   }
 }
+
 
 @media screen and (max-width: 414px) {
+  .settings,
+  .settingsWrapper,
+  .settingsForm {
+    width: 320px;
+   margin-left: -20%;
+   
+  }
   
   .homeBox {
     position: relative;
@@ -919,8 +936,19 @@ a:hover {
   .reviews div{
     margin-left: -10%;
   }
+  .postImage{
+    width: 100%;
+    object-fit: contain;
+  }
 }
 @media screen and (max-width: 390px) {
+  .settings,
+  .settingsWrapper,
+  .settingsForm {
+    width: 280px;
+    margin-left: -20%;
+   
+  }
   
   .homeBox {
     position: relative;
@@ -999,9 +1027,7 @@ a:hover {
     margin: auto;
     text-align: center;
   }
-  .multipleFile {
-    width: 100%;
-  }
+  
   h1 {
     font-size: 25px;
   }
@@ -1035,28 +1061,35 @@ a:hover {
   .reviews div{
     margin-left: -10%;
   }
-  .sidebar-item {
-    float: left;
-  }
+  
   .columnMember {
     display: block;
   }
   .cardMember {
     width: 100%;
   }
-  .albumSection {
-    margin: auto;
-    width: 100%;
-  }
+
   .cardPost {
     width: 100%;
   }
   .right {
     margin-left: 0;
   }
+  .postImage{
+    width: 100%;
+    object-fit: contain;
+  }
 }
 
 @media screen and (max-width: 375px) {
+  .settings,
+  .settingsWrapper,
+  .settingsForm {
+    width: 280px;
+   margin-left: -23%;
+   justify-content: center;
+   
+  }
   
   .reviews div{
     margin-left: -10%;
@@ -1183,6 +1216,10 @@ a:hover {
   }
   .right {
     margin-left: 0;
+  }
+  .postImage{
+    width: 100%;
+    object-fit: contain;
   }
 }
 /*

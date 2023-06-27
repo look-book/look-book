@@ -49,7 +49,7 @@ function Navbar() {
 
   const logoutGoogle = () => {
     window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/logout",
+      "http://localhost:5000/auth/logout",
       "_self"
     );
     window.location.reload("/profile");
