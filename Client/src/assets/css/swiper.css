@@ -257,8 +257,8 @@ html {
 .overlay {
   position: absolute; 
   top: 0; 
-  background: rgb(236, 233, 233);
-  background: rgba(125, 123, 123, 0.5); /* Black see-through */
+  background: rgb(35, 34, 34);
+  background: rgba(26, 26, 26, 0.5); /* Black see-through */
   width: 100%;
   transition: .5s ease;
   opacity: 0;

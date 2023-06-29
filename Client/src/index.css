@@ -32,6 +32,7 @@
   padding: 15px;
   display: flex;
   width: 100%;
+  
 }
 
 .containerQ .grid {
@@ -91,7 +92,7 @@ ul li label {
   z-index: 9;
   justify-content: center;
   cursor: pointer;
-  -webkit-transition: all 0.25s linear;
+  --webkit-transition: all 0.25s linear;
 }
 
 ul li:hover label {
