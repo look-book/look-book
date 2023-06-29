@@ -39,7 +39,7 @@ export default function Questions({ onChecked }) {
         ) : null}
       </div>
       <ul key={questions?.id}>
-        <h5 className="text-dark">{questions?.question}</h5>
+        <h5 className="text-light">{questions?.question}</h5>
         {questions?.options.map((q, i) => (
           <>
             <li key={i}>
@@ -51,7 +51,7 @@ export default function Questions({ onChecked }) {
                 onChange={() => onSelect(i)}
               />
 
-              <label className="text-primary" htmlFor={`q${i}-option`}>
+              <label className="text-light" htmlFor={`q${i}-option`}>
                 {q}
               </label>
               <div

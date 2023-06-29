@@ -126,21 +126,19 @@ function Upload2() {
       >
         {search(uploads).map((upload, i) => (
           <SwiperSlide key={i}>
-            <div className="flip-card">
-              <div className="flip-card-inner">
-                <div className="flip-card-front">
-                  <Upload
-                    upload={upload}
-                    currentId={currentId}
-                    setCurrentId={setCurrentId}
-                    key={upload._id}
-                  />
-                </div>
-                <div className="flip-card-back">
-                  <CheckUserExist>
-                    <Quiz />
-                  </CheckUserExist>
-                </div>
+            <div className="containerOverlay">
+              <div className="overlayBack">
+                <Upload
+                  upload={upload}
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                  key={upload._id}
+                />
+              </div>
+              <div className="overlay">
+                <CheckUserExist>
+                  <Quiz />
+                </CheckUserExist>
               </div>
             </div>
           </SwiperSlide>
