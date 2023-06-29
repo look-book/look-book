@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 // Create Schema
 const userSchema = new mongoose.Schema(
   {
+    userId: String,
     firstName: {
       type: String,
       required: true,
@@ -22,6 +23,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+  
     profilePic: String,
 
     verified: { type: Boolean, default: false },

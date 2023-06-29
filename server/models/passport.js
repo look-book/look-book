@@ -2,47 +2,87 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const passport = require("passport");
 const dotenv = require("dotenv");
-
+const User = require("./users")
 dotenv.config();
 
+
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser((user, done) => {
-  done(null, user);
+passport.deserializeUser((id, done) => {
+  User.findById(id).then(user => {
+    done(null, user);
+  });
 });
-
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID:
-        "1060203266514-jpethige3djutikif4age7bjdb76l44a.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
 
     function (accessToken, refreshToken, profile, callback) {
       callback(null, profile);
+
+      // profile has all google login data
+      /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
+
+      // check if user id already inserted
+      User.findOne({ userId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          done(null, existingUser);
+        } else {
+          // new user case
+          // insert new user id
+          new User({
+            userId: profile.id,
+            username: profile.displayName,
+            profilePic: profile._json.picture
+          })
+            .save()
+            .then(user => {
+              done(null, user);
+            });
+        }
+      });
     }
   )
 );
 
+// For facebook
 passport.use(
   new FacebookStrategy(
     {
-      clientID: "761783708288455",
-      clientSecret: "c53f2dba58ec5bc87670563f9f6aef69",
-      callbackURL: "/auth/facebook/callback",
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: "/auth/facebook/callback"
     },
-
-    function (accessToken, refreshToken, profile, done) {
-      done(null, profile);
+    (accessToken, refreshToken, profile, done) => {
+      console.log(profile);
+      /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
+      // check if user id already inserted
+      User.findOne({ userId: profile.id }).then(existingUser => {
+        if (existingUser) {
+          done(null, existingUser);
+        } else {
+          // new user case
+          // insert new user id
+          new User({
+            userId: profile.id,
+            username: profile.displayName,
+            profilePic: profile._json.picture
+          })
+            .save()
+            .then(user => {
+              done(null, user);
+            });
+        }
+      });
+      /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: END =========  */
     }
-    //Upload Facebook Images
-    //If using MongoDB, take out done and create user {profile.displayName, profile.photos[0]}var with variables and save user.
   )
 );
-
 

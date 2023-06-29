@@ -4,6 +4,16 @@ const passport = require("passport");
 //const ClientURL = "http://localhost:3000/";
 const ClientURL = "https://look-book-act-group42.herokuapp.com/";
 
+router.get("/", (req, res) => {
+  res.status(200).json({
+    googleClientID: process.env.GOOGLE_CLIENT_ID,
+    googleCLientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    facebookClientId: process.env.FACEBOOK_APP_ID,
+    facebookClientSecret:FACEBOOK_APP_SECRET
+  });
+});
+
+
 router.get("/login/success", (req, res) => {
   if (req.user) {
     res.status(200).json({
@@ -42,7 +52,7 @@ router.get(
 
 router.get(
   "/facebook",
-  passport.authenticate("facebook", { scope: ["profile"] })
+  passport.authenticate("facebook")
 );
 
 router.get(
@@ -52,5 +62,6 @@ router.get(
     failureRedirect: "/login/failed",
   })
 );
+
 
 module.exports = router;

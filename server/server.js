@@ -36,7 +36,7 @@ const corsOptions = {
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
-app.use(morgan("tiny"))
+app.use(morgan("tiny"));
 app.use(cors(corsOptions));
 // DB Config
 const db = process.env.DATABASE;
@@ -83,6 +83,8 @@ app.use("/api", questionRoutes);
 app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
 app.use("/uploads", uploadRoutes);
+
+app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

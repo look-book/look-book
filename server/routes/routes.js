@@ -181,10 +181,7 @@ router.post("/updateUserInfo", verifyJWT, (req, res) => {
       (updateRes) => updateRes
   )
 })
-
-
- 
-        
+     
 /** GET: http://localhost:5000 */
 router.get("/users", (req, res) => {
   try {
@@ -199,33 +196,6 @@ router.get("/users", (req, res) => {
     res.json({ error });
   }
 });
-
-
-/** GET: http://localhost:5000 */
-/*router.get('/uploads', (req, res) => {
-  try{
-      Upload.find({}).then(data => {
-          res.json(data)
-      }).catch(error => {
-          res.status(408).json({ error })
-      })
-  }catch(error){
-      res.json({error})
-  }
-})
-
-/** POST: http://localhost:5000/uploads  */
-/*router.post("/uploads", async (req, res) => {
-  const body = req.body;
-  try{
-      const newImage = await Upload.create(body)
-      newImage.save();
-      res.status(201).json({ msg : "New image uploaded...!"})
-  }catch(error){
-      res.status(409).json({ message : error.message })
-  }
-})*///
-
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
