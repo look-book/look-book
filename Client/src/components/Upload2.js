@@ -56,8 +56,8 @@ function Upload2() {
       <div>
         <h2>Memory Recall Test</h2>
         <p>
-          You need to key in your name in order to access the questions that
-          will are located on the back of each images.
+         You need to key in your name in order to access the questions that
+          will appear once you hover the images.
         </p>
         <ol>
           <li>You will be asked some questions one after another.</li>
