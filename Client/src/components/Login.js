@@ -3,7 +3,6 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
-import { LoginButton } from "react-facebook";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");

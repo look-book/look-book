@@ -24,8 +24,8 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
 
-    function (accessToken, refreshToken, profile, callback) {
-      callback(null, profile);
+    function (accessToken, refreshToken, profile, done) {
+      done(null, profile);
 
       // profile has all google login data
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
