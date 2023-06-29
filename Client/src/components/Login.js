@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
-
+import { LoginButton } from "react-facebook";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -66,7 +66,6 @@ function Login() {
     );
   };
 
-
   return (
     <>
       <div className="contentBox">
@@ -120,10 +119,9 @@ function Login() {
               <img src={Google} alt="" className="icon" />
               Google
             </div>
-            <div className="loginButton facebook">
-              <img src={Facebook} alt="" className="icon" onClick={onFacebook}/>
+            <div className="loginButton facebook" onClick={onFacebook}>
+              <img src={Facebook} alt="" className="icon" />
               Facebook
-              
             </div>
           </div>
         </div>
