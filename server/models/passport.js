@@ -10,7 +10,7 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
+passport.deserializeUser((user, done) => {
   User.findById(id).then(user => {
     done(null, user);
   });
@@ -24,8 +24,8 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
 
-    function (accessToken, refreshToken, profile, done) {
-      done(null, profile);
+    function (accessToken, refreshToken, profile, callback) {
+      callback(null, profile);
 
       // profile has all google login data
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
