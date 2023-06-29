@@ -3,7 +3,7 @@ import { getServerData } from "../helper/helper";
 import "../assets/css/Result.css"
 
 //const REACT_APP_HOST = "http://localhost:5000";
-const REACT_APP_HOST = "https://look-book-act-group42.herokuapp.com/"
+const REACT_APP_HOST = "https://look-book-act-group42.herokuapp.com"
 
 export default function ResultTable() {
   const [data, setData] = useState([]);
