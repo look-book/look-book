@@ -2,7 +2,7 @@ import { postServerData } from '../helper/helper'
 import * as Action from '../redux/result_reducer'
 
 //const REACT_APP_HOST = "http://localhost:5000";
-const REACT_APP_HOST = "https://look-book-act-group42.herokuapp.com/"
+const REACT_APP_HOST = "https://look-book-act-group42.herokuapp.com"
 export const PushAnswer = (result) => async (dispatch) => {
     try {
         await dispatch(Action.pushResultAction(result))
