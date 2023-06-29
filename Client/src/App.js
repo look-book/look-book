@@ -26,6 +26,8 @@ import Navbar from "./components/Navbar";
 import Upload2 from "./components/Upload2";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
+import Result from "./components/Result";
+import { CheckUserExist } from "./helper/helper";
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
           <Route exact path="/filters" element={<Filters />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/people" element={<People />} />
+          <Route exact path="/resultTest" element={<CheckUserExist><Result/></CheckUserExist>} />
+          
           <Route exact path="/coaching" element={<Coaching />} />
           <Route exact path="/post" element={<Album />} />
           <Route exact path="/aboutUs" element={<AboutUs />} />

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Box from "@mui/material/Box";
-import {ListItem } from "@mui/material";
+import { ListItem } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import conversion from "../assets/conversion.svg";
 import ScienceIcon from "@mui/icons-material/Science";
@@ -127,8 +127,10 @@ function AboutUs() {
 
           <Grid item xs={12}>
             <ListItem>
-           <p className="intro">Join us on this exciting journey as we pave the way for a new era
-              of cognitive enhancement through LookBook.</p>
+              <p className="intro">
+                Join us on this exciting journey as we pave the way for a new
+                era of cognitive enhancement through LookBook.
+              </p>
             </ListItem>
           </Grid>
         </Grid>
@@ -136,7 +138,7 @@ function AboutUs() {
       <br></br>
       <br></br>
       <br></br>
-     
+
       <h3 className="text-center">OUR MEMBERS </h3>
       <br></br>
       <div className="columnMember">
@@ -147,8 +149,7 @@ function AboutUs() {
             className="profileMember"
           />
           <h3>Charlene Peters</h3>
-          <p className="title">CEO & Founder, LookBook - 
-          Kansas University</p>
+          <p className="title">CEO & Founder, LookBook - Kansas University</p>
           <div>
             <a href="https://cpetersresume.com/">
               <i className="fa fa-dribbble"></i>
@@ -172,8 +173,9 @@ function AboutUs() {
             className="profileMember"
           />
           <h3>Chelsey Gravel</h3>
-          <p className="title">CEO & C0-Founder, LookBook - 
-          Harvard University</p>
+          <p className="title">
+            CEO & C0-Founder, LookBook - Harvard University
+          </p>
           <div>
             <a href="/">
               <i className="fa fa-dribbble"></i>
@@ -194,9 +196,9 @@ function AboutUs() {
       <br></br>
       <br></br>
       <Box sx={{ flexGrow: 1 }}>
-        <h5>Some Research Facts</h5>
+        <h5>Further Reading</h5>
         <br></br>
-        
+
         <Grid container className="researhSection">
           <Grid item xs={12} sm={6} className="p-2 research">
             <img
@@ -204,7 +206,7 @@ function AboutUs() {
               alt=""
               width="80"
               className="p-2"
-            /> {" "}
+            />{" "}
             <a
               href="https://www.ncbi.nlm.nih.gov/pmc/"
               className="researchlink"
@@ -245,7 +247,7 @@ function AboutUs() {
               href="https://theconversation.com/could-love-hormone-oxytocin-help-treat-alzheimers-disease-heres-what-researchers-currently-know-163301"
               className="researchlink p-2"
             >
-              <img src={conversion} alt="" width="200" className="p-2"/>{" "}
+              <img src={conversion} alt="" width="200" className="p-2" />{" "}
             </a>
             <p className="p-2">
               Could ‘love hormone’ oxytocin help treat Alzheimer’s disease?
@@ -260,29 +262,61 @@ function AboutUs() {
               width="200px"
               className="p-2"
             />{" "}
-            <a href="https://www.nbcnews.com/better/health/science-says-looking-cute-photos-can-rekindle-your-love-life-ncna778561" className="researchlink p-2">
+            <a
+              href="https://www.nbcnews.com/better/health/science-says-looking-cute-photos-can-rekindle-your-love-life-ncna778561"
+              className="researchlink p-2"
+            >
               NBC News{" "}
             </a>
             <br></br>
             <p>Why looking at your photos can rekindle your marriage</p>
           </Grid>
+
           <Grid item xs={12} sm={6} className="p-2 research">
-           
-              <a href="https://onlinelibrary.wiley.com/doi/10.1002/npr2.12292" className="researchlink p-2">
-               <p className="p-2"> Wiley Online Library research. Some interesting results according from their experts.</p>
-              </a>
-           
+            <img
+              src="https://slack-imgs.com/?c=1&o1=ro.gu&url=https%3A%2F%2Fmedia.springernature.com%2Ffull%2Fspringer-static%2Fimage%2Fart%253A10.1038%252Fs42003-023-04791-5%2FMediaObjects%2F42003_2023_4791_Fig1_HTML.png"
+              alt="nature"
+              width="200px"
+              className="p-2"
+            />{" "}
+            <a
+              href="https://www.nature.com/articles/s42003-023-04791-5"
+              className="researchlink p-2"
+            >
+              Nature
+              
+            </a>
+            <p className="p-2">
+              Predictive network analysis identifies JMJD6 and other potential
+              key drivers in Alzheimer’s disease
+            </p>
           </Grid>
           <Grid item xs={12} sm={6} className="p-2 research">
-            
-              <a href="https://core.ac.uk/download/pdf/302079066.pdf" className="researchlink p-2">
-               <p className="p-2"> Effects of Intranasal Oxytocin on Long-Term Memoryin
-                Healthy Humans: a Systematic Review</p>
-              </a>
-            
+            <a
+              href="https://onlinelibrary.wiley.com/doi/10.1002/npr2.12292"
+              className="researchlink p-2"
+            >
+              <p className="p-2">
+                {" "}
+                Wiley Online Library research. Some interesting results
+                according from their experts.
+              </p>
+            </a><br></br>
+            <a
+              href="https://core.ac.uk/download/pdf/302079066.pdf"
+              className="researchlink p-2"
+            >
+              <p className="p-2">
+                {" "}
+                Effects of Intranasal Oxytocin on Long-Term Memoryin Healthy
+                Humans: a Systematic Review
+              </p>
+            </a>
           </Grid>
+         
         </Grid>
-      </Box><br></br>
+      </Box>
+      <br></br>
     </section>
   );
 }

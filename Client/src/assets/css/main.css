@@ -1,0 +1,42 @@
+.containerQ ol li{
+    font-size: 1em;
+    color: #585757;
+}
+
+.start{
+    display: flex;
+    justify-content: center;
+    padding-top: 2em;
+}
+
+.start .btn{
+    padding: .2em 1.7em;
+    border: none;
+    border-radius: .1em;
+    font-size: 1.2em;
+    color: #202020;
+    text-decoration: none;
+    
+}
+
+#form{
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+#form .userid{
+    padding: .7em 2em;
+    width: 50%;
+    border: none;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+@media screen and (max-width:390px) {
+    #form .userid{
+        display: block;
+        width: 100%;
+    }
+}
+

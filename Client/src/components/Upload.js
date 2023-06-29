@@ -6,7 +6,7 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import moment from "moment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
@@ -22,15 +22,21 @@ import {
   angryUpload,
 } from "../actions/uploads";
 
-const Upload = ({ upload }) => {
+
+const Upload = ({ upload}) => {
   const dispatch = useDispatch();
 
   return (
     <>
+  
       <Card className="p-2 cardImages">
         <div>
           <CardMedia>
-            <img src={upload.myFile} alt={upload.title} />
+            <img
+              src={upload.myFile}
+              alt={upload.title}
+              className="uploadImage"
+            />
             <br></br>
           </CardMedia>
 
@@ -112,6 +118,7 @@ const Upload = ({ upload }) => {
           </CardActions>
         </div>
       </Card>
+    
     </>
   );
 };

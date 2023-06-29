@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../assets/css/swiper.css";
+import "../assets/css/main.css";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -8,11 +9,16 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
-import { useDispatch, useSelector } from "react-redux";
 import { getUploads } from "../actions/uploads";
 import UploadForm from "./UploadForm";
 import Upload from "./Upload";
 import { TextField } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { setUserId } from "../redux/result_reducer";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import Quiz from "./Quiz";
+import { CheckUserExist } from "../helper/helper";
 
 function Upload2() {
   const [currentId, setCurrentId] = useState(0);
@@ -23,7 +29,7 @@ function Upload2() {
 
   useEffect(() => {
     dispatch(getUploads());
-  }, [ dispatch]);
+  }, [dispatch]);
 
   const uploads = useSelector((state) => state.uploads);
 
@@ -37,13 +43,52 @@ function Upload2() {
     });
   }
 
+  const inputRef = useRef(null);
+
+  function startQuiz() {
+    if (inputRef.current?.value) {
+      dispatch(setUserId(inputRef.current?.value));
+    }
+  }
+
   return (
     <div className="container">
-      <div className="uploadBox">
-        <h1>Upload photos or browse below</h1>
-        <UploadForm currentId={currentId}
-                setCurrentId={setCurrentId}/>
+      <div>
+        <h2>Memory Recall Test</h2>
+        <p>
+          You need to key in your name in order to access the questions that
+          will are located on the back of each images.
+        </p>
+        <ol>
+          <li>You will be asked some questions one after another.</li>
+          <li>10 points is awarded for the correct answer.</li>
+          <li>
+            Each question has three or more options. You can choose only one
+            options.
+          </li>
+          <li>You can review and change answers before the quiz finish.</li>
+          <li>The result will be declared at the end of the quiz.</li>
+        </ol>
+        <form id="form">
+          <div>
+            {" "}
+            <AccountCircle /> Patient Name:{" "}
+            <input
+              ref={inputRef}
+              className="userid"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+        </form>
+
+        <div className="start">
+          <Link className="btn" to="/album" onClick={startQuiz}>
+            Start Quiz
+          </Link>
+        </div>
       </div>
+
       <br></br>
       <div className="main">
         <div className="search">
@@ -54,7 +99,6 @@ function Upload2() {
             variant="outlined"
             fullWidth
             placeholder="Search categories..."
-    
           />
         </div>
       </div>
@@ -80,14 +124,25 @@ function Upload2() {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className="swiper_container"
       >
-        {search(uploads).map((upload) => (
-          <SwiperSlide key={upload.id}>
-            <Upload
-              upload={upload}
-              currentId={currentId}
-              setCurrentId={setCurrentId}
-              key={upload._id}
-            />
+        {search(uploads).map((upload, i) => (
+          <SwiperSlide key={i}>
+            <div className="flip-card">
+              <div className="flip-card-inner">
+                <div className="flip-card-front">
+                  <Upload
+                    upload={upload}
+                    currentId={currentId}
+                    setCurrentId={setCurrentId}
+                    key={upload._id}
+                  />
+                </div>
+                <div className="flip-card-back">
+                  <CheckUserExist>
+                    <Quiz />
+                  </CheckUserExist>
+                </div>
+              </div>
+            </div>
           </SwiperSlide>
         ))}
 
@@ -101,6 +156,10 @@ function Upload2() {
           </div>
         </div>
       </Swiper>
+      <div className="uploadBox">
+        <h4 className="text-center">Upload photos or browse above</h4>
+        <UploadForm currentId={currentId} setCurrentId={setCurrentId} />
+      </div>
     </div>
   );
 }

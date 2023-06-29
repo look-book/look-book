@@ -23,7 +23,7 @@ const UploadForm = ({ currentId, setCurrentId }) => {
   }, [upload, currentId]);
 
   const clear = () => {
-    setCurrentId(0);
+     setCurrentId(0);
     setUploadData({ mydFile: "", title: "" });
   };
 
