@@ -5,12 +5,19 @@ const dotenv = require("dotenv");
 const User = require("./users")
 dotenv.config();
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((user, done) => {
+passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
     done(null, user);
   });
@@ -24,8 +31,8 @@ passport.use(
       callbackURL: "/auth/google/callback",
     },
 
-    (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
+    (accessToken, refreshToken, profile, callback) => {
+      callback(null, profile);
 
       // profile has all google login data
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
@@ -60,8 +67,8 @@ passport.use(
       clientSecret: process.env.FACEBOOK_APP_SECRET,
       callbackURL: "/auth/facebook/callback"
     },
-    (accessToken, refreshToken, profile, done) => {
-      console.log(profile);
+    (accessToken, refreshToken, profile, callback) => {
+      callback(null, profile);
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
       // check if user id already inserted
       User.findOne({ userId: profile.id }).then(existingUser => {
