@@ -22,7 +22,7 @@ passport.use(
     },
 
     function (accessToken, refreshToken, profile, callback) {
-      callback(null, profile);
+      callback(null, profile,accessToken, refreshToken);
     }
   )
 );
