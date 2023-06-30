@@ -4,13 +4,19 @@ const passport = require("passport");
 //const ClientURL = "http://localhost:3000/";
 const ClientURL = "https://look-book-act-group42.herokuapp.com/";
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  });
+});
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
     res.status(200).json({
       success: true,
       message: "successfull",
-      user: req.user.id,
+      user: req.user,
       //   cookies: req.cookies
     });
   }
