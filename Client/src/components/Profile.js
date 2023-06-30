@@ -41,9 +41,6 @@ const Profile = () => {
     e.preventDefault();
     const updatedUser = {
       userId: user._id,
-      givenName,
-      familyName,
-      email,
       password,
     };
     if (file) {
@@ -74,7 +71,7 @@ const Profile = () => {
               <div className="list">
                 <div className="listItem ">
                   <img
-                    src={user.photos[0].value}
+                    src={user.profilePic}
                     alt=""
                     width="120"
                     height="120"
@@ -87,13 +84,13 @@ const Profile = () => {
               </div>{" "}
               <h2>Biography</h2>
               <p>
-                <b>Given name:</b> {user.name.givenName}
+                <b>Given name:</b>
               </p>
               <p>
-                <b>Family name:</b> {user.name.familyName}
+                <b>Family name:</b> 
               </p>
               <p>
-                <b>Email:</b> {user.emails[0].value}
+                <b>Email:</b> 
               </p>
             </div>
             <div className="settingsG bg-light">
@@ -107,7 +104,7 @@ const Profile = () => {
                 <form className="settingsFormG" onSubmit={handleSubmit}>
                   <label>Profile Picture</label>
                   <div className="settingsPP">
-                    <img src={user.photos[0].value} alt="profile" />
+                    <img src={user.profilePic} alt="profile" />
 
                     <label htmlFor="fileInput">
                       <i className="settingsPPIcon far fa-user-circle"></i>
@@ -123,20 +120,20 @@ const Profile = () => {
                   <label>FirstName</label>
                   <input
                     type="text"
-                    placeholder={user.name.givenName}
+                    placeholder={user}
                     onChange={(e) => setGivenName(e.target.value)}
                   />
                   <label>LastName</label>
                   <input
                     type="text"
-                    placeholder={user.name.familyName}
+                    placeholder={user}
                     onChange={(e) => setFamilyName(e.target.value)}
                   />
                   <label>Username</label>
                   <input
                     type="text"
-                    placeholder={user.emails[0].value}
-                    value={user.emails[0].value}
+                    placeholder={user}
+                    value={user}
                     onChange={(e) => setEmail(e.target.value)}
                   />
 
