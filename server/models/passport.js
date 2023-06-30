@@ -9,9 +9,9 @@ passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser((user, done) => {
+/*passport.deserializeUser((user, done) => {
   done(null, user);
-});
+});*/
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -67,8 +67,8 @@ passport.use(
       clientSecret: process.env.FACEBOOK_APP_SECRET,
       callbackURL: "/auth/facebook/callback"
     },
-    (accessToken, refreshToken, profile, callback) => {
-      callback(null, profile);
+    (accessToken, refreshToken, profile, done) => {
+      done(null, profile);
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
       // check if user id already inserted
       User.findOne({ userId: profile.id }).then(existingUser => {
