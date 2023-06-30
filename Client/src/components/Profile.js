@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+        import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 import axios from "axios";
@@ -73,8 +73,9 @@ const Profile = () => {
             <div className="profileInfo">
               <div className="list">
                 <div className="listItem ">
+
                   <img
-                    src={user.photos[0].value}
+                    src={user.photos[0].value ? user.photos[0].value : user.picture}
                     alt=""
                     width="120"
                     height="120"
@@ -83,7 +84,7 @@ const Profile = () => {
                 </div>
 
                 <br></br>
-                <h4 className="listItem">{user.displayName}</h4>
+                <h4 className="listItem">{user.displayName ? user.displayName : user.username}</h4>
               </div>{" "}
               <h2>Biography</h2> 
               <p>
@@ -136,7 +137,7 @@ const Profile = () => {
                   <input
                     type="text"
                     placeholder={user.emails[0].value}
-                    value={user}
+                    value={user.emails[0].value}
                     onChange={(e) => setEmail(e.target.value)}
                   />
 
