@@ -41,7 +41,7 @@ router.get(
   })
 );
 
-router.post("/user/facebook", async (req, res) => {
+router.post("/auth/facebook", async (req, res) => {
   try {
     const { userId, accessToken } = req.body;
     if (!userId || userId == "" || !accessToken || accessToken == "") {
