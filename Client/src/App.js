@@ -28,12 +28,11 @@ import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import Result from "./components/Result";
 import { CheckUserExist } from "./helper/helper";
-import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
     <div className="App">
-       <Navbar />
+      <Navbar />
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -42,10 +41,18 @@ function App() {
           <Route exact path="/userProfile/:userId" element={<ProfilePage />} />
           <Route exact path="/filters" element={<Filters />} />
           <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
+
           <Route exact path="/people" element={<People />} />
-          <Route exact path="/resultTest" element={<CheckUserExist><Result/></CheckUserExist>} />
-          
+          <Route
+            exact
+            path="/resultTest"
+            element={
+              <CheckUserExist>
+                <Result />
+              </CheckUserExist>
+            }
+          />
+
           <Route exact path="/coaching" element={<Coaching />} />
           <Route exact path="/post" element={<Album />} />
           <Route exact path="/aboutUs" element={<AboutUs />} />
