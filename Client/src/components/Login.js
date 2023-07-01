@@ -118,10 +118,8 @@ function Login() {
               <img src={Google} alt="" className="icon" />
               Google
             </div>
-            <div className="loginButton facebook" onClick={onFacebook}>
-              <img src={Facebook} alt="" className="icon" />
-              Facebook
-            </div>
+              <div className="fb-login-button facebook" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false" id="facebook"></div>
+            
           </div>
         </div>
       </div>
