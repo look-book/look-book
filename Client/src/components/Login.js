@@ -4,6 +4,7 @@ import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
 
+
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState(null);
@@ -56,6 +57,10 @@ function Login() {
       "https://look-book-act-group42.herokuapp.com/auth/google",
       "_self"
     );
+  };
+
+  const responseFacebook = (response) => {
+    console.log(response);
   };
 
   const onFacebook = () => {
@@ -121,11 +126,10 @@ function Login() {
             </div>
             <div className="loginButton facebook" onClick={onFacebook}>
               <img src={Facebook} alt="" className="icon" />
-             Facebook
+              Facebook
             </div>
-              <div className="fb-login-button facebook" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false" id="facebook"></div>
-            
           </div>
+         
         </div>
       </div>
       <br></br>
