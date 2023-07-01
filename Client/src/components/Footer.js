@@ -10,7 +10,6 @@ const Footer = () => {
         backgroundColor: "#dedede",
         paddingTop: "1rem",
         paddingBottom: "1rem",
-        
       }}
     >
       <Container maxWidth="lg d-flex">
@@ -30,6 +29,7 @@ const Footer = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
+         
             <div className="socialicons">
               <span className="sidebarTitle">FOLLOW US</span>
               <div className="sidebarSocial">

@@ -60,7 +60,7 @@ function Login() {
 
   const onFacebook = () => {
     window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/facebook",
+      "https://look-book-act-group42.herokuapp.com/auth/facebook/",
       "_self"
     );
   };
@@ -113,10 +113,15 @@ function Login() {
           <div className="center">
             <div className="or">OR</div>
           </div>
+
           <div className="social">
             <div className="loginButton google" onClick={onGoogle}>
               <img src={Google} alt="" className="icon" />
               Google
+            </div>
+            <div className="loginButton facebook" onClick={onFacebook}>
+              <img src={Facebook} alt="" className="icon" />
+             Facebook
             </div>
               <div className="fb-login-button facebook" data-width="" data-size="" data-button-type="" data-layout="" data-auto-logout-link="false" data-use-continue-as="false" id="facebook"></div>
             
