@@ -3,7 +3,8 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
-
+import axios from "axios";
+import { FacebookProvider, LoginButton } from 'react-facebook';
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -59,9 +60,21 @@ function Login() {
     );
   };
 
-  const responseFacebook = (response) => {
-    console.log(response);
-  };
+  async function handleSuccess(response) {
+    try {
+      var result = await axios.post('http://localhost:5000/user/facebook', {
+        userId: response.authResponse.userID,
+        accessToken: response.authResponse.accessToken
+      });
+      console.log(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function handleError(error) {
+    console.log(error);
+  }
 
   const onFacebook = () => {
     window.open(
@@ -128,6 +141,15 @@ function Login() {
               <img src={Facebook} alt="" className="icon" />
               Facebook
             </div>
+            <FacebookProvider appId="761783708288455">
+        <LoginButton
+          scope="email"
+          onError={handleError}
+          onSuccess={handleSuccess}
+        >
+          Login via Facebook
+        </LoginButton>
+      </FacebookProvider>
           </div>
          
         </div>
