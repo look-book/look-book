@@ -20,7 +20,7 @@ export function flagResult(totalPoints, earnPoints) {
 
 /** check user auth  */
 export function CheckUserExist({ children }) {
-  const auth = useSelector((state) => state.result.userId);
+  const auth = useSelector((state) => state.result.userId && state.result.location);
   return auth ? children : <Navigate to={"/album"} replace={true}></Navigate>;
 }
 

@@ -4,7 +4,21 @@ import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
 import axios from "axios";
-import { FacebookProvider, LoginButton } from 'react-facebook';
+
+import { FacebookProvider, LoginButton } from "react-facebook";
+
+import queryString from "query-string";
+
+const stringifiedParams = queryString.stringify({
+  client_id: "761783708288455",
+  redirect_uri: "http://localhost:5000/auth/facebook/callback",
+  scope: ["email", "user_friends"].join(","), // comma seperated string
+  response_type: "code",
+  auth_type: "rerequest",
+  display: "popup",
+});
+
+const facebookLoginUrl = `https://www.facebook.com/v4.0/dialog/oauth?${stringifiedParams}`;
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -54,33 +68,29 @@ function Login() {
   }, [history, user]);
 
   const onGoogle = () => {
-    window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/google",
-      "_self"
-    );
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
-  async function handleSuccess(response) {
-    try {
-      const result = await axios.post('https://look-book-act-group42.herokuapp.com/user/facebook', {
-        userId: response.authResponse.userID,
-        accessToken: response.authResponse.accessToken
-      });
-      console.log(result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
 
-  function handleError(error) {
-    console.log(error);
+  async function getAccessTokenFromCode(code) {
+    const { data } = await axios({
+      url: "https://graph.facebook.com/v4.0/oauth/access_token",
+      method: "get",
+      params: {
+        client_id: "761783708288455",
+        client_secret: "c53f2dba58ec5bc87670563f9f6aef69",
+        redirect_uri: `https://look-book-act-group42.herokuapp.com/auth/facebook/callback`,
+        code,
+      },
+    });
+    console.log(data); // { access_token, token_type, expires_in }
+    return data.access_token;
   }
+  getAccessTokenFromCode();
 
   const onFacebook = () => {
-    window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/facebook/",
-      "_self"
-    );
+    window.open("https://look-book-act-group42.herokuapp.com/auth/facebook/", "_self");
   };
 
   return (
@@ -114,9 +124,6 @@ function Login() {
             <br></br>
             <input className="submitBtn" type="submit" value="LOGIN" />
             <br></br>
-            <Link to="/resetPassword">
-              <p>Forgot Password ?</p>
-            </Link>
 
             <div className="flex  items-center justify-center">
               <h6>Don't have an account?</h6>
@@ -137,21 +144,14 @@ function Login() {
               <img src={Google} alt="" className="icon" />
               Google
             </div>
-            <div className="loginButton facebook" onClick={onFacebook}>
+            <a href={facebookLoginUrl}>
+            <div className="loginButton facebook">
               <img src={Facebook} alt="" className="icon" />
               Facebook
             </div>
-            <FacebookProvider appId="761783708288455">
-        <LoginButton
-          scope="email"
-          onError={handleError}
-          onSuccess={handleSuccess}
-        >
-          Login via Facebook
-        </LoginButton>
-      </FacebookProvider>
+            </a>
+           
           </div>
-         
         </div>
       </div>
       <br></br>

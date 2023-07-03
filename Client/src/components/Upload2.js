@@ -15,10 +15,11 @@ import Upload from "./Upload";
 import { TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setUserId } from "../redux/result_reducer";
+import { setUserId, setLocation } from "../redux/result_reducer";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Quiz from "./Quiz";
 import { CheckUserExist } from "../helper/helper";
+import HomeIcon from "@mui/icons-material/Home";
 
 function Upload2() {
   const [currentId, setCurrentId] = useState(0);
@@ -43,11 +44,13 @@ function Upload2() {
     });
   }
 
-  const inputRef = useRef(null);
+  const inputRefUser = useRef(null);
+  const inputRefLoc = useRef(null)
 
   function startQuiz() {
-    if (inputRef.current?.value) {
-      dispatch(setUserId(inputRef.current?.value));
+    if (inputRefUser.current?.value) {
+      dispatch(setUserId(inputRefUser.current?.value))
+      dispatch(setLocation(inputRefLoc.current?.value))
     }
   }
 
@@ -56,7 +59,7 @@ function Upload2() {
       <div>
         <h2>Memory Recall Test</h2>
         <p>
-         You need to key in your name in order to access the questions that
+          You need to key in your name in order to access the questions that
           will appear once you hover the images.
         </p>
         <ol>
@@ -74,11 +77,20 @@ function Upload2() {
             {" "}
             <AccountCircle /> Patient Name:{" "}
             <input
-              ref={inputRef}
+              ref={inputRefUser}
               className="userid"
               type="text"
+              name="username"
               placeholder="Name"
-            />
+            />{" "}
+            <HomeIcon/> State Location: { " "}
+            <input
+              ref={inputRefLoc}
+              className="location"
+              type="text"
+              name="location"
+              placeholder="State Location"
+            />{" "}
           </div>
         </form>
 

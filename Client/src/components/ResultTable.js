@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getServerData } from "../helper/helper";
 import "../assets/css/Result.css"
 
-//const REACT_APP_HOST = "http://localhost:5000";
-const REACT_APP_HOST = "https://look-book-act-group42.herokuapp.com"
+const REACT_APP_HOST = "http://localhost:5000";
+//const REACT_APP_HOST = "https://look-book-act-group42.herokuapp.com"
 
 export default function ResultTable() {
   const [data, setData] = useState([]);
@@ -20,7 +20,8 @@ export default function ResultTable() {
         <thead className="table-header">
           <tr className="table-row">
             <td>Patient Name</td>
-            <td>Attemps</td>
+            <td>State</td>
+            <td>Attemtps</td>
             <td>Earn Points</td>
             <td>Result</td>
           </tr>
@@ -30,6 +31,7 @@ export default function ResultTable() {
           {data.map((v, i) => (
             <tr className="table-body" key={i}>
               <td>{v?.username || ""}</td>
+              <td>{v?.location || ""}</td>
               <td>{v?.attempts || 0}</td>
               <td>{v?.points || 0}</td>
               <td>{v?.achieved || ""}</td>

@@ -41,12 +41,12 @@ router.get(
   })
 );
 
-router.get("/facebook", passport.authenticate("facebook"));
+router.get("/facebook", passport.authenticate("facebook",{scope: ["profile", "email"] }));
 
 router.get(
   "/facebook/callback",
   passport.authenticate("facebook", {
-    successRedirect: `${ClientURL}profile`,
+    successRedirect: `${ClientURL}profileFb`,
     failureRedirect: "/login/failed",
   })
 );

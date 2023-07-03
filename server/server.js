@@ -24,7 +24,7 @@ const morgan = require("morgan");
 
 //defining mongoose options
 const corsOptions = {
-  origin: ["https://look-book-act-group42.herokuapp.com/",
+  origin: [ "http://localhost:3000", "https://look-book-act-group42.herokuapp.com/",
   ],
   preflightContinue: false,
   credentials: true,
@@ -83,9 +83,9 @@ app.use("/posts", postRoutes);
 app.use("/uploads", uploadRoutes);
 
 app.use(express.json());
-
 const axios = require('axios');
-app.post("/user/facebook", async (req, res) => {
+
+app.post("/auth/facebook", async (req, res) => {
   try {
     const { userId, accessToken } = req.body;
     if (!userId || userId == "" || !accessToken || accessToken == "") {
@@ -119,7 +119,7 @@ app.post("/user/facebook", async (req, res) => {
         token,
         user,
         message: "Successfully Registered.",
-        redirect: "/profile"
+        redirect: "/profileFb"
       };
       return res.status(201).json(authObject);
     }
@@ -134,8 +134,6 @@ let getUserByFacebookIdAndAccessToken = (accessToken, userId) => {
   let result = axios.get(urlGraphFacebook);
   return result;
 };
-
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../Client/build")));

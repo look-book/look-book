@@ -54,6 +54,15 @@ function Navbar() {
     );
     window.location.reload("/profile");
   };
+
+  const logoutFb = () => {
+    window.open(
+      "https://look-book-act-group42.herokuapp.com/auth/logout",
+      "_self"
+    );
+    window.location.reload("/profileFb");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
@@ -136,18 +145,38 @@ function Navbar() {
               </>
             ) : (
               <>
-                <li className="nav-item right">
-                  <a className="navbar-brand" href={`/profile`}>
-                    <img src={avatar} alt="profile" width="40px" />
-                  </a>
-                </li>
-                <button
-                  className="profileLink"
-                  id="logoutGoogle"
-                  onClick={logoutGoogle}
-                >
-                  LOGOUT
-                </button>
+                {user.name.givenName ? (
+                  <>
+                    <li className="nav-item right">
+                      <a className="navbar-brand" href={`/profile`}>
+                        <img src={avatar} alt="profile" width="40px" />
+                      </a>
+                    </li>
+                    <button
+                      className="profileLink"
+                      id="logoutGoogle"
+                      onClick={logoutGoogle}
+                    >
+                      LOGOUT
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <li className="nav-item right">
+                      <a className="navbar-brand" href={`/profileFb`}>
+                        <img src={avatar} alt="profile" width="40px" />
+                      </a>
+                    </li>
+                    <button
+                      className="profileLink"
+                      id="logoutFb"
+                      onClick={logoutFb}
+                    >
+                      LOGOUT
+                    </button>
+                  </>
+                )}
               </>
             )}
           </ul>
@@ -178,7 +207,7 @@ function Navbar() {
                 </a>
               </div>
             </li>
-           
+
             <li className="nav-item">
               <a className="nav-link" href="/aboutUs">
                 About

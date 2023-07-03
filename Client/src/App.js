@@ -28,6 +28,7 @@ import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import Result from "./components/Result";
 import { CheckUserExist } from "./helper/helper";
+import ProfileFb from "./components/ProfileFb";
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
           <Route exact path="/userProfile/:userId" element={<ProfilePage />} />
           <Route exact path="/filters" element={<Filters />} />
           <Route exact path="/profile" element={<Profile />} />
-
+          <Route exact path="/profileFb" element={<ProfileFb/>} />
           <Route exact path="/people" element={<People />} />
           <Route
             exact

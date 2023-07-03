@@ -20,7 +20,7 @@ export default function Result() {
   const dispatch = useDispatch();
   const {
     questions: { queue, answers },
-    result: { result, userId },
+    result: { result, userId, location },
   } = useSelector((state) => state);
 
   const totalPoints = queue.length * 10;
@@ -32,6 +32,7 @@ export default function Result() {
   usePublishResult({
     result,
     username: userId,
+    location: location,
     attempts,
     points: earnPoints,
     achieved: flag ? "Memory is great!" : "Need Further Evaluation",
@@ -50,6 +51,10 @@ export default function Result() {
         <div className="flex">
           <span>Patient Name</span>
           <span className="bold">{userId || userId.username}</span>
+        </div>
+        <div className="flex">
+          <span>State</span>
+          <span className="bold">{location || location.location}</span>
         </div>
         <div className="flex">
           <span>Total Quiz Points : </span>

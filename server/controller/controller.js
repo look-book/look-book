@@ -47,10 +47,10 @@ const { questions, answers} = require('../database/data.js');
 /** post all result */
  async function storeResult(req, res){
    try {
-        const { username, result, attempts, points, achieved } = req.body;
-        if(!username && !result) throw new Error('Data Not Provided...!');
+        const { username, location, result, attempts, points, achieved } = req.body;
+        if(!username && !location && !result) throw new Error('Data Not Provided...!');
 
-        Results.create({ username, result, attempts, points, achieved }, function(err, data){
+        Results.create({ username, location, result, attempts, points, achieved }, function(err, data){
             res.json({ msg : "Result Saved Successfully...!"})
         })
 

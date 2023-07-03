@@ -10,8 +10,9 @@ import { Navigate } from "react-router-dom";
 
 export default function Quiz() {
   const [check, setChecked] = useState(undefined);
-  const { queue, trace } = useSelector((state) => state.questions);
   const result = useSelector((state) => state.result.result);
+  const { queue, trace } = useSelector((state) => state.questions);
+  
   const dispatch = useDispatch();
 
   /** next button event handler */
@@ -25,9 +26,10 @@ export default function Quiz() {
         dispatch(PushAnswer(check));
       }
     }
-
     /** reset the value of the checked variable */
     setChecked(undefined);
+    dispatch(PushAnswer(check));
+    
   }
 
   /** Prev button event handler */

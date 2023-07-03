@@ -5,7 +5,7 @@ module.exports = {
       }
   
       req.flash("error_alert", "You must login to view this page");
-      res.redirect("/uses/login");
+      res.redirect("/user/login");
     },
     LoggedIn: (req, res, next) => {
       if (!req.isAuthenticated()) {
