@@ -5,13 +5,13 @@ import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
 import axios from "axios";
 
-import { FacebookProvider, LoginButton } from "react-facebook";
+
 
 import queryString from "query-string";
 
 const stringifiedParams = queryString.stringify({
   client_id: "761783708288455",
-  redirect_uri: "http://localhost:5000/auth/facebook/callback",
+  redirect_uri: "https://look-book-act-group42.herokuapp.com/auth/facebook/callback",
   scope: ["email", "user_friends"].join(","), // comma seperated string
   response_type: "code",
   auth_type: "rerequest",
@@ -80,7 +80,7 @@ function Login() {
       params: {
         client_id: "761783708288455",
         client_secret: "c53f2dba58ec5bc87670563f9f6aef69",
-        redirect_uri: `https://look-book-act-group42.herokuapp.com/auth/facebook`,
+        redirect_uri: `https://look-book-act-group42.herokuapp.com/auth/facebook/callback`,
         code,
       },
     });
