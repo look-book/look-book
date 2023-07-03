@@ -11,7 +11,7 @@ import queryString from "query-string";
 
 const stringifiedParams = queryString.stringify({
   client_id: "761783708288455",
-  redirect_uri: "https://look-book-act-group42.herokuapp.com/auth/facebook",
+  redirect_uri: "https://look-book-act-group42.herokuapp.com/auth/facebook/callback",
   scope: ["email", "user_friends"].join(","), // comma seperated string
   response_type: "code",
   auth_type: "rerequest",
