@@ -68,7 +68,7 @@ function Login() {
   }, [history, user]);
 
   const onGoogle = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
   };
 
   
@@ -80,7 +80,7 @@ function Login() {
       params: {
         client_id: "761783708288455",
         client_secret: "c53f2dba58ec5bc87670563f9f6aef69",
-        redirect_uri: `https://look-book-act-group42.herokuapp.com/auth/facebook/callback`,
+        redirect_uri: `https://look-book-act-group42.herokuapp.com/auth/facebook`,
         code,
       },
     });
