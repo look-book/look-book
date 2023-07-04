@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
-import avatar from "../assets/profile.jpg";
+import avatar from "../assets/subProfile.png";
 import { Container } from "@mui/material";
 import LoadingSpinner from "./LoadingSpinner";
 
@@ -13,6 +13,7 @@ const ProfileFb = () => {
     const getUser = () => {
       fetch("/auth/login/success", {
         credentials: "include",
+        SameSite: "none",
         headers: {
           "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
@@ -56,17 +57,6 @@ const ProfileFb = () => {
                 <br></br>
                 <h4 className="listItem">{user.displayName}</h4>
               </div>{" "}
-              <h2>Biography</h2>
-              <p>
-                <b>Given name:</b>
-                {user.first_name}
-              </p>
-              <p>
-                <b>Family name:</b> {user.last_name}
-              </p>
-              <p>
-                <b>Email:</b> {user.email}
-              </p>
             </div>}
           </>
         ) : (

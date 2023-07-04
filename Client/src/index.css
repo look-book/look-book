@@ -32,6 +32,9 @@
   align-items: center;
   height: 350px;
 }
+.fb{
+  text-decoration: none !important;
+}
 
 .containerQ {
   display: block;

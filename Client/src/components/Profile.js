@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 import axios from "axios";
 import { Container } from "@mui/material";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -12,11 +13,13 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getUser = () => {
       fetch("/auth/login/success", {
         credentials: "include",
+        SameSite: "none",
         headers: {
           "Access-Control-Allow-Origin": "*",
           Accept: "application/json",
@@ -29,6 +32,7 @@ const Profile = () => {
         })
         .then((resObject) => {
           setUser(resObject.user);
+          setIsLoading()
         })
         .catch((err) => {
           console.log(err);
@@ -70,6 +74,8 @@ const Profile = () => {
       <section className="profileBox">
         {user ? (
           <>
+           {isLoading ? <LoadingSpinner/> :
+           <>
             <div className="profileInfo">
               <div className="list">
                 <div className="listItem ">
@@ -163,6 +169,8 @@ const Profile = () => {
                 </form>
               </div>
             </div>
+            </>
+            }
           </>
         ) : (
           <>

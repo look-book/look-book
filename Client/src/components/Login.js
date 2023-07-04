@@ -71,7 +71,7 @@ function Login() {
     window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
   };
 
-  
+  //https://look-book-act-group42.herokuapp.com/
 
   async function getAccessTokenFromCode(code) {
     const { data } = await axios({
@@ -89,8 +89,10 @@ function Login() {
   }
   getAccessTokenFromCode();
 
+  
+
   const onFacebook = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/facebook/", "_self");
+    window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
   };
 
   return (
@@ -144,7 +146,7 @@ function Login() {
               <img src={Google} alt="" className="icon" />
               Google
             </div>
-            <a href={facebookLoginUrl}>
+            <a href={facebookLoginUrl} className="fb">
             <div className="loginButton facebook">
               <img src={Facebook} alt="" className="icon" />
               Facebook

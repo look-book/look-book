@@ -52,6 +52,7 @@ function Navbar() {
       "https://look-book-act-group42.herokuapp.com/auth/logout",
       "_self"
     );
+    //https://look-book-act-group42.herokuapp.com/
     window.location.reload("/profile");
   };
 
