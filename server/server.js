@@ -83,57 +83,7 @@ app.use("/posts", postRoutes);
 app.use("/uploads", uploadRoutes);
 
 app.use(express.json());
-const axios = require('axios');
 
-app.post("/auth/facebook", async (req, res) => {
-  try {
-    const { userId, accessToken } = req.body;
-    if (!userId || userId == "" || !accessToken || accessToken == "") {
-      return res
-        .status(400)
-        .json({ message: "userId and accessToken are required" });
-    }
-    //get user by facebook userId and accessToken
-    let { data } = await getUserByFacebookIdAndAccessToken(accessToken, userId);
-    //check if user exists
-    const user = await User.findOne({ facebookId: data.id });
-    const authObject = {};
-    if (user) {
-      const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "20h" });
-      authObject = {
-        auth: true,
-        token,
-        user,
-        message: "Successfully logged in.",
-      };
-      return res.status(201).json(authObject);
-    } else {
-      user = await User.create({
-        name: data.name,
-        email: data.email,
-        facebookId: data.id,
-      });
-      const token = jwt.sign({ id: user._id }, "secret", { expiresIn: "20h" });
-      authObject = {
-        auth: true,
-        token,
-        user,
-        message: "Successfully Registered.",
-        redirect: "/profileFb"
-      };
-      return res.status(201).json(authObject);
-    }
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ message: error.message });
-  }
-});
-
-let getUserByFacebookIdAndAccessToken = (accessToken, userId) => {
-  let urlGraphFacebook = `https://graph.facebook.com/v2.11/${userId}?fields=id,name,email&access_token=${accessToken}`;
-  let result = axios.get(urlGraphFacebook);
-  return result;
-};
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../Client/build")));

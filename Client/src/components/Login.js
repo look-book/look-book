@@ -3,15 +3,12 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
-import axios from "axios";
-
-
 
 import queryString from "query-string";
 
 const stringifiedParams = queryString.stringify({
   client_id: "761783708288455",
-  redirect_uri: "https://look-book-act-group42.herokuapp.com/auth/facebook/callback",
+  redirect_uri: "https://look-book-act-group42.herokuapp.com/auth/facebook",
   scope: ["email", "user_friends"].join(","), // comma seperated string
   response_type: "code",
   auth_type: "rerequest",
@@ -72,24 +69,6 @@ function Login() {
   };
 
   //https://look-book-act-group42.herokuapp.com/
-
-  async function getAccessTokenFromCode(code) {
-    const { data } = await axios({
-      url: "https://graph.facebook.com/v4.0/oauth/access_token",
-      method: "get",
-      params: {
-        client_id: "761783708288455",
-        client_secret: "c53f2dba58ec5bc87670563f9f6aef69",
-        redirect_uri: `https://look-book-act-group42.herokuapp.com/auth/facebook/callback`,
-        code,
-      },
-    });
-    console.log(data); // { access_token, token_type, expires_in }
-    return data.access_token;
-  }
-  getAccessTokenFromCode();
-
-  
 
   const onFacebook = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
