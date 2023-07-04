@@ -72,9 +72,10 @@ const Profile = () => {
   return (
     <Container>
       <section className="profileBox">
-        {user ? (
+      {isLoading ? <LoadingSpinner/> :
+        user ? (
           <>
-           {isLoading ? <LoadingSpinner/> :
+          
            <>
             <div className="profileInfo">
               <div className="list">
@@ -170,7 +171,7 @@ const Profile = () => {
               </div>
             </div>
             </>
-            }
+            
           </>
         ) : (
           <>
