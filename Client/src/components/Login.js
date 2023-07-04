@@ -4,19 +4,6 @@ import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
 
-import queryString from "query-string";
-
-const stringifiedParams = queryString.stringify({
-  client_id: "761783708288455",
-  redirect_uri: "https://look-book-act-group42.herokuapp.com/auth/facebook",
-  scope: ["email", "user_friends"].join(","), // comma seperated string
-  response_type: "code",
-  auth_type: "rerequest",
-  display: "popup",
-});
-
-const facebookLoginUrl = `https://www.facebook.com/v4.0/dialog/oauth?${stringifiedParams}`;
-
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState(null);
@@ -110,7 +97,7 @@ function Login() {
               <h6>Don't have an account?</h6>
               <Link
                 className="m-1 px-2 py-1 rounded font-bold text-xl border-2 border-green-400 text-green-400 text-center"
-                to="/register"
+                to="/registerUser"
               >
                 REGISTER
               </Link>
@@ -125,12 +112,12 @@ function Login() {
               <img src={Google} alt="" className="icon" />
               Google
             </div>
-            <a href={facebookLoginUrl} className="fb">
-            <div className="loginButton facebook">
+            
+            <div className="loginButton facebook" onClick={onFacebook}>
               <img src={Facebook} alt="" className="icon" />
               Facebook
             </div>
-            </a>
+           
            
           </div>
         </div>
