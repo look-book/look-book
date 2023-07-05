@@ -141,14 +141,6 @@ function Navbar() {
                 >
                   LOGOUT
                 </button>
-
-                <button
-                  className="profileLink"
-                  id="logoutFb"
-                  onClick={logoutFb}
-                >
-                  LOGOUT
-                </button>
               </>
             ) : (
               <button className="profileLink" id="logout" onClick={logout}>
