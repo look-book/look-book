@@ -2,48 +2,41 @@ const mongoose = require("mongoose");
 // Create Schema
 const userSchema = new mongoose.Schema(
   {
+    userId: String,
+    access_token: String,
+    picture: String,
     name: {
       type: String,
-      required: true
     },
     email: {
-      type: String,
-      required: true
-    },
-    hashedPassword: {
-      type: String,
+      type: String
     },
     facebookId: {
       type: String
     },
     firstName: {
       type: String,
-      required: true,
     },
     lastName: {
       type: String,
-      required: true,
     },
     username: {
       type: String,
-      required: true,
     },
     password: {
       type: String,
-      required: true,
     },
     confirmPassword: {
       type: String,
-      required: true,
     },
-  
+
     profilePic: String,
 
     verified: { type: Boolean, default: false },
     bio: {
       type: String,
     },
-    
+
     uploads: [
       {
         type: mongoose.Types.ObjectId,

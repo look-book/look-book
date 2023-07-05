@@ -75,6 +75,8 @@ router.post("/login", (req, res) => {
             const payload = {
               id: dbUser._id,
               username: dbUser.username,
+              picture: dbUser.picture,
+              email: dbUser.email,
               firstName: dbUser.firstName,
               lastName: dbUser.lastName,
             };
@@ -124,7 +126,8 @@ router.post("/register", async (req, res) => {
           confirmPassword: user.confirmPassword,
           firstName: user.firstName,
           lastName: user.lastName,   
-          profilePic: user.profilePic,     
+          profile: user.profile, 
+          email: user.email,  
           bio: "Hey!" +  user.firstName + " have not set a bio yet",
           posts:[],
           uploads:[]
@@ -147,12 +150,13 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         firstName: dbUser.firstName,
         lastName: dbUser.lastName,
         password: dbUser.password,
+        email: dbUser.email,
         canEdit: dbUser.username == req.user.username,
         canEdit: dbUser.firstName == req.user.firstName,
         canEdit: dbUser.lastName == req.user.lastName,
         canEdit: dbUser.password == req.user.password,
         bio: dbUser.bio,
-        profilePic: dbUser.profilePic,
+        profile: dbUser.profile,
         posts: dbUser.posts,
         uploads: dbUser.uploads,
       })
@@ -162,7 +166,7 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         username: "User Not Found",
         canEdit: false,
         bio: "",
-        profilePic: "",
+        profile: ""
       })
     );
 });

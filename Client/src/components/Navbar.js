@@ -48,20 +48,14 @@ function Navbar() {
   }, []);
 
   const logoutGoogle = () => {
-    window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/logout",
-      "_self"
-    );
+    window.open("http://localhost:5000/auth/logout", "_self");
     //https://look-book-act-group42.herokuapp.com/
     window.location.reload("/profile");
   };
 
   const logoutFb = () => {
-    window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/logout",
-      "_self"
-    );
-    window.location.reload("/profileFb");
+    window.open("http://localhost:5000/auth/logout", "_self");
+    window.location.reload("/profile");
   };
 
   return (
@@ -129,56 +123,37 @@ function Navbar() {
                 Faq
               </a>
             </li>
-            {user.username ? (
-              <>
-                <li className="nav-item right">
-                  <a
-                    className="navbar-brand"
-                    href={`/userProfile/${user.username}`}
-                  >
-                    <img src={avatar} alt="profile" width="40px" />
-                  </a>
-                </li>
 
-                <button className="profileLink" id="logout" onClick={logout}>
+            <li className="nav-item right">
+              <a
+                className="navbar-brand"
+                href={`/userProfile/${user.username}`}
+              >
+                <img src={avatar} alt="profile" width="40px" />
+              </a>
+            </li>
+            {user.email ? (
+              <>
+                <button
+                  className="profileLink"
+                  id="logoutGoogle"
+                  onClick={logoutGoogle}
+                >
+                  LOGOUT
+                </button>
+
+                <button
+                  className="profileLink"
+                  id="logoutFb"
+                  onClick={logoutFb}
+                >
                   LOGOUT
                 </button>
               </>
             ) : (
-              <>
-                {user.name.givenName ? (
-                  <>
-                    <li className="nav-item right">
-                      <a className="navbar-brand" href={`/profile`}>
-                        <img src={avatar} alt="profile" width="40px" />
-                      </a>
-                    </li>
-                    <button
-                      className="profileLink"
-                      id="logoutGoogle"
-                      onClick={logoutGoogle}
-                    >
-                      LOGOUT
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    <li className="nav-item right">
-                      <a className="navbar-brand" href={`/profileFb`}>
-                        <img src={avatar} alt="profile" width="40px" />
-                      </a>
-                    </li>
-                    <button
-                      className="profileLink"
-                      id="logoutFb"
-                      onClick={logoutFb}
-                    >
-                      LOGOUT
-                    </button>
-                  </>
-                )}
-              </>
+              <button className="profileLink" id="logout" onClick={logout}>
+                LOGOUT
+              </button>
             )}
           </ul>
         ) : (
