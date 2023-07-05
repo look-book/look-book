@@ -66,7 +66,7 @@ passport.use(
   new FacebookStrategy(
     {
       clientID: keys.FACEBOOK_APP_ID,
-      clientSecret: keys.FACEBOOK_APP_ID,
+      clientSecret: keys.FACEBOOK_APP_SECRET,
       callbackURL: "/auth/facebook/callback"
     },
     (accessToken, refreshToken, profile, done) => {
