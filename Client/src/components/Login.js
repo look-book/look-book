@@ -3,8 +3,6 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
-import axios from "axios";
-import { FacebookProvider, LoginButton } from "react-facebook";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -53,30 +51,17 @@ function Login() {
       .catch((err) => console.log(err));
   }, [history, user]);
 
-  async function handleSuccess(response) {
-    try {
-      const result = await axios.post("https://look-book-act-group42.herokuapp.com/auth/facebook", {
-        userId: response.authResponse.userID,
-        accessToken: response.authResponse.accessToken,
-      });
-      console.log(result.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  function handleError(error) {
-    console.log(error);
-  }
+  
 
   const onGoogle = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
   };
 
   //https://look-book-act-group42.herokuapp.com/
+  //http://localhost:5000
 
   const onFacebook = () => {
-    window.open("http://localhost:5000/auth/facebook", "_self");
+    window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
   };
 
   return (
@@ -136,15 +121,6 @@ function Login() {
               Facebook
             </div>
           </div>
-          <FacebookProvider appId="761783708288455">
-              <LoginButton
-                scope="email"
-                onError={handleError}
-                onSuccess={handleSuccess}
-              >
-                Login via Facebook
-              </LoginButton>
-            </FacebookProvider>
         </div>
       </div>
       <br></br>
