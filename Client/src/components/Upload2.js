@@ -21,9 +21,27 @@ import Quiz from "./Quiz";
 import { CheckUserExist } from "../helper/helper";
 import HomeIcon from "@mui/icons-material/Home";
 
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "50%",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  color: "grey",
+  p: 4,
+};
+
 function Upload2() {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
 
   const [q, setQ] = useState("");
   const [searchParam] = useState(["title"]);
@@ -45,12 +63,13 @@ function Upload2() {
   }
 
   const inputRefUser = useRef(null);
-  const inputRefLoc = useRef(null)
+  const inputRefLoc = useRef(null);
 
   function startQuiz() {
     if (inputRefUser.current?.value) {
-      dispatch(setUserId(inputRefUser.current?.value))
-      dispatch(setLocation(inputRefLoc.current?.value))
+      dispatch(setUserId(inputRefUser.current?.value));
+      dispatch(setLocation(inputRefLoc.current?.value));
+      setOpen(true);
     }
   }
 
@@ -83,7 +102,7 @@ function Upload2() {
               name="username"
               placeholder="Name"
             />{" "}
-            <HomeIcon/> State Location: { " "}
+            <HomeIcon /> State Location:{" "}
             <input
               ref={inputRefLoc}
               className="location"
@@ -138,21 +157,12 @@ function Upload2() {
       >
         {search(uploads).map((upload, i) => (
           <SwiperSlide key={i}>
-            <div className="containerOverlay">
-              <div className="overlayBack">
-                <Upload
-                  upload={upload}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                  key={upload._id}
-                />
-              </div>
-              <div className="overlay">
-                <CheckUserExist>
-                  <Quiz />
-                </CheckUserExist>
-              </div>
-            </div>
+            <Upload
+              upload={upload}
+              currentId={currentId}
+              setCurrentId={setCurrentId}
+              key={upload._id}
+            />
           </SwiperSlide>
         ))}
 
@@ -166,6 +176,18 @@ function Upload2() {
           </div>
         </div>
       </Swiper>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <CheckUserExist>
+            <Quiz />
+          </CheckUserExist>
+        </Box>
+      </Modal>
       <div className="uploadBox">
         <h4 className="text-center">Upload photos or browse above</h4>
         <UploadForm currentId={currentId} setCurrentId={setCurrentId} />

@@ -243,29 +243,3 @@ html {
   }
 }
 
-.containerOverlay {
-  position: relative;
-  width: 100%;
-}
-
-.overlayBack {
-  display: block;
-  width: 100%;
-  height: auto; 
-}
-
-.overlay {
-  position: absolute; 
-  top: 0; 
-  background: rgb(35, 34, 34);
-  background: rgba(26, 26, 26, 0.5); /* Black see-through */
-  width: 100%;
-  transition: .5s ease;
-  opacity: 0;
-  border-radius: 20px;
-  text-align: center;
-}
-
-.containerOverlay:hover .overlay {
-  opacity: 1;
-}
