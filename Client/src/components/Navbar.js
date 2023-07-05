@@ -48,13 +48,13 @@ function Navbar() {
   }, []);
 
   const logoutGoogle = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+    window.open("http://localhost:5000/auth/logout", "_self");
     //https://look-book-act-group42.herokuapp.com/
     window.location.reload("/profile");
   };
 
   const logoutFb = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+    window.open("http://localhost:5000/auth/logout", "_self");
     window.location.reload("/profile");
   };
 
