@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import avatar from "../assets/subProfile.png"
+import avatar from "../assets/subProfile.png";
 
 const People = () => {
   const [data, setData] = useState([]);
@@ -11,9 +11,8 @@ const People = () => {
         "x-access-token": localStorage.getItem("token"),
         headers: {
           "Access-Control-Allow-Origin": "*",
-          "Accept": "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
-  
         },
       },
     })
@@ -26,23 +25,21 @@ const People = () => {
 
   return (
     <section className="memberBox">
-      <h3>Members' Profile </h3><br></br>
+      <h3>Members' Profile </h3>
+      <br></br>
       <div className="colMember row">
         {data.map((data, i) => (
           <div className="userMember" key={i}>
-            <button className="addContact">+</button>
             <img
-              src={avatar}
+              src={data.picture ? data.picture : avatar}
               alt="userProfile"
-              width="80"
               className="userProfile"
             />
             <p>
-              {data.firstName} {data.lastName}
-            </p>
-            <p>
-              <a href={`mailto:${data.username}`} className="linkMail">
-                {data.username}
+              {data.firstName}{" "} {data.lastName}
+              <br></br>
+              <a href={`mailto:${data.email}`} className="linkMail">
+                {data.email ? data.email : data.username}
               </a>
             </p>
           </div>
