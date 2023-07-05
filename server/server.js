@@ -13,14 +13,13 @@ const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const questionRoutes = require("./routes/questionRoute");
-const User = require("./models/users.js")
+
 
 //.env File Config
 require("dotenv").config();
 config();
 const app = express();
 const path = require("path");
-const morgan = require("morgan");
 
 //defining mongoose options
 const corsOptions = {
@@ -35,7 +34,7 @@ const corsOptions = {
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   },
 };
-app.use(morgan("tiny"));
+
 app.use(cors(corsOptions));
 // DB Config
 const db = process.env.DATABASE;
@@ -82,8 +81,6 @@ app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
 app.use("/uploads", uploadRoutes);
 
-app.use(express.json());
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../Client/build")));
@@ -98,3 +95,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
