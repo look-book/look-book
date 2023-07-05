@@ -3,7 +3,7 @@ const passport = require("passport");
 const User = require("../models/users")
 
 //const ClientURL = "http://localhost:3000/";
-const ClientURL = "https://look-book-act-group42.herokurouter.com/";
+const ClientURL = "https://look-book-act-group42.herokuapp.com/";
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
