@@ -16,14 +16,15 @@ const Album = () => {
   return (
     <>
       <div className="albumBox">
-    <div className="container">
+        <div className="container">
         <h2>Caregivers Posts</h2>
         <p>
           By sharing your experience with Alzheimers patient, together we can
           create a way to make their memory active. You can search which images
           triggers their all kinds of emotions, and what are the patient's age.
         </p>
-            </div>
+       
+</div>
         <Grow in>
           <Container>
             <Grid
