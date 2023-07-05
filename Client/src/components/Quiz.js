@@ -28,8 +28,6 @@ export default function Quiz() {
     }
     /** reset the value of the checked variable */
     setChecked(undefined);
-    dispatch(PushAnswer(check));
-    
   }
 
   /** Prev button event handler */
