@@ -332,7 +332,7 @@ ul li {
   margin-left: -32%;
 }
 
-.userBox,
+
 .aboutUsBox,
 .accountBox,
 .albumBox {
@@ -341,6 +341,16 @@ ul li {
   border-radius: 10px;
   color: #63666a;
  
+}
+.userBox{
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  
+}
+.profileAccount{
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .uploadSection {

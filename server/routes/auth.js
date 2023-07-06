@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const passport = require("passport");
+const { isLoggedIn, LoggedIn } = require("./foreceinout");
 
 //const ClientURL = "http://localhost:3000/";
 const ClientURL = "https://look-book-act-group42.herokuapp.com/";
 
-router.get("/login/success", (req, res) => {
+router.get("/login/success", isLoggedIn, (req, res) => {
   if (req.user) {
     res.status(200).json({
       success: true,
@@ -35,7 +36,9 @@ router.get(
 
 router.get(
   "/facebook",
-  passport.authenticate("facebook", { scope: ["profile", "email"] })
+  passport.authenticate("facebook"),
+  passport.authorize("facebook", { scope: ["email"] }),
+  LoggedIn
 );
 
 
@@ -44,6 +47,7 @@ router.get(
   passport.authenticate("facebook", {
     successRedirect: `${ClientURL}profile`,
     failureRedirect: "/login/failed",
+    LoggedIn
   })
 );
 

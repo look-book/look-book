@@ -47,14 +47,17 @@ function Navbar() {
     getUser();
   }, []);
 
-  const logoutGoogle = () => {
+  /*const logoutGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
     //https://look-book-act-group42.herokuapp.com/
     window.location.reload("/profile");
-  };
+  };*/
 
-  const logoutFb = () => {
-    window.open("https://look-book-act-group42.herokuapp.com/auth/logout", "_self");
+  const logoutSocial = () => {
+    window.open(
+      "https://look-book-act-group42.herokuapp.com/auth/logout",
+      "_self"
+    );
     window.location.reload("/profile");
   };
 
@@ -123,29 +126,39 @@ function Navbar() {
                 Faq
               </a>
             </li>
-
-            <li className="nav-item right">
-              <a
-                className="navbar-brand"
-                href={`/userProfile/${user.username}`}
-              >
-                <img src={avatar} alt="profile" width="40px" />
-              </a>
-            </li>
-            {user.email ? (
+            {user.userId ? (
               <>
+                <li className="nav-item right">
+                  <a
+                    className="navbar-brand"
+                    href={`/profile/${user.username}`}
+                  >
+                    <img src={avatar} alt="profile" width="40px" />
+                  </a>
+                </li>
                 <button
                   className="profileLink"
-                  id="logoutGoogle"
-                  onClick={logoutGoogle}
+                  id="logout"
+                  onClick={logoutSocial}
                 >
                   LOGOUT
                 </button>
               </>
             ) : (
-              <button className="profileLink" id="logout" onClick={logout}>
-                LOGOUT
-              </button>
+              <>
+                <li className="nav-item right">
+                  <a
+                    className="navbar-brand"
+                    href={`/userProfile/${user.username}`}
+                  >
+                    <img src={avatar} alt="profile" width="40px" />
+                  </a>
+                </li>
+
+                <button className="profileLink" id="logout" onClick={logout}>
+                  LOGOUT
+                </button>
+              </>
             )}
           </ul>
         ) : (

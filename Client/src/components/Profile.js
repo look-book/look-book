@@ -4,6 +4,7 @@ import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 import axios from "axios";
 import { Container } from "@mui/material";
 import LoadingSpinner from "./LoadingSpinner";
+import avatar from "../assets/fbProfile.png";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -81,7 +82,7 @@ const Profile = () => {
                 <div className="list">
                   <div className="listItem ">
                     <img
-                      src={user.picture}
+                      src={user.picture ? user.picture : avatar}
                       alt=""
                       width="120"
                       height="120"
@@ -96,14 +97,13 @@ const Profile = () => {
                 </div>{" "}
                 <h2>Biography</h2>
                 <p>
-                  <b>Given name:</b>
-                  {user.firstName}
+                  <b>Given name:</b> {user.firstName}
                 </p>
                 <p>
                   <b>Family name:</b> {user.lastName}
                 </p>
                 <p>
-                  <b>Email:</b> {user.email}
+                  <b>Email:</b> {user.email ? user.email : user.username}
                 </p>
               </div>
               <div className="settingsG bg-light">
@@ -117,7 +117,7 @@ const Profile = () => {
                   <form className="settingsFormG" onSubmit={handleSubmit}>
                     <label>Profile Picture</label>
                     <div className="settingsPP">
-                      <img src={user.picture} alt="profile" />
+                      <img src={user.picture ? user.picture : avatar} alt="profile" />
 
                       <label htmlFor="fileInput">
                         <i className="settingsPPIcon far fa-user-circle"></i>
@@ -145,8 +145,8 @@ const Profile = () => {
                     <label>Username</label>
                     <input
                       type="text"
-                      placeholder={user.email}
-                      value={user.email}
+                      placeholder={user.email ? user.email : user.username}
+                      value={user.email ? user.email : user.username}
                       onChange={(e) => setEmail(e.target.value)}
                     />
 

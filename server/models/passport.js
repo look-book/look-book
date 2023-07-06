@@ -63,9 +63,13 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: "/auth/facebook/callback"
+      callbackURL: "/auth/facebook/callback",
+      profileFields: ["emails", "name", "displayName", "profileUrl"]
     },
     (accessToken, refreshToken, profile, done) => {
+      const {
+        _json: { email, first_name, last_name , name}
+      } = profile;
       console.log(profile);
       // profile has all google login data
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
@@ -79,11 +83,11 @@ passport.use(
           // insert new user id
           new User({
             userId: profile.id,
-            username: profile.displayName,
-            firstName: profile.firstName,
-            lastName: profile.lastName,
-            email: profile.emails[0].value,
-            picture: profile._json.picture
+            email,
+            username: name,
+            firstName: first_name,
+            lastName: last_name,
+            picture: profile.profileUrl
           })
             .save()
             .then(user => {
