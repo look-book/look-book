@@ -63,8 +63,9 @@ passport.use(
     {
       clientID: process.env.FACEBOOK_APP_ID,
       clientSecret: process.env.FACEBOOK_APP_SECRET,
-      callbackURL: "/auth/facebook/callback",
-      profileFields: ["emails", "name", "displayName", "profileUrl"]
+      callbackURL: "https://look-book-act-group42.herokuapp.com/auth/facebook/callback",
+      profileURL : 'https://graph.facebook.com/v17.0/me?fields=first_name,last_name,email',
+      profileFields: ["id", "emails", "name", "displayName", "profileUrl"]
     },
     (accessToken, refreshToken, profile, done) => {
       const {
