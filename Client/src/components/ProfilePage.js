@@ -60,7 +60,7 @@ function ProfilePage({ match }) {
                 </h3>
 
                 <p>
-                  <b>Email:</b>
+                  <b>Email:</b> {" "}
                   {user.username}
                 </p>
                 <p>
