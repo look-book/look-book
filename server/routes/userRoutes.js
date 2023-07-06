@@ -16,8 +16,10 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         canEdit: dbUser.firstName == req.user.firstName,
         canEdit: dbUser.lastName == req.user.lastName,
         canEdit: dbUser.password == req.user.password,
+        canEdit: dbUser.bio == req.user.bio,
+        canEdit: dbUser.picture == req.user.picture,
         bio: dbUser.bio,
-        profilePic: dbUser.profilePic,
+        picture: dbUser.picture,
         posts: dbUser.posts,
         uploads: dbUser.uploads,
       })
@@ -26,7 +28,7 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         username: "User Not Found", 
         canEdit: false,
         bio: "",
-        profilePic: "",
+        picture: "",
         
     }))
 })
@@ -34,9 +36,8 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
 router.post("/updateUserInfo", verifyJWT, (req, res) => {
     User.updateOne(
         {username: req.user.username},
-        {$set: req.body}, 
         {$set: {bio: req.body.newBio}},  
-        { $set: { profilePic: req.body.newProfilePic } },   
+        { $set: { picture: req.body.newPicture } },   
         (updateRes) => updateRes
     )
 })

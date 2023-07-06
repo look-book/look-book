@@ -126,7 +126,7 @@ router.post("/register", async (req, res) => {
           confirmPassword: user.confirmPassword,
           firstName: user.firstName,
           lastName: user.lastName,   
-          profile: user.profile, 
+          picture: user.picture, 
           email: user.email,  
           bio: "Hey!" +  user.firstName + " have not set a bio yet",
           posts:[],
@@ -155,8 +155,10 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         canEdit: dbUser.firstName == req.user.firstName,
         canEdit: dbUser.lastName == req.user.lastName,
         canEdit: dbUser.password == req.user.password,
+        canEdit: dbUser.bio == req.user.bio,
+        canEdit: dbUser.picture == req.user.picture,
         bio: dbUser.bio,
-        profile: dbUser.profile,
+        picture: dbUser.picture,
         posts: dbUser.posts,
         uploads: dbUser.uploads,
       })
@@ -166,7 +168,7 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         username: "User Not Found",
         canEdit: false,
         bio: "",
-        profile: ""
+        picture: ""
       })
     );
 });
@@ -179,9 +181,8 @@ router.get("/updateUserInfo", (req, res) => {
 router.post("/updateUserInfo", verifyJWT, (req, res) => {
   User.updateOne(
       {username: req.user.username},
-      {$set: req.body}, 
       {$set: {bio: req.body.newBio}},  
-      { $set:{ profilePic: req.body.newProfilePic } },  
+      { $set:{ picture: req.body.newPicture } },  
       (updateRes) => updateRes
   )
 })
