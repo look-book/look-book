@@ -29,9 +29,6 @@ const userSchema = new mongoose.Schema(
     confirmPassword: {
       type: String,
     },
-
-    profilePic: String,
-
     verified: { type: Boolean, default: false },
     bio: {
       type: String,
