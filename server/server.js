@@ -13,7 +13,7 @@ const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const questionRoutes = require("./routes/questionRoute");
-const {User} = require("./models/users.js")
+const User = require("./models/users")
 const axios = require("axios")
 const jwt = require("jsonwebtoken")
 
@@ -83,7 +83,7 @@ app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
 app.use("/uploads", uploadRoutes);
 
-app.post('/user/facebook', async (req, res) => {
+app.post('/auth/facebook', async (req, res) => {
   try {
     const { userId, accessToken } = req.body;
     if (!userId || userId == '' || !accessToken || accessToken == '') {
@@ -94,11 +94,11 @@ app.post('/user/facebook', async (req, res) => {
     let { data } = await getUserByFacebookIdAndAccessToken(accessToken, userId);
 
     // Check if user exists
-    var user = await User.findOne({ facebookId: data.id });
-    var authObject = {};
+    const user = await User.findOne({ facebookId: data.id });
+    const authObject = {};
 
     if (user) {
-      var token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '20h' });
+      const token = jwt.sign({ id: user._id }, 'mysecret', { expiresIn: '7h' });
       authObject = { auth: true, token, user, message: "Successfully logged in." };
       return res.status(201).json(authObject);
     } else {
@@ -108,7 +108,7 @@ app.post('/user/facebook', async (req, res) => {
         facebookId: data.id
       });
 
-      var token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '20h' });
+      const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '7h' });
       authObject = { auth: true, token, user, message: "Successfully Registered." };
       return res.status(201).json(authObject);
     }

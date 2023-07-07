@@ -64,7 +64,7 @@ function Login() {
 
   async function handleSuccess(response) {
     try {
-      const result = await axios.post('https://look-book-act-group42.herokuapp.com/user/facebook', {
+      const result = await axios.post('https://look-book-act-group42.herokuapp.com/auth/facebook', {
         userId: response.authResponse.userID,
         accessToken: response.authResponse.accessToken
       });

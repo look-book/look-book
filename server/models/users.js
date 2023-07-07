@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String
     },
+    hashedPassword: {
+      type: String,
+    },
     facebookId: {
       type: String
     },
