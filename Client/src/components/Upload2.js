@@ -41,7 +41,7 @@ const style = {
 function Upload2() {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
 
   const [q, setQ] = useState("");

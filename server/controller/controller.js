@@ -2,6 +2,7 @@ const Questions = require("../models/questionSchema");
 const Results = require("../models/resultSchema");
 const { questions, answers} = require('../database/data.js');
 
+
 /** get all questions */
  async function getQuestions(req, res){
     try {

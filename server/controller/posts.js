@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const expressHandler = require("express-async-handler");
 
 const PostMessage = require('../models/postMessage');
+const verifyJWT = require("../verifyJWT");
 
  const getPosts = expressHandler( async (req, res) => { 
     try {
@@ -27,9 +28,8 @@ const PostMessage = require('../models/postMessage');
     }
 });
 
- const createPost = expressHandler(async (req, res) => {
+ const createPost = expressHandler( async (req, res) => {
     const { title, message, age, selectedFile, creator, tags } = req.body;
-
     const newPostMessage = new PostMessage({ title, message, age, selectedFile, creator, tags })
 
     try {

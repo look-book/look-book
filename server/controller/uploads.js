@@ -2,6 +2,7 @@ const e = require("express");
 const mongoose = require("mongoose");
 const expressHandler = require("express-async-handler");
 const Upload = require("../models/upload");
+const User = require("../models/users")
 const verifyJWT = require("../verifyJWT");
 
 const getUploads = expressHandler(async (req, res) => {
@@ -21,7 +22,7 @@ const getUpload = expressHandler(verifyJWT, async (req, res) => {
   const { id } = req.params;
 
   try {
-    const upload = await Upload.findById(id);
+    const upload = await Upload.findById(id, username);
 
     res.status(200).json(upload);
   } catch (error) {
@@ -29,12 +30,12 @@ const getUpload = expressHandler(verifyJWT, async (req, res) => {
   }
 });
 
-const createUpload = expressHandler(async (req, res) => {
+const createUpload = expressHandler( async (req, res) => {
   const username = req.params.userId;
+  User.findOne({ username: username });
   const {
     myFile,
     title,
-    authorName,
     loveCount,
     happyCount,
     sadCount,
@@ -65,7 +66,6 @@ const createUpload = expressHandler(async (req, res) => {
 const updateUpload = expressHandler(verifyJWT, async (req, res) => {
   const username = req.params.userId;
   User.find({ username: username });
-
   const { id } = req.params;
   const {
     myFile,
@@ -93,8 +93,11 @@ const updateUpload = expressHandler(verifyJWT, async (req, res) => {
     _id: id,
   };
 
-  await Upload.findByIdAndUpdate(id, updateUpload, authorName, { new: true, authorName: username });
-  await User.findByIdAndUpdate(username)
+  await Upload.findByIdAndUpdate(id, updateUpload, authorName, {
+    new: true,
+    authorName: username,
+  });
+  await User.findByIdAndUpdate(username);
 
   res.json(updateUpload);
 });

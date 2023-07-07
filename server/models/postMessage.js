@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {ObjectId} = mongoose.Schema.Types
 
 const postSchema = new mongoose.Schema({
     title: {
@@ -7,7 +8,9 @@ const postSchema = new mongoose.Schema({
     message: {
          type: String
     },
-    creator: {type: String
+    creator: { 
+        type:ObjectId,
+        ref:"User"
     },
     
     age: {

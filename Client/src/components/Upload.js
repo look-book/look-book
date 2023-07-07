@@ -6,7 +6,7 @@ import {
   Button,
   CardActions,
 } from "@mui/material";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import moment from "moment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
@@ -25,10 +25,8 @@ import {
 
 const Upload = ({ upload}) => {
   const dispatch = useDispatch();
-
   return (
     <>
-  
       <Card className="p-2 cardImages">
         <div>
           <CardMedia>
@@ -118,7 +116,6 @@ const Upload = ({ upload}) => {
           </CardActions>
         </div>
       </Card>
-    
     </>
   );
 };

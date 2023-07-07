@@ -182,7 +182,7 @@ router.post("/updateUserInfo", verifyJWT, (req, res) => {
   User.updateOne(
       {username: req.user.username},
       {$set: {bio: req.body.newBio}},  
-      { $set:{ picture: req.body.newPicture } },  
+      { $set:{ picture: req.body.newPicture }},  
       (updateRes) => updateRes
   )
 })

@@ -36,6 +36,9 @@ router.post("/login",(req, res) => {
                         username: dbUser.username,
                         firstName: dbUser.firstName,
                         lastName: dbUser.lastName,
+                        picture: dbUser.picture,
+                        email: dbUser.email,
+                        bio: dbUser.bio
                     }
                     jwt.sign(
                         payload, 
@@ -76,7 +79,7 @@ router.post("/register", async (req, res) => {
             confirmPassword: user.confirmPassword,
             firstName: user.firstName,
             lastName: user.lastName,   
-            profilePic: user.profilePic,     
+            picture: user.picture,     
             bio: "Hey!" +  user.firstName + " have not set a bio yet",
             singleFile: [],
             multipleFiles: [],

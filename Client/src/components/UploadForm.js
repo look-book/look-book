@@ -24,7 +24,7 @@ const UploadForm = ({ currentId, setCurrentId }) => {
 
   const clear = () => {
      setCurrentId(0);
-    setUploadData({ mydFile: "", title: "" });
+    setUploadData({ myFile: "", title: "" });
   };
 
   const handleSubmit = async (e) => {

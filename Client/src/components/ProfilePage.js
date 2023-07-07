@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import avatar from "../assets/subProfile.png";
 import Settings from "./ResetPassword";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
+import FileBase from "react-file-base64";
 
 function ProfilePage({ match }) {
   const { userId } = useParams(match);
@@ -25,11 +26,12 @@ function ProfilePage({ match }) {
   }, [userId]);
 
   async function changeUserInfo(e) {
-    e.preventDefault();
     const form = e.target;
     const newBio = form[0].value;
-    setUser({ ...user, bio: newBio });
+    const newPicture = new FormData();
+    setUser({ ...user, bio: newBio, picture: newPicture });
     form[0].value = "";
+
 
     try {
       await fetch("/api/updateUserInfo", {
@@ -38,7 +40,7 @@ function ProfilePage({ match }) {
           "x-access-token": localStorage.getItem("token"),
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ newBio: newBio }),
+        body: JSON.stringify({ newBio: newBio, newPicture: newPicture}),
       });
     } catch (err) {
       alert(err);
@@ -53,15 +55,19 @@ function ProfilePage({ match }) {
           <>
             <div className="profileAccount">
               <div>
-                <img className="avatar" src={avatar} alt="profile" />
+                <img
+                  className="avatar"
+                  src={user.picture ? user.picture : avatar}
+                  alt="profile"
+                />
+
                 <br></br>
                 <h3>
                   {user.firstName} {user.lastName}
                 </h3>
 
                 <p>
-                  <b>Email:</b> {" "}
-                  {user.username}
+                  <b>Email:</b> {user.username}
                 </p>
                 <p>
                   <b>Bio:</b> {user.bio}
@@ -81,6 +87,15 @@ function ProfilePage({ match }) {
 
                       <input type="submit" value="Submit" />
                       <p className="text-sm my-1">1000 characters maximum</p>
+                      <div className="">
+                        <FileBase
+                          type="file"
+                          multiple={false}
+                          onDone={({ base64 }) =>
+                            setUser({ ...user, picture: base64 })
+                          }
+                        />
+                      </div>
                     </form>
                   </>
                 ) : null}
@@ -94,7 +109,7 @@ function ProfilePage({ match }) {
             <h2>You're logout successfully!</h2>
             <Link to="/loginUser">Signin back</Link>
             <div className="logoutVideo">
-            <video src={bgVideo} autoPlay loop muted />
+              <video src={bgVideo} autoPlay loop muted />
             </div>
           </div>
         )}

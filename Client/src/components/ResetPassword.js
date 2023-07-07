@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import avatar from "../assets/subProfile.png";
 import axios from "axios";
 import "../assets/css/settings.css";
 import { useParams } from "react-router-dom";
@@ -41,9 +40,9 @@ export default function Settings({ match }) {
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
-      updatedUser.profilePic = filename;
+      updatedUser.picture = filename;
       try {
-        await axios.post("/api/uploads", data);
+        await axios.post("http://localhost:5000/api/uploads", data);
       } catch (err) {}
     }
     try {
@@ -65,7 +64,7 @@ export default function Settings({ match }) {
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="settingsPP">
-            <img src={file ? URL.createObjectURL(file) : avatar} alt="" />
+            <img src={file ? URL.createObjectURL(file) : user.picture} alt="" />
 
             <label htmlFor="fileInput">
               <i className="settingsPPIcon far fa-user-circle"></i>
