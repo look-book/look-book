@@ -42,6 +42,32 @@ const Profile = () => {
     getUser();
   }, []);
 
+  useEffect(() => {
+    const getUser = () => {
+      fetch("/user/facebook", {
+        credentials: "include",
+        SameSite: "none",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+          setIsLoading();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedUser = {
@@ -56,7 +82,7 @@ const Profile = () => {
       const filename = Date.now() + file.name;
       data.append("name", filename);
       data.append("file", file);
-      updatedUser.profilePic = filename;
+      updatedUser.picture = filename;
       try {
         await axios.post("/api/uploads", data);
       } catch (err) {}

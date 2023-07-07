@@ -17,6 +17,18 @@ router.get("/login/success", isLoggedIn, (req, res) => {
   }
 });
 
+router.get("/user/facebook", isLoggedIn, (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: "successfull",
+      user: req.user,
+      //   cookies: req.cookies
+    });
+  }
+});
+
+
 router.get("/logout", (req, res) => {
   req.logout();
   res.redirect(`${ClientURL}profile`);

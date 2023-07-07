@@ -104,6 +104,10 @@ app.post('/user/facebook', async (req, res) => {
     } else {
       user = await User.create({
         name: data.name,
+        username: data.displayName,
+        firstName: data.name.givenName,
+        lastName: data.name.familyName,
+        picture: data.profilePic,
         email: data.email,
         facebookId: data.id
       });
@@ -118,13 +122,11 @@ app.post('/user/facebook', async (req, res) => {
   }
 });
 
-
 let getUserByFacebookIdAndAccessToken = (accessToken, userId) => {
   let urlGraphFacebook = `https://graph.facebook.com/v2.11/${userId}?fields=id,name,email&access_token=${accessToken}`;
   let result = axios.get(urlGraphFacebook);
   return result;
 };
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../Client/build")));
