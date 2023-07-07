@@ -13,7 +13,7 @@ const postRoutes = require("./routes/postRoutes");
 const Router = require("./routes/routes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const questionRoutes = require("./routes/questionRoute");
-const {User} = require("../models/users.js")
+const {User} = require("./models/users.js")
 const axios = require("axios")
 const jwt = require("jsonwebtoken")
 
