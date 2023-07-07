@@ -2,6 +2,8 @@ const router = require("express").Router();
 const passport = require("passport");
 const { isLoggedIn, LoggedIn } = require("./foreceinout");
 const User = require("../models/users")
+const axios = require("axios")
+const jwt = require("jsonwebtoken")
 
 //const ClientURL = "http://localhost:3000/";
 const ClientURL = "https://look-book-act-group42.herokuapp.com/";
@@ -52,7 +54,7 @@ router.get(
   })
 );
 
-router.post('/facebook', async (req, res) => {
+router.post('/auth/facebook', async (req, res) => {
   try {
     const { userId, accessToken } = req.body;
     if (!userId || userId == '' || !accessToken || accessToken == '') {
