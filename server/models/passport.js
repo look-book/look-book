@@ -2,6 +2,8 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const User = require("./users")
 const passport = require("passport");
+const axios = require('axios');
+const jwt = require('jsonwebtoken');
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -67,20 +69,17 @@ passport.use(
       profileFields: ["id", "emails", "name", "displayName", "profileUrl"]
     },
     (accessToken, refreshToken, profile, done) => {
-      const { userId } = req.body;
+  
       const {
         _json: { email, first_name, last_name , name}
       } = profile;
       console.log(profile);
 
-      
-      // Get user by Facebook userId and accessToken
-    let { data } =  getUserByFacebookIdAndAccessToken(accessToken, userId);
       // profile has all google login data
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
 
       // check if user id already inserted
-      User.findOne({ userId: profile.id,  facebookId: data.id }).then(existingUser => {
+      User.findOne({ userId: profile.id}).then(existingUser => {
        
 
         if (existingUser) {
@@ -90,7 +89,6 @@ passport.use(
           // insert new user id
           new User({
             userId: profile.id,
-            facebookId: data.id,
             email,
             username: name,
             firstName: first_name,
@@ -107,6 +105,43 @@ passport.use(
     }
   )
 );
+
+
+
+router.post('/user/facebook', async (req, res) => {
+  try {
+    const { userId = '', accessToken = '' } = req.body;
+    if (userId === '' || accessToken === '') {
+      return res.status(400).json({ message: "userId and accessToken are required" });
+    }
+
+    // Get user by Facebook userId and accessToken
+    let { data } = await getUserByFacebookIdAndAccessToken(accessToken, userId);
+
+    // Check if user exists
+   const user = await User.findOne({ facebookId: data.id });
+   const authObject = {};
+
+    if (user) {
+     const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '20h' });
+      authObject = { auth: true, token, user, message: "Successfully logged in." };
+      return res.status(201).json(authObject);
+    } else {
+      user = await User.create({
+        name: data.name,
+        email: data.email,
+        facebookId: data.id
+      });
+
+     const token = jwt.sign({ id: user._id }, 'secret', { expiresIn: '20h' });
+      authObject = { auth: true, token, user, message: "Successfully Registered." };
+      return res.status(201).json(authObject);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: error.message });
+  }
+});
 
 
 let getUserByFacebookIdAndAccessToken = (accessToken, userId) => {
