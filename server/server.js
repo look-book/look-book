@@ -83,7 +83,7 @@ app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
 app.use("/uploads", uploadRoutes);
 
-app.post('/auth/facebook', async (req, res) => {
+app.post('/user/facebook', async (req, res) => {
   try {
     const { userId, accessToken } = req.body;
     if (!userId || userId == '' || !accessToken || accessToken == '') {
