@@ -8,9 +8,8 @@ const postSchema = new mongoose.Schema({
     message: {
          type: String
     },
-    creator: { 
-        type:ObjectId,
-        ref:"User"
+   creator: { 
+        type: String
     },
     
     age: {
