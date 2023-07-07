@@ -40,13 +40,27 @@
     font-size: 1em;
 }
 @media screen and (max-width:575px) {
-    #form .userid{
+    #form .userid, #form .location {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:414px) {
+    #form .userid, #form .location {
         display: block;
         width: 100%;
     }
 }
 @media screen and (max-width:390px) {
-    #form .userid{
+    #form .userid, #form .location{
+        display: block;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:375px) {
+    #form .userid, #form .location {
         display: block;
         width: 100%;
     }
