@@ -67,15 +67,22 @@ passport.use(
       profileFields: ["id", "emails", "name", "displayName", "profileUrl"]
     },
     (accessToken, refreshToken, profile, done) => {
+      const { userId } = req.body;
       const {
         _json: { email, first_name, last_name , name}
       } = profile;
       console.log(profile);
+
+      
+      // Get user by Facebook userId and accessToken
+    let { data } =  getUserByFacebookIdAndAccessToken(accessToken, userId);
       // profile has all google login data
       /* ========= DATABASE CHECK PRE EXIST AND INSERT QUERY: START =========  */
 
       // check if user id already inserted
-      User.findOne({ userId: profile.id }).then(existingUser => {
+      User.findOne({ userId: profile.id,  facebookId: data.id }).then(existingUser => {
+       
+
         if (existingUser) {
           done(null, existingUser);
         } else {
@@ -83,6 +90,7 @@ passport.use(
           // insert new user id
           new User({
             userId: profile.id,
+            facebookId: data.id,
             email,
             username: name,
             firstName: first_name,
@@ -101,6 +109,11 @@ passport.use(
 );
 
 
+let getUserByFacebookIdAndAccessToken = (accessToken, userId) => {
+  let urlGraphFacebook = `https://graph.facebook.com/v2.11/${userId}?fields=id,name,email&access_token=${accessToken}`;
+  let result = axios.get(urlGraphFacebook);
+  return result;
+};
 /*
 passport.serializeUser((user, done) => {
   done(null, user);

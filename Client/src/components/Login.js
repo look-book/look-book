@@ -78,7 +78,6 @@ function Login() {
     console.log(error);
   }
   
-
   const onFacebook = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
   };

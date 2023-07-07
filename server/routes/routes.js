@@ -202,6 +202,7 @@ router.get("/users", (req, res) => {
   }
 });
 
+
 router.get("/login/success", (req, res) => {
   if (req.user) {
     res.status(200).json({
@@ -225,7 +226,6 @@ router.post("/login/success", (req, res) => {
 router.post("/logout", (req, res) => {
   req.logout(req.user, (err) => {
     if (err) return next(err);
-    res.redirect("https://look-book-act-group42.herokuapp.com/");
   });
 });
 
