@@ -11,3 +11,10 @@ export const SAD = "SAD";
 export const SCARED = "SCARED";
 export const ANGRY = "ANGRY"
 
+export const USER = "USER"
+export const CLEAR = "CLEAR"
+export const UPDATEU = "UPDATEU"
+export const UPDATEPIC = "UPDATEPIC"
+
+
+

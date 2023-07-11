@@ -3,13 +3,20 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
     userId: String,
-    picture: String,
+    myPic: String,
+   picture: {
+    type:  String,
+    default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
+  },
     name: {
       type: String,
     },
     email: {
       type: String
     },
+    resetToken:String,
+    expireToken:Date,
+
     hashedPassword: {
       type: String,
     },
@@ -32,10 +39,10 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     verified: { type: Boolean, default: false },
+
     bio: {
       type: String,
     },
-
     uploads: [
       {
         type: mongoose.Types.ObjectId,
@@ -48,6 +55,7 @@ const userSchema = new mongoose.Schema(
         ref: "PostMessage",
       },
     ],
+  
   },
   { timestamps: true }
 );

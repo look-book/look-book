@@ -1,12 +1,7 @@
 import React from "react";
 import "./index.css";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  //Navigate
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Filters from "./components/Filters";
 import Home from "./components/Home";
@@ -29,7 +24,6 @@ import Profile from "./components/Profile";
 import Result from "./components/Result";
 import { CheckUserExist } from "./helper/helper";
 
-
 function App() {
   return (
     <div className="App">
@@ -38,7 +32,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/loginUser" element={<Login />} />
-          <Route exact path="/registerUser" element={<Register />} />
+          <Route exact path="/registerUser" element={<Register/>} />
           <Route exact path="/userProfile/:userId" element={<ProfilePage />} />
           <Route exact path="/filters" element={<Filters />} />
           <Route exact path="/profile" element={<Profile />} />
@@ -64,6 +58,7 @@ function App() {
           <Route exact path="*" element={<NotFound />} />
         </Routes>
       </Router>
+
       <Footer />
     </div>
   );

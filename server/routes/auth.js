@@ -2,7 +2,6 @@ const router = require("express").Router();
 const passport = require("passport");
 const { isLoggedIn, LoggedIn } = require("./foreceinout");
 
-
 //const ClientURL = "http://localhost:3000/";
 const ClientURL = "https://look-book-act-group42.herokuapp.com/";
 

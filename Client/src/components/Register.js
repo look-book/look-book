@@ -4,7 +4,6 @@ import ValidationError from "./ValidationError";
 
 function Register() {
   const [errorMessage, setErrorMessage] = useState("");
-
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useNavigate();
 

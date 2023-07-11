@@ -1,15 +1,13 @@
 const mongoose = require("mongoose");
-const {ObjectId} = mongoose.Schema.Types;
+
 const uploadSchema = new mongoose.Schema(
   {
     title: {
       type: String,
     },
     myFile: String,
-
     authorName: {
-      type: ObjectId,
-      ref: "User",
+      type: String,
     },
 
     loveCount: {

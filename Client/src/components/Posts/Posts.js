@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Post from "./Post/Post";
 import { getPosts } from "../../actions/posts";
 
-function Album() {
+function Posts() {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
 
@@ -60,4 +60,4 @@ function Album() {
   );
 }
 
-export default Album;
+export default Posts;

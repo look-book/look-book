@@ -3,6 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs"); //was bcrypt
 const User = require("../models/users");
 const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer')
+const sendgridTransport = require('nodemailer-sendgrid-transport')
+const  SENDGRID_API = process.env.SENDGRID_API
 
 const {
   registrationValidation,
@@ -66,7 +69,7 @@ router.post("/login", (req, res) => {
   } else {
     User.findOne({ username: userLoggingIn.username }).then((dbUser) => {
       if (!dbUser) {
-        return res.json({ message: "Invalidemail or Password" });
+        return res.json({ message: "Invalidusername or Password" });
       }
       bcrypt
         .compare(userLoggingIn.password, dbUser.password)
@@ -76,7 +79,7 @@ router.post("/login", (req, res) => {
               id: dbUser._id,
               username: dbUser.username,
               picture: dbUser.picture,
-              email: dbUser.email,
+              username: dbUser.username,
               firstName: dbUser.firstName,
               lastName: dbUser.lastName,
             };
@@ -92,7 +95,7 @@ router.post("/login", (req, res) => {
               }
             );
           } else {
-            return res.json({ message: "Invalidemail or Password" });
+            return res.json({ message: "Invalidusername or Password" });
           }
         });
     });
@@ -109,13 +112,13 @@ router.post("/register", async (req, res) => {
   const user = req.body;
   
   const takenUsername = await User.findOne({username: user.username.toLowerCase()})
-  const takenEmail = await User.findOne({email: user.username.toLowerCase()})
+  const takenusername = await User.findOne({username: user.username.toLowerCase()})
 
   const validationError = registrationValidation(user).error
 
   if (validationError) {
       return res.json({message: validationError.details[0].message})
-  } else if (takenUsername || takenEmail) {
+  } else if (takenUsername || takenusername) {
       return res.json({message: "Username has already been taken"})
   } else {
       user.password = await bcrypt.hash(req.body.password, 10)
@@ -127,7 +130,7 @@ router.post("/register", async (req, res) => {
           firstName: user.firstName,
           lastName: user.lastName,   
           picture: user.picture, 
-          email: user.email,  
+          username: user.username,  
           bio: "Hey!" +  user.firstName + " have not set a bio yet",
           posts:[],
           uploads:[]
@@ -150,7 +153,7 @@ router.get("/user/:userId", verifyJWT, (req, res) => {
         firstName: dbUser.firstName,
         lastName: dbUser.lastName,
         password: dbUser.password,
-        email: dbUser.email,
+        username: dbUser.username,
         canEdit: dbUser.username == req.user.username,
         canEdit: dbUser.firstName == req.user.firstName,
         canEdit: dbUser.lastName == req.user.lastName,
@@ -229,4 +232,61 @@ router.post("/logout", (req, res) => {
   });
 });
 
+const transporter = nodemailer.createTransport(sendgridTransport({
+  auth:{
+      api_key:SENDGRID_API
+  }
+}))
+
+router.post('/resetPassword',(req,res)=>{
+  crypto.randomBytes(32,(err,buffer)=>{
+      if(err){
+          console.log(err)
+      }
+      const token = buffer.toString("hex")
+      User.findOne({username: req.body.username})
+      .then(user=>{
+          if(!user){
+              return res.status(422).json({error:"User dont exists with that username"})
+          }
+          user.resetToken = token
+          user.expireToken = Date.now() + 3600000
+          user.save().then((result)=>{
+              transporter.sendMail({
+                  to:user.username,
+                  from:"lookbook@gmail.com",
+                  subject:"password reset",
+                  html:`
+                  <p>You requested for password reset</p>
+                  <h5>click in this <a href="${username}/reset/${token}">link</a> to reset password</h5>
+                  `
+              })
+              res.json({message:"check your username"})
+          })
+
+      })
+  })
+})
+
+
+router.post('/new-password',(req,res)=>{
+ const newPassword = req.body.password
+ const sentToken = req.body.token
+ User.findOne({resetToken:sentToken,expireToken:{$gt:Date.now()}})
+ .then(user=>{
+     if(!user){
+         return res.status(422).json({error:"Try again session expired"})
+     }
+     bcrypt.hash(newPassword,12).then(hashedpassword=>{
+        user.password = hashedpassword
+        user.resetToken = undefined
+        user.expireToken = undefined
+        user.save().then((saveduser)=>{
+            res.json({message:"password updated success"})
+        })
+     })
+ }).catch(err=>{
+     console.log(err)
+ })
+})
 module.exports = router;

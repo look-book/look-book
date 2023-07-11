@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../assets/css/settings.css";
 import { useParams } from "react-router-dom";
+import avatar from "../assets/subProfile.png"
 
 export default function Settings({ match }) {
   const [file, setFile] = useState(null);
@@ -64,7 +65,7 @@ export default function Settings({ match }) {
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="settingsPP">
-            <img src={file ? URL.createObjectURL(file) : user.picture} alt="" />
+            <img src={user.picture ? user.picture : avatar} alt="" />
 
             <label htmlFor="fileInput">
               <i className="settingsPPIcon far fa-user-circle"></i>

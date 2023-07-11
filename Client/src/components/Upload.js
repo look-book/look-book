@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardMedia,
   Typography,
   Button,
   CardActions,
+ 
 } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -20,11 +22,60 @@ import {
   sadUpload,
   scaredUpload,
   angryUpload,
+  deleteUpload,
 } from "../actions/uploads";
 
 
-const Upload = ({ upload}) => {
+const Upload = ({ upload }) => {
   const dispatch = useDispatch();
+  const [ user, setUser ] = useState({})
+
+  useEffect(() => {
+    fetch("/api/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? setUser(data) : null))
+      .catch((err) => console.log(err));
+  }, [setUser]);
+   // Delete the post and redirect the user to the homepage
+   const handleDelete = async (e) => {
+    e.preventDefault();
+     dispatch(deleteUpload(upload._id))
+     setUser(user)
+   }
+
+   useEffect(() => {
+    const getUser = () => {
+      fetch("/auth/login/success", {
+        credentials: "include",
+        SameSite: "none",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+          
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
+
   return (
     <>
       <Card className="p-2 cardImages">
@@ -38,10 +89,12 @@ const Upload = ({ upload}) => {
             <br></br>
           </CardMedia>
 
-          <div className="cardInfo">
-            <Typography variant="h6">{upload.title} </Typography>
+          <div className="cardInfo" key={upload._id}>
+            <div className="cardDel">
+            <Typography variant="h6">{upload.title} </Typography>{upload.authorName === user.username && user.userId ? 
+        <DeleteIcon onClick={handleDelete} className="delete"/> : null}</div>
             <Typography variant="p" className="author">
-              {upload.authorName}
+             Author: {upload.authorName ? upload.authorName : "Unknown" } 
             </Typography>
             <Typography variant="body2" className="timePost">
               {moment(upload.createdAt).calendar()}
@@ -115,6 +168,7 @@ const Upload = ({ upload}) => {
             </div>
           </CardActions>
         </div>
+        
       </Card>
     </>
   );

@@ -13,6 +13,7 @@ export const getUploads = () => async (dispatch) => {
 };
 
 export const createUpload = (upload) => async (dispatch) => {
+  
   try {
     const { data } = await api.createUpload(upload);
 
@@ -24,6 +25,7 @@ export const createUpload = (upload) => async (dispatch) => {
 
 export const updateUpload = (id, upload) => async (dispatch) => {
   try {
+    
     const { data } = await api.updateUpload(id, upload);
 
     dispatch({ type: UPDATE, payload: data });
@@ -84,6 +86,7 @@ export const happyUpload = (id) => async (dispatch) => {
 
 export const deleteUpload = (id) => async (dispatch) => {
   try {
+    
     await api.deleteUpload(id);
 
     dispatch({ type: DELETE, payload: id });

@@ -2,12 +2,10 @@ const e = require("express");
 const mongoose = require("mongoose");
 const expressHandler = require("express-async-handler");
 const Upload = require("../models/upload");
-const User = require("../models/users")
-const verifyJWT = require("../verifyJWT");
 
 const getUploads = expressHandler(async (req, res) => {
   try {
-    const uploads = await Upload.find();
+    const uploads = await Upload.find().sort({ createdAt: 'asc' });
 
     res.status(200).json(uploads);
   } catch (error) {
@@ -15,14 +13,12 @@ const getUploads = expressHandler(async (req, res) => {
   }
 });
 
-const getUpload = expressHandler(verifyJWT, async (req, res) => {
-  const username = req.params.userId;
-  User.findOne({ username: username });
+const getUpload = expressHandler(async (req, res) => {
 
   const { id } = req.params;
 
   try {
-    const upload = await Upload.findById(id, username);
+    const upload = await Upload.findById(id);
 
     res.status(200).json(upload);
   } catch (error) {
@@ -31,13 +27,12 @@ const getUpload = expressHandler(verifyJWT, async (req, res) => {
 });
 
 const createUpload = expressHandler( async (req, res) => {
-  const username = req.params.userId;
-  User.findOne({ username: username });
   const {
     myFile,
     title,
     loveCount,
     happyCount,
+    authorName,
     sadCount,
     angryCount,
     scaredCount,
@@ -45,7 +40,7 @@ const createUpload = expressHandler( async (req, res) => {
 
   const newUpload = new Upload({
     myFile,
-    authorName: username,
+    authorName,
     title,
     loveCount,
     happyCount,
@@ -63,9 +58,7 @@ const createUpload = expressHandler( async (req, res) => {
   }
 });
 
-const updateUpload = expressHandler(verifyJWT, async (req, res) => {
-  const username = req.params.userId;
-  User.find({ username: username });
+const updateUpload = expressHandler( async (req, res) => {
   const { id } = req.params;
   const {
     myFile,
@@ -84,7 +77,7 @@ const updateUpload = expressHandler(verifyJWT, async (req, res) => {
   const updateUpload = {
     myFile,
     title,
-    authorName: username,
+    authorName,
     loveCount,
     happyCount,
     sadCount,
@@ -93,11 +86,8 @@ const updateUpload = expressHandler(verifyJWT, async (req, res) => {
     _id: id,
   };
 
-  await Upload.findByIdAndUpdate(id, updateUpload, authorName, {
-    new: true,
-    authorName: username,
-  });
-  await User.findByIdAndUpdate(username);
+
+  await Upload.findByIdAndUpdate(id);
 
   res.json(updateUpload);
 });

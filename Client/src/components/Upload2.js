@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 
 import { EffectCoverflow, Pagination, Navigation } from "swiper";
 import { getUploads } from "../actions/uploads";
-import UploadForm from "./UploadForm";
 import Upload from "./Upload";
 import { TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +22,7 @@ import HomeIcon from "@mui/icons-material/Home";
 
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import UploadForm from "./UploadForm";
 
 const style = {
   position: "absolute",
@@ -39,7 +39,7 @@ const style = {
 };
 
 function Upload2() {
-  const [currentId, setCurrentId] = useState(0);
+  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
@@ -57,11 +57,76 @@ function Upload2() {
     return uploads.filter((upload) => {
       return searchParam.some((newItem) => {
         return (
-          upload[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-        );
+          upload[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1)
       });
     });
   }
+
+  useEffect(() => {
+    fetch("/api/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? setUser(data) : null))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("/auth/login/success", {
+        credentials: "include",
+        SameSite: "none",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+          
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("/user/facebook", {
+        credentials: "include",
+        SameSite: "none",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+         
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
 
   const inputRefUser = useRef(null);
   const inputRefLoc = useRef(null);
@@ -80,7 +145,7 @@ function Upload2() {
         <h2>Memory Recall Test</h2>
         <p>
           You need to key in your name in order to access the questions that
-          will appear once you hover the images.
+          will appear as a modal.
         </p>
         <ol>
           <li>You will be asked some questions one after another.</li>
@@ -160,8 +225,7 @@ function Upload2() {
           <SwiperSlide key={i}>
             <Upload
               upload={upload}
-              currentId={currentId}
-              setCurrentId={setCurrentId}
+              setUser={setUser} user={user}
               key={upload._id}
             />
           </SwiperSlide>
@@ -189,10 +253,12 @@ function Upload2() {
           </CheckUserExist>
         </Box>
       </Modal>
-      <div className="uploadBox">
-        <h4 className="text-center">Upload photos or browse above</h4>
-        <UploadForm currentId={currentId} setCurrentId={setCurrentId} />
-      </div>
+      {user && user.userId ? (
+        <div className="uploadBox">
+          <h4 className="text-center">Upload photos or browse above</h4>
+          <UploadForm setUser={setUser} user={user}/>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -55,7 +55,7 @@ function Navbar() {
 
   const logoutSocial = () => {
     window.open(
-      "https://look-book-act-group42.herokuapp.com/auth/logout",
+      "https://look-book-act-group42.herokuapp.com/",
       "_self"
     );
     window.location.reload("/profile");
@@ -133,7 +133,7 @@ function Navbar() {
                     className="navbar-brand"
                     href={`/profile/${user.username}`}
                   >
-                    <img src={avatar} alt="profile" width="40px" />
+                    <img src={user.picture ? user.picture : avatar} alt="profile" width="40px" />
                   </a>
                 </li>
                 <button
@@ -151,7 +151,7 @@ function Navbar() {
                     className="navbar-brand"
                     href={`/userProfile/${user.username}`}
                   >
-                    <img src={avatar} alt="profile" width="40px" />
+                    <img src={user.picture ? user.picture : avatar} alt="profile" width="40px" />
                   </a>
                 </li>
 

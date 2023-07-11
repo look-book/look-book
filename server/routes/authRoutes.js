@@ -38,7 +38,8 @@ router.post("/login",(req, res) => {
                         lastName: dbUser.lastName,
                         picture: dbUser.picture,
                         email: dbUser.email,
-                        bio: dbUser.bio
+                        bio: dbUser.bio,
+                        myPic: dbUser.myPic,
                     }
                     jwt.sign(
                         payload, 
@@ -79,10 +80,9 @@ router.post("/register", async (req, res) => {
             confirmPassword: user.confirmPassword,
             firstName: user.firstName,
             lastName: user.lastName,   
-            picture: user.picture,     
+            picture: user.picture,
+            myPic: user.myPic,     
             bio: "Hey!" +  user.firstName + " have not set a bio yet",
-            singleFile: [],
-            multipleFiles: [],
             posts:[],
             uploads:[]
         })

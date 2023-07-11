@@ -4,38 +4,55 @@ import { useDispatch, useSelector } from "react-redux";
 import FileBase from "react-file-base64";
 import { createUpload, updateUpload } from "../actions/uploads";
 
-const UploadForm = ({ currentId, setCurrentId }) => {
+const UploadForm = ({ user, setUser }) => {
+
+  useEffect(() => {
+    fetch("/api/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? setUser(data) : null))
+      .catch((err) => console.log(err));
+  }, [setUser]);
+
+
   const [uploadData, setUploadData] = useState({
     myFile: "",
     title: "",
+    authorName: user.username,
   });
 
   const upload = useSelector((state) =>
-    currentId ? state.uploads.find((upload) => upload._id === currentId) : null
+    user.username
+      ? state.uploads.find((upload) => upload._id === user.username)
+      : null
   );
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (upload === currentId) {
-      setUploadData(upload);
+    if (upload === user.username) {
+      setUploadData({...upload, authorName: localStorage.getItem("token")});
+      
     }
-  }, [upload, currentId]);
+  }, [upload, user.username]);
 
   const clear = () => {
-     setCurrentId(0);
     setUploadData({ myFile: "", title: "" });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (currentId === 0) {
-      dispatch(createUpload(uploadData));
-
+    if (user.username) {
+      dispatch(createUpload({...uploadData, authorName: user.username}));
       clear();
     } else {
-      dispatch(updateUpload(currentId, uploadData));
+      dispatch(updateUpload(user.username, uploadData));
       clear();
     }
   };

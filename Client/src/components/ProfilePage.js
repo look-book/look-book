@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import avatar from "../assets/subProfile.png";
 import Settings from "./ResetPassword";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
-import FileBase from "react-file-base64";
 
 function ProfilePage({ match }) {
   const { userId } = useParams(match);
@@ -28,10 +26,8 @@ function ProfilePage({ match }) {
   async function changeUserInfo(e) {
     const form = e.target;
     const newBio = form[0].value;
-    const newPicture = new FormData();
-    setUser({ ...user, bio: newBio, picture: newPicture });
+    setUser({ ...user, bio: newBio});
     form[0].value = "";
-
 
     try {
       await fetch("/api/updateUserInfo", {
@@ -40,28 +36,22 @@ function ProfilePage({ match }) {
           "x-access-token": localStorage.getItem("token"),
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ newBio: newBio, newPicture: newPicture}),
+        body: JSON.stringify({ newBio: newBio}),
       });
     } catch (err) {
       alert(err);
     }
     changeUserInfo();
   }
-
+ 
   return (
     <div className="userBox">
       <header className="flex flex-row justify-center p-1">
-        {user.username ? (
+        {user ? (
           <>
             <div className="profileAccount">
               <div>
-                <img
-                  className="avatar"
-                  src={user.picture ? user.picture : avatar}
-                  alt="profile"
-                />
-
-                <br></br>
+                <img src={user.picture} alt="profile" className="profile"/>
                 <h3>
                   {user.firstName} {user.lastName}
                 </h3>
@@ -72,7 +62,6 @@ function ProfilePage({ match }) {
                 <p>
                   <b>Bio:</b> {user.bio}
                 </p>
-
                 {user.canEdit !== "Not found" ? (
                   <>
                     <form onSubmit={(e) => changeUserInfo(e)} className="bio">
@@ -84,18 +73,8 @@ function ProfilePage({ match }) {
                         name="bio"
                         id="bio"
                       />
-
                       <input type="submit" value="Submit" />
                       <p className="text-sm my-1">1000 characters maximum</p>
-                      <div className="">
-                        <FileBase
-                          type="file"
-                          multiple={false}
-                          onDone={({ base64 }) =>
-                            setUser({ ...user, picture: base64 })
-                          }
-                        />
-                      </div>
                     </form>
                   </>
                 ) : null}
@@ -119,3 +98,4 @@ function ProfilePage({ match }) {
 }
 
 export default ProfilePage;
+

@@ -36,7 +36,7 @@ const People = () => {
               className="userProfile"
             />
             <p>
-              {data.firstName}{" "} {data.lastName}
+              {data.firstName}{" "} {data.lastName} {" "}{data.name}
               <br></br>
               <a href={`mailto:${data.email}`} className="linkMail">
                 {data.email ? data.email : data.username}
