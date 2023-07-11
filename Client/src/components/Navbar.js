@@ -39,6 +39,7 @@ function Navbar() {
         })
         .then((resObject) => {
           setUser(resObject.user);
+          window.location.replace(`/profile/${user.userId}`)
         })
         .catch((err) => {
           console.log(err);
@@ -58,7 +59,7 @@ function Navbar() {
       "https://look-book-act-group42.herokuapp.com/auth/logout",
       "_self"
     );
-    window.location.reload("/profile");
+    window.location.reload(`/profile/${user.userId}`);
   };
 
   return (
@@ -131,7 +132,7 @@ function Navbar() {
                 <li className="nav-item right">
                   <a
                     className="navbar-brand"
-                    href={`/profile/${user.username}`}
+                    href={`/profile/${user.userId}`}
                   >
                     <img src={user.picture ? user.picture : avatar} alt="profile" width="40px" />
                   </a>

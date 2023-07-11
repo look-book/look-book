@@ -91,7 +91,7 @@ const Upload = ({ upload }) => {
 
           <div className="cardInfo" key={upload._id}>
             <div className="cardDel">
-            <Typography variant="h6">{upload.title} </Typography>{upload.authorName === user.username && user.userId ? 
+            <Typography variant="h6">{upload.title} </Typography>{upload.authorName === user.username ? 
         <DeleteIcon onClick={handleDelete} className="delete"/> : null}</div>
             <Typography variant="p" className="author">
              Author: {upload.authorName ? upload.authorName : "Unknown" } 

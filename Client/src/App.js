@@ -36,6 +36,7 @@ function App() {
           <Route exact path="/userProfile/:userId" element={<ProfilePage />} />
           <Route exact path="/filters" element={<Filters />} />
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/profile/:userId" element={<Profile />} />
           <Route exact path="/people" element={<People />} />
           <Route
             exact

@@ -48,7 +48,7 @@ function Login() {
     })
       .then((res) => res.json())
       .then((data) =>
-        data.isLoggedIn ? history.push("/userProfile/:userId") : null
+        data.isLoggedIn ? history.push(`/userProfile/${user.username}`) : null
       )
       .catch((err) => console.log(err));
   }, [history, user]);
@@ -57,6 +57,7 @@ function Login() {
 
   const onGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
+    window.location(`/profile/${user.userId}`)
   };
 
   //https://look-book-act-group42.herokuapp.com/
@@ -69,6 +70,7 @@ function Login() {
         accessToken: response.authResponse.accessToken
       });
       console.log(result.data);
+      window.location.replace(`/profile/${user.userId}`)
     } catch (error) {
       console.log(error);
     }
@@ -80,6 +82,7 @@ function Login() {
   
   const onFacebook = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
+    window.location.replace(`/profile/${user.userId}`)
   };
 
   return (

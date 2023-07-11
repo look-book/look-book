@@ -20,6 +20,32 @@ const UploadForm = ({ user, setUser }) => {
   }, [setUser]);
 
 
+  useEffect(() => {
+    const getUser = () => {
+      fetch("/auth/login/success", {
+        credentials: "include",
+        SameSite: "none",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+          
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
   const [uploadData, setUploadData] = useState({
     myFile: "",
     title: "",
