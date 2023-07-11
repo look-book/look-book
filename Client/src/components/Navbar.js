@@ -55,7 +55,7 @@ function Navbar() {
 
   const logoutSocial = () => {
     window.open(
-      "https://look-book-act-group42.herokuapp.com/",
+      "https://look-book-act-group42.herokuapp.com/auth/logout",
       "_self"
     );
     window.location.reload("/profile");
