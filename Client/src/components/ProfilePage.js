@@ -47,7 +47,7 @@ function ProfilePage({ match }) {
   return (
     <div className="userBox">
       <header className="flex flex-row justify-center p-1">
-        {user ? (
+        {user.username ? (
           <>
             <div className="profileAccount">
               <div>

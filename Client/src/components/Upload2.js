@@ -253,7 +253,7 @@ function Upload2() {
           </CheckUserExist>
         </Box>
       </Modal>
-      {user && user.userId ? (
+      {user && user.username ? (
         <div className="uploadBox">
           <h4 className="text-center">Upload photos or browse above</h4>
           <UploadForm setUser={setUser} user={user}/>
