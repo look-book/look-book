@@ -44,7 +44,7 @@ const UploadForm = ({ user, setUser }) => {
         });
     };
     getUser();
-  }, []);
+  }, [setUser]);
 
   const [uploadData, setUploadData] = useState({
     myFile: "",

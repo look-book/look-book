@@ -43,6 +43,14 @@ const userSchema = new mongoose.Schema(
     bio: {
       type: String,
     },
+    long: {
+      type: Number,
+      required: true,
+    },
+    lat: {
+      type: Number,
+      required: true,
+    },
     uploads: [
       {
         type: mongoose.Types.ObjectId,

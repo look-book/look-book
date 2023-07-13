@@ -14,7 +14,6 @@ const Router = require("./routes/routes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const questionRoutes = require("./routes/questionRoute");
 
-
 //.env File Config
 require("dotenv").config();
 config();
@@ -81,7 +80,7 @@ app.use("/auth", authGoogle);
 app.use("/posts", postRoutes);
 app.use("/uploads", uploadRoutes);
 
-        
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../Client/build")));
@@ -96,4 +95,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
-

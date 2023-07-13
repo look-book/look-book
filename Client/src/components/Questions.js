@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFetchQestion } from "../hooks/FetchQuestion";
 import { updateResult } from "../hooks/setResult";
 
-export default function Questions({ onChecked }) {
+export default function Questions({ onChecked}) {
     const [checked, setChecked] = useState(undefined)
     const { trace } = useSelector(state => state.questions);
     const result = useSelector(state => state.result.result);
@@ -33,11 +33,6 @@ export default function Questions({ onChecked }) {
   return (
     
     <div className="questions">
-      <div>
-        {questions?.images ? (
-          <img src={questions?.images} alt="" className="m-2" width="400px" />
-        ) : null}
-      </div>
       <ul key={questions?.id}>
         <h5 className="text-dark">{questions?.question}</h5>
         {questions?.options.map((q, i) => (

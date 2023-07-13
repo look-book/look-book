@@ -14,6 +14,8 @@ export default function ResultTable() {
     });
   }, []);
 
+  
+
   return (
     <div>
       <table>
@@ -24,6 +26,7 @@ export default function ResultTable() {
             <td>Attemtps</td>
             <td>Earn Points</td>
             <td>Result</td>
+            
           </tr>
         </thead>
         <tbody>
@@ -35,6 +38,7 @@ export default function ResultTable() {
               <td>{v?.attempts || 0}</td>
               <td>{v?.points || 0}</td>
               <td>{v?.achieved || ""}</td>
+             
             </tr>
           ))}
         </tbody>

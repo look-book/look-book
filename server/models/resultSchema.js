@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema
 /** result model */
 const resultModel = new mongoose.Schema({
     username : { type : String },
-    location: { type : String },
+    location: {type: String},
     result : { type : Array, default : []},
     attempts : { type : Number, default : 0},
     points : { type : Number, default : 0},

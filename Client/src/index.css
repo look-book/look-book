@@ -9,29 +9,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 10px solid #f3f3f3; /* Light grey */
-  border-top: 10px solid #383636; /* Blue */
-  border-radius: 50%;
-  animation: spinner 1.5s linear infinite;
-}
 
-.spinner-container {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  height: 350px;
-}
 .fb{
   text-decoration: none !important;
 }
@@ -69,8 +47,8 @@
 
 .containerQ .grid {
   display: grid;
-  width: 80%;
-  margin: auto;
+  width: 90%;
+  margin: 2% auto;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -265,7 +243,7 @@ ul li {
 
 .reviews div {
   display: flex;
-  justify-content: space-between;
+  
 }
 
 .contactBox {
@@ -761,8 +739,6 @@ h1 {
   text-align: center;
   padding: 10px;
 }
-
-
 .boxSidebar {
   position: absolute;
 }
@@ -803,7 +779,9 @@ h1 {
 i {
   margin: 5px;
 }
-
+.iconbtn{
+  width: auto;
+}
 .title {
   color: grey;
   font-size: 18px;
@@ -1114,10 +1092,6 @@ a:hover {
   .right {
     margin-left: 0;
   }
-
-  .reviews div {
-    margin-left: -10%;
-  }
   .postImage {
     width: 100%;
     object-fit: contain;
@@ -1238,11 +1212,6 @@ a:hover {
   .card {
     width: 100%;
   }
-
-  .reviews div {
-    margin-left: -10%;
-  }
-
   .columnMember {
     display: block;
   }
@@ -1270,11 +1239,6 @@ a:hover {
     margin-left: -23%;
     justify-content: center;
   }
-
-  .reviews div {
-    margin-left: -10%;
-  }
-
   .homeBox {
     position: relative;
     width: 100%;

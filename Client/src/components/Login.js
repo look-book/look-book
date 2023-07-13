@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import Google from "../assets/google.png";
 import Facebook from "../assets/facebook.png";
 import ValidationError from "./ValidationError";
-import { FacebookProvider} from 'react-facebook';
+import { FacebookProvider } from "react-facebook";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -52,11 +52,9 @@ function Login() {
       .catch((err) => console.log(err));
   }, [history, user]);
 
-  
-
   const onGoogle = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/google", "_self");
-    window.location(`/profile/${user.userId}`)
+    window.location(`/profile/${user.userId}`);
   };
 
   //https://look-book-act-group42.herokuapp.com/
@@ -65,7 +63,7 @@ function Login() {
 
   const onFacebook = () => {
     window.open("https://look-book-act-group42.herokuapp.com/auth/facebook", "_self");
-    window.location.replace(`/profile/${user.userId}`)
+    window.location.replace(`/profile/${user.userId}`);
   };
 
   return (
@@ -119,12 +117,12 @@ function Login() {
               <img src={Google} alt="" className="icon" />
               Google
             </div>
-          <FacebookProvider appId="761783708288455">
-            <div className="loginButton facebook" onClick={onFacebook}>
-              <img src={Facebook} alt="" className="icon" />
-              Facebook
-            </div>
-      </FacebookProvider>
+            <FacebookProvider appId="761783708288455">
+              <div className="loginButton facebook" onClick={onFacebook} >
+                <img src={Facebook} alt="" className="icon" />
+                Facebook
+              </div>
+            </FacebookProvider>
           </div>
         </div>
       </div>

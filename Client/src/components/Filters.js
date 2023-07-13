@@ -2,6 +2,7 @@ import React from "react";
 import People from "./People";
 import Locations from "./Locations";
 
+
 function Filters() {
   return (
     <section className="filterBox">
@@ -16,7 +17,7 @@ function Filters() {
         <People />
       </div>
       <br></br><br></br><br></br>
-
+      
       <h4>Locations</h4>
       <Locations />
     </section>

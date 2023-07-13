@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../assets/css/settings.css";
-import { useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import avatar from "../assets/subProfile.png"
 
 export default function Settings({ match }) {
@@ -13,7 +13,7 @@ export default function Settings({ match }) {
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState({});
   const { userId } = useParams(match);
-
+  
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
       headers: {

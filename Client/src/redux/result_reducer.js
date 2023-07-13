@@ -5,7 +5,8 @@ export const resultReducer = createSlice({
     initialState : {
         userId : null,
         location: null,
-        result : []
+        result : [],
+        uploadId: []
     },
     reducers : {
         setUserId : (state, action) => {
@@ -24,7 +25,8 @@ export const resultReducer = createSlice({
         resetResultAction : () => {
             return {
                 userId : null,
-                result : []
+                result : [],
+                uploadId: []
             }
         }
     }

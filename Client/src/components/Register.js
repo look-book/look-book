@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import ValidationError from "./ValidationError";
 
+
 function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useNavigate();
 
+  
   async function handleRegister(e) {
     e.preventDefault();
-
     const form = e.target;
     const user = {
       firstName: form[0].value,
@@ -35,7 +36,6 @@ function Register() {
       window.location.replace("/loginUser");
     } catch (err) {
       console.log(err);
-
     }
   }
 
@@ -56,15 +56,16 @@ function Register() {
   return (
     <>
       <div className="contentBox">
-      
         <div className="registerSection">
           <h4> Register</h4>
           <form onSubmit={(e) => handleRegister(e)} className="registerForm">
-          <p>{errorMessage == "Success" ? (
-              <Navigate to="/loginUser" />
-            ) : (
-              <ValidationError message={errorMessage} />
-            )}</p>
+            <p>
+              {errorMessage == "Success" ? (
+                <Navigate to="/loginUser" />
+              ) : (
+                <ValidationError message={errorMessage} />
+              )}
+            </p>
             <label htmlFor="firstName">Firstname</label>
             <input
               className="input-field"
