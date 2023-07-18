@@ -5,7 +5,6 @@ export const resultReducer = createSlice({
     initialState : {
         userId : null,
         username: null,
-        location: null,
         result : [],
        
     },
@@ -13,9 +12,6 @@ export const resultReducer = createSlice({
         setUserId : (state, action) => {
             state.userId = action.payload; 
             state.username = action.payload   
-        },
-        setLocation: (state, action) => {
-            state.location = action.payload
         },
         pushResultAction : (state, action) => {
             state.result.push(action.payload)
@@ -34,6 +30,6 @@ export const resultReducer = createSlice({
     }
 })
 
-export const { setUserId, setLocation, pushResultAction, resetResultAction, updateResultAction } = resultReducer.actions;
+export const { setUserId, pushResultAction, resetResultAction, updateResultAction } = resultReducer.actions;
 
 export default resultReducer.reducer;

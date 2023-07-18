@@ -14,6 +14,7 @@ import Upload from "./Upload";
 import { TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import UploadForm from "./UploadForm";
+import Quiz from "./Quiz";
 
 function Upload2() {
   const [user, setUser] = useState(null);
@@ -22,21 +23,11 @@ function Upload2() {
   const [q, setQ] = useState("");
   const [searchParam] = useState(["title"]);
 
+  const uploads = useSelector((state) => state.uploads);
+
   useEffect(() => {
     dispatch(getUploads());
   }, [dispatch]);
-
-  const uploads = useSelector((state) => state.uploads);
-
-  function search(uploads) {
-    return uploads.filter((upload) => {
-      return searchParam.some((newItem) => {
-        return (
-          upload[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-        );
-      });
-    });
-  }
 
   useEffect(() => {
     fetch("/api/isUserAuth", {
@@ -101,18 +92,27 @@ function Upload2() {
     getUser();
   }, []);
 
+  function search(uploads) {
+    return uploads.filter((upload) => {
+      return searchParam.some((newItem) => {
+        return (
+          upload[newItem].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+        );
+      });
+    });
+  }
+
   return (
     <div className="container">
       <div>
         <h2>Memory Recall Test</h2>
         <p>
-          You need to key in your name in order to access the questions that
-          will appear at the bottom of each images.
+          You need to loggedin in order to access the questions and images
         </p>
         <ol>
           <li>
             You will be asked some questions one after another. And if you get
-            stuck you can scroll through images to give you ideas.
+            stuck you can scroll through images to give you ideas and you can go back to continue answering the questions.
           </li>
           <li>10 points is awarded for the correct answer.</li>
           <li>
@@ -171,7 +171,11 @@ function Upload2() {
                 />
               </SwiperSlide>
             ))}
-          
+
+            <SwiperSlide>
+              <Quiz setUser={setUser} user={user} />
+            </SwiperSlide>
+
             <div className="slider-controler">
               <div className="swiper-button-prev slider-arrow">
                 <ion-icon name="arrow-back-outline"></ion-icon>

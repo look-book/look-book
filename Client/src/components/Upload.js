@@ -4,8 +4,6 @@ import {
   CardMedia,
   Typography,
   Button,
-  CardActions,
-  Collapse,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch } from "react-redux";
@@ -25,30 +23,10 @@ import {
   deleteUpload,
 } from "../actions/uploads";
 
-import { styled } from "@mui/material/styles";
-import CommentsIcon from "@mui/icons-material/ExpandMore";
-import Quiz from "./Quiz";
-import IconButton from "@mui/material/IconButton";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
 const Upload = ({ upload }) => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
-  const [expanded, setExpanded] = useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   useEffect(() => {
     fetch("/api/isUserAuth", {
@@ -62,6 +40,7 @@ const Upload = ({ upload }) => {
       .then((data) => (data.isLoggedIn ? setUser(data) : null))
       .catch((err) => console.log(err));
   }, [setUser]);
+
   // Delete the post and redirect the user to the homepage
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -178,22 +157,6 @@ const Upload = ({ upload }) => {
             {moment(upload.createdAt).calendar()}
           </Typography>
         </div>
-
-        <CardActions disableSpacing className="d-flex">
-          Want to take a memory test?{" "}
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-            className="expand"
-          >
-            <CommentsIcon />
-          </ExpandMore>
-        </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Quiz user={user} setUser={setUser}/>
-        </Collapse>
       </Card>
     </>
   );

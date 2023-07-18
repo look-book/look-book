@@ -12,13 +12,13 @@
   },
   {
     id: 3,
-    question: " What shape is the ball? ",
+    question: " What is the shape of the ball? ",
     options: ["Circle", "Square", "Oblong", "Rectangle"],
   },
   {
     id: 4,
     question: "What color is the american flag? ",
-    options: ["Blue, red, yellow, white", "Green, white, red, orange", "Black, blue, red, brown", "Yellow, green, blue, white"],
+    options: ["Blue, red,  white", "Green, white, red", "Black, blue,  brown", "Yellow, blue, white"],
   },
   
   {
@@ -38,7 +38,7 @@
   },
   {
     id: 8,
-    question: "What color is the sky?",
+    question: "What color is the sky usually?",
     options: ["Brown", "Blue", "Red", "Orange", "Green"],
   },
   {
@@ -49,7 +49,7 @@
   {
     id: 10,
     question: "What a mother have after giving birth?",
-    options: ["Cousin", "Sister", "Children", "Grandchildren"],
+    options: ["Cousin", "Sister", "Children || Baby", "Grandchildren"],
   },
 ];
 

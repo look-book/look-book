@@ -51,6 +51,8 @@ export default function Quiz() {
   return (
     <div className="containerQ">
       {/* display questions */}
+     
+         
       <Questions onChecked={onChecked} />
 
       <div className="grid">
