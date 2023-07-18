@@ -6,11 +6,13 @@ import resultReducer from "./result_reducer";
 import posts from "./posts";
 import uploads from "./uploads";
 
+
 const rootReducer = combineReducers({
   questions: questionReducer,
   result: resultReducer,
   posts: posts,
   uploads: uploads,
+  
 
 });
 

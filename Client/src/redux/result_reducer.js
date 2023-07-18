@@ -4,13 +4,15 @@ export const resultReducer = createSlice({
     name: 'result',
     initialState : {
         userId : null,
+        username: null,
         location: null,
         result : [],
-        uploadId: []
+       
     },
     reducers : {
         setUserId : (state, action) => {
-            state.userId = action.payload    
+            state.userId = action.payload; 
+            state.username = action.payload   
         },
         setLocation: (state, action) => {
             state.location = action.payload
@@ -26,7 +28,7 @@ export const resultReducer = createSlice({
             return {
                 userId : null,
                 result : [],
-                uploadId: []
+                
             }
         }
     }

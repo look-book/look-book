@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LOVE, HAPPY, SAD, SCARED, ANGRY } from '../constants/actionTypes';
+import { FETCH_ALL, FETCH_ALL_BYUSER, CREATE, UPDATE, DELETE, LOVE, HAPPY, SAD, SCARED, ANGRY } from '../constants/actionTypes';
 
 import * as api from '../api/upload.js';
 
@@ -7,6 +7,16 @@ export const getUploads = () => async (dispatch) => {
     const { data } = await api.fetchUploads();
 
     dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getUploadsByUser = () => async (dispatch) => {
+  try {
+    const { data } = await api.fetchUploadsByUser();
+
+    dispatch({ type: FETCH_ALL_BYUSER, payload: data });
   } catch (error) {
     console.log(error.message);
   }

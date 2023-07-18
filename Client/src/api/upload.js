@@ -4,6 +4,7 @@ import axios from 'axios';
 const url = "https://look-book-act-group42.herokuapp.com/uploads";
 
 export const fetchUploads = () => axios.get(url);
+export const fetchUploadsByUser = () => axios.get(url);
 export const createUpload = (newUpload) => axios.post(url, newUpload);
 export const loveUpload = (id) => axios.patch(`${url}/${id}/loveUpload` );
 export const happyUpload = (id) => axios.patch(`${url}/${id}/happyUpload` );

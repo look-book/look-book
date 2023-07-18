@@ -1,5 +1,6 @@
 import {
   FETCH_ALL,
+  FETCH_ALL_BYUSER,
   CREATE,
   UPDATE,
   DELETE,
@@ -15,6 +16,10 @@ export default function (uploads = [], action) {
   switch (action.type) {
     case FETCH_ALL:
       return action.payload;
+      case FETCH_ALL_BYUSER:
+        return uploads.map((upload) =>
+        upload._id === action.payload._id ? action.payload : upload
+      );
     case LOVE:
       return uploads.map((upload) =>
         upload._id === action.payload._id ? action.payload : upload

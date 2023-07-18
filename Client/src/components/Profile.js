@@ -6,6 +6,7 @@ import { Container } from "@mui/material";
 import Loading from "./Loading";
 import avatar from "../assets/fbProfile.png";
 
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [file, setFile] = useState(null);
@@ -15,6 +16,7 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
 
   useEffect(() => {
     const getUser = () => {
@@ -143,7 +145,10 @@ const Profile = () => {
                   <form className="settingsFormG" onSubmit={handleSubmit}>
                     <label>Profile Picture</label>
                     <div className="settingsPP">
-                      <img src={user.picture ? user.picture : avatar} alt="profile" />
+                      <img
+                        src={user.picture ? user.picture : avatar}
+                        alt="profile"
+                      />
 
                       <label htmlFor="fileInput">
                         <i className="settingsPPIcon far fa-user-circle"></i>

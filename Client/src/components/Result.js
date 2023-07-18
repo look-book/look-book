@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../assets/css/Result.css";
 import { Link } from "react-router-dom";
-import "../assets/css/Result.css"
-
-import ResultTable from "./ResultTable";
+import "../assets/css/Result.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   attempts_Number,
@@ -18,9 +16,50 @@ import { usePublishResult } from "../hooks/setResult";
 
 export default function Result() {
   const dispatch = useDispatch();
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetch("/api/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+        "Content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? setUser(data) : null))
+      .catch((err) => console.log(err));
+  }, [setUser]);
+  
+
+ useEffect(() => {
+    const getUser = () => {
+      fetch("/auth/login/success", {
+        credentials: "include",
+        SameSite: "none",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
   const {
     questions: { queue, answers },
-    result: { result, userId, location },
+    result: { result, userId },
   } = useSelector((state) => state);
 
   const totalPoints = queue.length * 10;
@@ -32,7 +71,6 @@ export default function Result() {
   usePublishResult({
     result,
     username: userId,
-    location: location,
     attempts,
     points: earnPoints,
     achieved: flag ? "Memory is great!" : "Need Further Evaluation",
@@ -45,16 +83,14 @@ export default function Result() {
 
   return (
     <div className="container">
-      <h1 className="title"><h2>Evaluation Summary</h2></h1>
+      <h1 className="title">
+        <h2>Evaluation Summary</h2>
+      </h1>
 
       <div className="result flex-center">
         <div className="flex">
-          <span>Patient Name</span>
-          <span className="bold">{userId || userId.username}</span>
-        </div>
-        <div className="flex">
-          <span>State</span>
-          <span className="bold">{location || location.location}</span>
+          <span>Name</span>
+          <span className="bold">{userId || user.username}</span>
         </div>
         <div className="flex">
           <span>Total Quiz Points : </span>
@@ -87,11 +123,6 @@ export default function Result() {
         <Link className="btn" to={"/album"} onClick={onRestart}>
           Restart
         </Link>
-      </div>
-
-      <div className="container">
-        {/* result table */}
-        <ResultTable></ResultTable>
       </div>
     </div>
   );

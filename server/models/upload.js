@@ -9,7 +9,6 @@ const uploadSchema = new mongoose.Schema(
     authorName: {
       type: String,
     },
-
     loveCount: {
       type: Number,
       default: 0,

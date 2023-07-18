@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import {
   Card,
   CardMedia,
@@ -13,8 +13,6 @@ import moment from "moment";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import { Link } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
 import MoodBadIcon from "@mui/icons-material/MoodBad";
 import { Tooltip } from "@mui/material";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
@@ -26,15 +24,11 @@ import {
   angryUpload,
   deleteUpload,
 } from "../actions/uploads";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+
 import { styled } from "@mui/material/styles";
 import CommentsIcon from "@mui/icons-material/ExpandMore";
-import { CheckUserExist } from "../helper/helper";
 import Quiz from "./Quiz";
 import IconButton from "@mui/material/IconButton";
-
-/** Custom Hook */
-import { setUserId, setLocation } from "../redux/result_reducer";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -52,15 +46,6 @@ const Upload = ({ upload }) => {
   const [user, setUser] = useState({});
   const [expanded, setExpanded] = useState(false);
 
-  const inputRefUser = useRef(null);
-  const inputRefLoc = useRef(null);
-
-  function startQuiz() {
-    if (inputRefUser.current?.value) {
-      dispatch(setUserId(inputRefUser.current?.value));
-      dispatch(setLocation(inputRefLoc.current?.value));
-    }
-  }
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -206,38 +191,8 @@ const Upload = ({ upload }) => {
             <CommentsIcon />
           </ExpandMore>
         </CardActions>
-
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <form id="form">
-            <div>
-              {" "}
-              <AccountCircle /> Patient Name:{" "}
-              <input
-                ref={inputRefUser}
-                className="userid"
-                type="text"
-                name="username"
-                placeholder="Name"
-              />{" "}
-              <HomeIcon /> State Location:{" "}
-              <input
-                ref={inputRefLoc}
-                className="location"
-                type="text"
-                name="location"
-                placeholder="State Location"
-              />{" "}
-            </div>
-          </form>
-
-          <div className="start">
-            <Link className="btn" to="/album" onClick={startQuiz}>
-              Start Quiz
-            </Link>
-          </div>
-          <CheckUserExist>
-            <Quiz />
-          </CheckUserExist>
+          <Quiz user={user} setUser={setUser}/>
         </Collapse>
       </Card>
     </>

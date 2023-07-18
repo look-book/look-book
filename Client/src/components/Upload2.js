@@ -15,7 +15,6 @@ import { TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import UploadForm from "./UploadForm";
 
-
 function Upload2() {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();

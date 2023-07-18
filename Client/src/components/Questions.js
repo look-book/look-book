@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFetchQestion } from "../hooks/FetchQuestion";
 import { updateResult } from "../hooks/setResult";
 
+
 export default function Questions({ onChecked}) {
     const [checked, setChecked] = useState(undefined)
     const { trace } = useSelector(state => state.questions);
     const result = useSelector(state => state.result.result);
-    const [{ isLoading, apiData, serverError}] = useFetchQestion() 
+    const [{ isLoading, serverError}] = useFetchQestion() 
 
-    const questions = useSelector(state => state.questions.queue[state.questions.trace])
+    const questions = useSelector(state => state.questions.queue[state.questions.trace]);
+    
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -35,6 +37,7 @@ export default function Questions({ onChecked}) {
     <div className="questions">
       <ul key={questions?.id}>
         <h5 className="text-dark">{questions?.question}</h5>
+      
         {questions?.options.map((q, i) => (
           <>
             <li key={i}>
@@ -50,7 +53,7 @@ export default function Questions({ onChecked}) {
                 {q}
               </label>
               <div
-                className={`check ${result[trace] === i ? "checked" : ""}`}
+                className={`check ${result[trace] === i ? "checked"  : ""}`}
               ></div>
             </li>
           </>
