@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../assets/css/swiper.css";
 import "../assets/css/main.css";
@@ -16,11 +16,10 @@ import { useDispatch, useSelector } from "react-redux";
 import UploadForm from "./UploadForm";
 
 
-
 function Upload2() {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
-  
+
   const [q, setQ] = useState("");
   const [searchParam] = useState(["title"]);
 
@@ -103,7 +102,6 @@ function Upload2() {
     getUser();
   }, []);
 
-  
   return (
     <div className="container">
       <div>
@@ -113,7 +111,10 @@ function Upload2() {
           will appear at the bottom of each images.
         </p>
         <ol>
-          <li>You will be asked some questions one after another. And if you get stuck you can scroll through images to give you ideas.</li>
+          <li>
+            You will be asked some questions one after another. And if you get
+            stuck you can scroll through images to give you ideas.
+          </li>
           <li>10 points is awarded for the correct answer.</li>
           <li>
             Each question has three or more options. You can choose only one
@@ -122,69 +123,72 @@ function Upload2() {
           <li>You can review and change answers before the quiz finish.</li>
           <li>The result will be declared at the end of the quiz.</li>
         </ol>
-        </div>
+      </div>
 
       <br></br>
-      <div className="main">
-        <div className="search">
-          <TextField
-            id="outlined-basic"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            variant="outlined"
-            fullWidth
-            placeholder="Search categories..."
-          />
-        </div>
-      </div>
-      <br></br>
-      <Swiper
-        effect={"coverflow"}
-        grabCursor={true}
-        centeredSlides={true}
-        loop={true}
-        slidesPerView={"auto"}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 0,
-          depth: 100,
-          modifier: 2.5,
-        }}
-        pagination={{ el: ".swiper-pagination", clickable: true }}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-          clickable: true,
-        }}
-        modules={[EffectCoverflow, Pagination, Navigation]}
-        className="swiper_container"
-      >
-        {search(uploads).map((upload, i) => (
-          <SwiperSlide key={i}>
-            <Upload
-              upload={upload}
-              setUser={setUser}
-              user={user}
-              key={upload._id}
-            />
-          </SwiperSlide>
-        ))}
-        
-        <div className="slider-controler">
-          <div className="swiper-button-prev slider-arrow">
-            <ion-icon name="arrow-back-outline"></ion-icon>
-          </div>
-          <div className="swiper-pagination"></div>
-          <div className="swiper-button-next slider-arrow">
-            <ion-icon name="arrow-forward-outline"></ion-icon>
-          </div>
-        </div>
-      </Swiper>
       {user && user.username ? (
-        <div className="uploadBox">
-          <h4 className="text-center">Upload photos or browse above</h4>
-          <UploadForm setUser={setUser} user={user} />
-        </div>
+        <>
+          <div className="main">
+            <div className="search">
+              <TextField
+                id="outlined-basic"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                variant="outlined"
+                fullWidth
+                placeholder="Search categories..."
+              />
+            </div>
+          </div>
+          <br></br>
+          <Swiper
+            effect={"coverflow"}
+            grabCursor={true}
+            centeredSlides={true}
+            loop={true}
+            slidesPerView={"auto"}
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 100,
+              modifier: 2.5,
+            }}
+            pagination={{ el: ".swiper-pagination", clickable: true }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+              clickable: true,
+            }}
+            modules={[EffectCoverflow, Pagination, Navigation]}
+            className="swiper_container"
+          >
+            {search(uploads).map((upload, i) => (
+              <SwiperSlide key={i}>
+                <Upload
+                  upload={upload}
+                  setUser={setUser}
+                  user={user}
+                  key={upload._id}
+                />
+              </SwiperSlide>
+            ))}
+          
+            <div className="slider-controler">
+              <div className="swiper-button-prev slider-arrow">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+              </div>
+              <div className="swiper-pagination"></div>
+              <div className="swiper-button-next slider-arrow">
+                <ion-icon name="arrow-forward-outline"></ion-icon>
+              </div>
+            </div>
+          </Swiper>
+
+          <div className="uploadBox">
+            <h4 className="text-center">Upload photos or browse above</h4>
+            <UploadForm setUser={setUser} user={user} />
+          </div>
+        </>
       ) : null}
     </div>
   );
