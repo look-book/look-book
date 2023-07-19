@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../assets/logo2.png";
 import { useDispatch } from "react-redux";
 
-function Navbar(token) {
+function Navbar() {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
 
@@ -82,7 +82,7 @@ function Navbar(token) {
       </button>
       
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        {token && user ? (
+        {user ? (
           <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
               <a
