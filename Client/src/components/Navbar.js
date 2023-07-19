@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import avatar from "../assets/profile.jpg";
 import logo from "../assets/logo2.png";
 import { useDispatch } from "react-redux";
 
