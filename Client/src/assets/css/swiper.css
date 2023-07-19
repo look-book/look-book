@@ -204,16 +204,17 @@ html {
     width: 100%;
     padding: 15px;
     position: relative;
-    height: 33rem;
+    height: 35rem;
   }
   
   .swiper_container{
     width: 100%;
-    margin: 0 auto;
+    margin: 5% auto;
   }
   .swiper-slide{
     width: 400px !important;
     height: auto !important;
+    
   }
   .swiper-slide img{
     width: 100% !important;

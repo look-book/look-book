@@ -4,7 +4,7 @@
   
   .settingsWrapper {
     flex: 12;
-    padding: 20px;
+    
   }
   
   .settingsTitle {
@@ -28,6 +28,7 @@
   .settingsForm {
     display: flex;
     flex-direction: column;
+    padding: 15px;
   }
   
   .settingsPP {

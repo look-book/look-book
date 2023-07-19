@@ -9,6 +9,11 @@ const uploadSchema = new mongoose.Schema(
     authorName: {
       type: String,
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
     loveCount: {
       type: Number,
       default: 0,

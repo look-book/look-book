@@ -3,20 +3,10 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema(
   {
     userId: String,
-    myPic: String,
-   picture: {
-    type:  String,
-    default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
-  },
-    name: {
-      type: String,
+    picture: {
+      type: String, 
+      default: "https://img.freepik.com/premium-photo/neon-iridescent-psychedelic-cat-generative-ai-based-any-actual-scene-pattern_108146-4007.jpg?w=1480"
     },
-    email: {
-      type: String
-    },
-    resetToken:String,
-    expireToken:Date,
-
     hashedPassword: {
       type: String,
     },
@@ -27,6 +17,9 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     lastName: {
+      type: String,
+    },
+    email: {
       type: String,
     },
     username: {
@@ -43,14 +36,7 @@ const userSchema = new mongoose.Schema(
     bio: {
       type: String,
     },
-    long: {
-      type: Number,
-      required: true,
-    },
-    lat: {
-      type: Number,
-      required: true,
-    },
+  
     uploads: [
       {
         type: mongoose.Types.ObjectId,

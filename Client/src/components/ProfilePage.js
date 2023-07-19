@@ -7,7 +7,7 @@ import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 function ProfilePage({ match }) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
-  
+
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
       method: "GET",
@@ -63,6 +63,7 @@ function ProfilePage({ match }) {
                 <p>
                   <b>Bio:</b> {user.bio}
                 </p>
+            
 
                 {user.canEdit !== "Not found" ? (
                   <>

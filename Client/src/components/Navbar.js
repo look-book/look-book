@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../assets/profile.jpg";
 import logo from "../assets/logo2.png";
+import { useDispatch } from "react-redux";
 
-function Navbar() {
+function Navbar(token) {
   const [user, setUser] = useState(null);
+  const dispatch = useDispatch();
 
   async function logout() {
     localStorage.removeItem("token");
+    dispatch(logout());
     window.location.reload(`/userProfile/${user.username}`);
   }
 
@@ -78,9 +81,9 @@ function Navbar() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-
+      
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        {user ? (
+        {token && user ? (
           <ul className="navbar-nav mr-auto">
             <li className="nav-item dropdown">
               <a
@@ -134,7 +137,7 @@ function Navbar() {
                     className="navbar-brand"
                     href={`/profile/${user.userId}`}
                   >
-                    <img src={user.picture ? user.picture : avatar} alt="profile" width="40px" />
+                    <img src={user.picture } alt="profile" width="40px" />
                   </a>
                 </li>
                 <button
@@ -152,7 +155,7 @@ function Navbar() {
                     className="navbar-brand"
                     href={`/userProfile/${user.username}`}
                   >
-                    <img src={user.picture ? user.picture : avatar} alt="profile" width="40px" />
+                    <img src={user.picture} alt="profile" width="40px" />
                   </a>
                 </li>
 

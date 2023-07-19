@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import ValidationError from "./ValidationError";
 
-
 function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(null);
   const history = useNavigate();
-
-  
+   
   async function handleRegister(e) {
     e.preventDefault();
     const form = e.target;
@@ -18,8 +16,9 @@ function Register() {
       username: form[2].value,
       password: form[3].value,
       confirmPassword: form[4].value,
+     
     };
-
+  
     try {
       const res = await fetch("/api/register", {
         method: "POST",
@@ -106,7 +105,9 @@ function Register() {
               id="confirmPassword"
             />
             <br></br>
-
+            <div>
+          
+        </div>
             <input className="submitBtn" type="submit" value="REGISTER" />
             <br></br>
             <div className="">

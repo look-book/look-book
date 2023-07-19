@@ -9,7 +9,7 @@ function FAQ() {
       <h1>FAQ</h1>
       <h5>What is LookBook?</h5>
       <p>
-        This is a an app that will be used to help with memory recall in
+        This is an app that will be used to help with memory recall in
         Alzheimer's patients. The app will use a set of algorithms to determine
         the best time to show the picture using emotion ratings, tags and color
         data.

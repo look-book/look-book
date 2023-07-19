@@ -30,6 +30,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
+
           <Route exact path="/loginUser" element={<Login />} />
           <Route exact path="/registerUser" element={<Register />} />
           <Route exact path="/userProfile/:userId" element={<ProfilePage />} />

@@ -155,7 +155,7 @@ const Profile = () => {
               
             ))}
 
-              <div className="settingsG bg-light">
+              <div className="settingsG bg-light p-2">
                 <div className="settingsWrapperG">
                   <div className="settingsTitle">
                     <span className="settingsUpdateTitle">

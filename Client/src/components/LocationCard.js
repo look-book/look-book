@@ -3,6 +3,7 @@ import React from "react";
 function LocationCard() {
   return (
     <section className="contentBox">
+       <h4 className="text-center">Locations</h4><br></br>
       <div class="mapouter">
         <div class="gmap_canvas">
           <iframe

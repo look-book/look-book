@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../assets/css/swiper.css";
-import "../assets/css/main.css";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -104,7 +103,7 @@ function Upload2() {
 
   return (
     <div className="container">
-      <div>
+      <div className="instructions">
         <h2>Memory Recall Test</h2>
         <p>
           You need to loggedin in order to access the questions and images
@@ -172,7 +171,7 @@ function Upload2() {
               </SwiperSlide>
             ))}
 
-            <SwiperSlide>
+            <SwiperSlide className="qSwiper">
               <Quiz setUser={setUser} user={user} />
             </SwiperSlide>
 
