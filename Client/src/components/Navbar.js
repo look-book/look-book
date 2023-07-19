@@ -155,7 +155,7 @@ function Navbar(token) {
                     className="navbar-brand"
                     href={`/userProfile/${user.username}`}
                   >
-                    <img src={user.picture} alt="profile" width="40px" />
+                    {user.picture ? <img src={user.picture} alt="profile" width="40px" />  : <img src="https://img.freepik.com/premium-photo/neon-iridescent-psychedelic-cat-generative-ai-based-any-actual-scene-pattern_108146-4007.jpg?w=1480" alt="profile" width="40px" />} 
                   </a>
                 </li>
 
