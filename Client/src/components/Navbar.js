@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/logo2.png";
-import { useDispatch } from "react-redux";
+
 
 function Navbar() {
   const [user, setUser] = useState(null);
@@ -8,7 +8,6 @@ function Navbar() {
 
   async function logout() {
     localStorage.removeItem("token");
-    dispatch(logout());
     window.location.reload(`/userProfile/${user.username}`);
   }
 
