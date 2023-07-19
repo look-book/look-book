@@ -11,6 +11,7 @@ const {
   registrationValidation,
   loginValidation,
 } = require("../validation/validation");
+const Upload = require("../models/upload");
 
 
 function verifyJWT(req, res, next) {

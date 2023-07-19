@@ -3,10 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import Settings from "./ResetPassword";
 import bgVideo from "../assets/_import_624eae819769f2.40410376_FPpreview.mp4";
 
+
 function ProfilePage({ match }) {
   const { userId } = useParams(match);
   const [user, setUser] = useState({});
-
+  
   useEffect(() => {
     fetch(`/api/user/${userId}`, {
       method: "GET",
@@ -26,7 +27,7 @@ function ProfilePage({ match }) {
   async function changeUserInfo(e) {
     const form = e.target;
     const newBio = form[0].value;
-    setUser({ ...user, bio: newBio});
+    setUser({ ...user, bio: newBio });
     form[0].value = "";
 
     try {
@@ -36,14 +37,14 @@ function ProfilePage({ match }) {
           "x-access-token": localStorage.getItem("token"),
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ newBio: newBio}),
+        body: JSON.stringify({ newBio: newBio }),
       });
     } catch (err) {
       alert(err);
     }
     changeUserInfo();
   }
- 
+
   return (
     <div className="userBox">
       <header className="flex flex-row justify-center p-1">
@@ -51,7 +52,7 @@ function ProfilePage({ match }) {
           <>
             <div className="profileAccount">
               <div>
-                <img src={user.picture} alt="profile" className="profile"/>
+                <img src={user.picture} alt="profile" className="profile" />
                 <h3>
                   {user.firstName} {user.lastName}
                 </h3>
@@ -62,6 +63,7 @@ function ProfilePage({ match }) {
                 <p>
                   <b>Bio:</b> {user.bio}
                 </p>
+
                 {user.canEdit !== "Not found" ? (
                   <>
                     <form onSubmit={(e) => changeUserInfo(e)} className="bio">
@@ -82,6 +84,8 @@ function ProfilePage({ match }) {
 
               <Settings />
             </div>
+
+            
           </>
         ) : (
           <div className="logoutSection">
@@ -98,4 +102,3 @@ function ProfilePage({ match }) {
 }
 
 export default ProfilePage;
-

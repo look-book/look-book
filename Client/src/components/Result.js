@@ -73,7 +73,7 @@ export default function Result() {
     username: userId,
     attempts,
     points: earnPoints,
-    achieved: flag ? "Memory is great!" : "Need Further Evaluation",
+    achieved: flag
   });
 
   function onRestart() {
@@ -94,7 +94,7 @@ export default function Result() {
         </div>
         <div className="flex">
           <span>Total Quiz Points : </span>
-          <span className="bold">{totalPoints || 0}</span>
+          <span className="bold">{totalPoints + "%" || 0}</span>
         </div>
         <div className="flex">
           <span>Total Questions : </span>
@@ -106,16 +106,7 @@ export default function Result() {
         </div>
         <div className="flex">
           <span>Total Earn Points : </span>
-          <span className="bold">{earnPoints || 0}</span>
-        </div>
-        <div className="flex">
-          <span>Quiz Result</span>
-          <span
-            style={{ color: `${flag ? "#2aff95" : "#ff2a66"}` }}
-            className="bold"
-          >
-            {flag ? "Passed" : "Failed"}
-          </span>
+          <span className="bold">{earnPoints + "%" || 0}</span>
         </div>
       </div>
 

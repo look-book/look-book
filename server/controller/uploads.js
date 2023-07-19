@@ -13,6 +13,15 @@ const getUploads = expressHandler(async (req, res) => {
   }
 });
 
+const getUploadsByUser = expressHandler(async (req, res) => {
+  try {
+    const uploads = await Upload.find({authorName: req.user.username})
+    res.status(200).json(uploads);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+});
+
 const getUpload = expressHandler(async (req, res) => {
 
   const { id } = req.params;
@@ -190,6 +199,7 @@ const angryUpload = expressHandler(async (req, res) => {
 
 module.exports = {
   getUpload,
+  getUploadsByUser,
   getUploads,
   deleteUpload,
   updateUpload,

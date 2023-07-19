@@ -5,6 +5,9 @@ import axios from "axios";
 import { Container } from "@mui/material";
 import Loading from "./Loading";
 import avatar from "../assets/fbProfile.png";
+import { useDispatch, useSelector } from "react-redux";
+import { getUploadsByUser } from "../actions/uploads";
+import Upload from "./Upload";
 
 
 const Profile = () => {
@@ -17,6 +20,13 @@ const Profile = () => {
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
+  const uploads = useSelector((state) => state.uploads);
+
+  useEffect(() => {
+    dispatch(getUploadsByUser());
+  }, [dispatch]);
 
   useEffect(() => {
     const getUser = () => {
@@ -90,7 +100,7 @@ const Profile = () => {
       } catch (err) {}
     }
     try {
-      const res = await axios.put(`/api/user/profile`, updatedUser);
+      const res = await axios.put(`/api/user/profile/${user.userId}`, updatedUser);
       setSuccess(true);
       setUser(res);
     } catch (err) {
@@ -134,6 +144,17 @@ const Profile = () => {
                   <b>Email:</b> {user.email ? user.email : user.username}
                 </p>
               </div>
+              {(uploads).map((upload, i) => (
+             
+                <Upload
+                  upload={upload}
+                  setUser={setUser}
+                  user={user}
+                  key={upload._id}
+                />
+              
+            ))}
+
               <div className="settingsG bg-light">
                 <div className="settingsWrapperG">
                   <div className="settingsTitle">
